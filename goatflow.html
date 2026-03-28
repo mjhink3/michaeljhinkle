@@ -82,6 +82,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
 .tech-card-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--goat-green-light);margin-bottom:8px;}
 .tech-card-value{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;}
 .tech-card-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;}
+.tech-card-desc code{font-family:monospace;font-size:11px;background:rgba(82,183,136,0.1);padding:1px 5px;border-radius:2px;color:var(--goat-green-light);}
 .split-section{background:var(--goat-surface);}
 .split-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;min-height:400px;}
 .split-img{overflow:hidden;}
@@ -128,10 +129,10 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
 <section class="goat-hero">
   <div class="goat-hero-inner">
     <div>
-      <span class="hero-eyebrow">AI Workflow Automation &amp; Chaos Triage</span>
+      <span class="hero-eyebrow">AI-Powered Operational Intelligence Dashboard</span>
       <div class="hero-logo"><img src="goatflow_primary_logo.png" alt="GOATflow"></div>
       <div class="hero-rule"></div>
-      <p class="hero-tagline">GOATflow metabolizes your chaos into <strong>structured, executable workflows</strong>. Built on Replit + ChatGPT 4o-mini — it routes tasks intelligently, tracks progress with gamified accountability, and keeps you moving when complexity threatens to stall everything.</p>
+      <p class="hero-tagline">GOATflow ingests raw operational intelligence &mdash; emails, documents, notes, voice memos &mdash; and returns <strong>prioritized, structured action items called Tracks</strong>. Built on Python &amp; Streamlit, powered by GPT-4o-mini, hosted on Replit.</p>
       <div class="hero-actions">
         <a href="https://goatflow.app" target="_blank" class="btn-goat">Launch Live App</a>
         <a href="#features" class="btn-goat-outline">Explore Features</a>
@@ -146,22 +147,22 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
 
 <div class="goat-stats">
   <div class="goat-stats-inner">
-    <div class="goat-stat"><div class="goat-stat-num">AI</div><div class="goat-stat-label">ChatGPT 4o-mini Powered</div></div>
-    <div class="goat-stat"><div class="goat-stat-num">Live</div><div class="goat-stat-label">Production Prototype</div></div>
-    <div class="goat-stat"><div class="goat-stat-num">4</div><div class="goat-stat-label">Core System Pillars</div></div>
-    <div class="goat-stat"><div class="goat-stat-num">HAY</div><div class="goat-stat-label">Reward Currency System</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">GPT</div><div class="goat-stat-label">4o-mini Churn Engine</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">7</div><div class="goat-stat-label">Ascension Levels</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">10</div><div class="goat-stat-label">Real-Time Stat Cards</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">HAY</div><div class="goat-stat-label">Dual-Currency Economy</div></div>
   </div>
 </div>
 
 <section class="section" id="about">
   <div class="section-inner">
     <div class="section-eyebrow">What Is GOATflow?</div>
-    <h2 class="section-title">Your Workflow Doesn't Have to Be a Dumpster Fire.</h2>
+    <h2 class="section-title">Active Intelligence. Not Another Task List.</h2>
     <div class="section-rule"></div>
     <div class="section-body">
-      <p>GOATflow is an AI-powered workflow automation and chaos triage application. The core problem it solves: when you have too many tasks, too many projects, and too many competing priorities, most productivity tools just give you a longer list. GOATflow gives you a <strong>structured, intelligent path through the chaos</strong>.</p>
-      <p>The AI engine — built on ChatGPT 4o-mini — doesn't just organize tasks. It routes them. It identifies dependencies, surfaces blockers, sequences work intelligently, and adapts as conditions change. The gamification layer (HAY currency, Goatifications, achievement tracking) is not decoration — it is a behavioral retention mechanism designed to keep users engaged with their own workflow systems long enough to actually finish things.</p>
-      <p>Built independently on Replit while leading full-time multi-site operations. This is a live, gated-access prototype — not a concept document.</p>
+      <p>Most productivity tools are passive record-keepers. GOATflow is active — it ingests raw operational intelligence (emails, documents, voice memos, images, pasted notes) and returns prioritized, structured action items called <strong>Tracks</strong>. Drop the intel into the Track Sieve. The Churn Engine does the rest.</p>
+      <p>The AI backbone — GPT-4o-mini via OpenAI — processes each submission and extracts Tracks with a title, description, priority tier (Micro / Standard / High-Leverage / GOAT), optional time estimate, and Summit Call flag for urgent items. It thinks like an operator&rsquo;s chief of staff: not just extracting tasks but evaluating relative urgency and business impact.</p>
+      <p>A gamification layer — dual-currency economy, 7-level ascension system, real-time stat dashboard, and browser-native Goatifications — drives consistent follow-through. Built on Python 3 + Streamlit, hosted on Replit. Invite-only access. This is a live production application with real auth and persistent data &mdash; not a demo.</p>
     </div>
   </div>
 </section>
@@ -173,24 +174,24 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
     <div class="section-rule"></div>
     <div class="feature-grid">
       <div class="feature-card">
-        <span class="feature-card-icon">&#129302;</span>
-        <div class="feature-card-title">AI Workflow Routing</div>
-        <div class="feature-card-desc">The ChatGPT 4o-mini engine ingests your raw task list and outputs a structured, sequenced workflow — identifying dependencies, grouping related work, and routing tasks based on urgency, complexity, and available capacity. It doesn't just sort. It thinks.</div>
+        <span class="feature-card-icon">&#129382;</span>
+        <div class="feature-card-title">The Track Sieve</div>
+        <div class="feature-card-desc">The primary input mechanism. Users drop unstructured intel — PDFs, images, pasted emails, voice memos — into the Sieve. Accepts file uploads up to 200MB, freeform text, and browser microphone transcription. All source files are purged immediately after analysis. <strong>Stateless processing</strong> — no sensitive documents are retained.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-card-icon">&#9881;</span>
+        <div class="feature-card-title">The Churn Engine</div>
+        <div class="feature-card-desc">Powered by GPT-4o-mini. When intel is submitted, the Churn Engine extracts structured Tracks — each with a title, description, priority tier (<strong>Micro / Standard / High-Leverage / GOAT</strong>), optional time estimate, and Summit Call flag. Tuned to think like a chief of staff, not a task parser.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-card-icon">&#127897;</span>
+        <div class="feature-card-title">GOAT Horns</div>
+        <div class="feature-card-desc">Recurring intelligence templates. Users set up Horns — standing prompt configurations that automatically regenerate Tracks on a schedule. Think of them as standing operating procedures: recurring priorities that feed the Sieve without manual input.</div>
       </div>
       <div class="feature-card">
         <span class="feature-card-icon">&#127881;</span>
-        <div class="feature-card-title">Goatifications — Gamified Progress</div>
-        <div class="feature-card-desc">Task completion triggers Goatification events — achievement notifications, HAY currency rewards, and milestone recognition. The behavioral design is intentional: progress should feel like progress, not just a checkbox disappearing from a list.</div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-card-icon">&#128221;</span>
-        <div class="feature-card-title">Trail Notes — Contextual Memory</div>
-        <div class="feature-card-desc">Every completed track leaves a Trail Note — a structured record of what was done, how it was done, and what was learned. This creates an operational knowledge base that compounds over time, turning individual task completion into institutional memory.</div>
-      </div>
-      <div class="feature-card">
-        <span class="feature-card-icon">&#128200;</span>
-        <div class="feature-card-title">Stats &amp; Performance Dashboard</div>
-        <div class="feature-card-desc">Real-time performance tracking across all active and completed workflows. Completion rates, velocity trends, HAY accumulation, and streak data give users a quantified view of their own operational throughput — making improvement measurable, not just felt.</div>
+        <div class="feature-card-title">Goatifications &amp; Gamification Economy</div>
+        <div class="feature-card-desc">A full dual-currency reward system: <strong>Hay</strong> earned per Track completed, converting at 500 Hay to <strong>Fresh Cheese</strong> (CCR — Cheese Churn Rate). Real-time browser push notifications fire on milestone events. A 7-level ascension system tracks cumulative XP from The Kid up to The G.O.A.T.</div>
       </div>
     </div>
   </div>
@@ -237,18 +238,41 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
 <section class="section" id="hay">
   <div class="section-inner">
     <div class="section-eyebrow">Reward Architecture</div>
-    <h2 class="section-title">The HAY Economy.</h2>
+    <h2 class="section-title">The Gamification Economy.</h2>
     <div class="section-rule"></div>
-    <div class="section-body"><p>HAY is GOATflow's internal reward currency. Every completed task, milestone, and streak earns HAY — which unlocks Goatifications, achievement badges, and system upgrades. The behavioral design is grounded in operant conditioning principles: <strong>variable reward schedules drive higher engagement than fixed ones</strong>.</p></div>
+    <div class="section-body"><p>GOATflow runs a full dual-currency reward system built on behavioral reinforcement. Every Track completed earns <strong>Hay</strong>. At 500 Hay, the system converts automatically to <strong>Fresh Cheese</strong> &mdash; the premium currency tracked as CCR (Cheese Churn Rate). The Pasture Gauge at the bottom of the dashboard shows real-time progress toward the next conversion.</p></div>
+
+    <div class="feature-grid" style="margin-top:32px;">
+      <div class="feature-card">
+        <span class="feature-card-icon">&#127891;</span>
+        <div class="feature-card-title">7-Level Ascension System</div>
+        <div class="feature-card-desc">Users ascend through seven operational tiers based on total XP (Cheese Churn Points), with a 20% growth curve between levels. Each tier carries a unique badge and name:<br><br>
+          <strong>The Kid &rarr; The Starter &rarr; The Builder &rarr; The Climber &rarr; The Leader &rarr; The Visionary &rarr; The G.O.A.T.</strong>
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-card-icon">&#128276;</span>
+        <div class="feature-card-title">Goatifications</div>
+        <div class="feature-card-desc">Real-time browser push notifications fire on milestone events: Fresh Cheese conversions, level-ups, streak milestones, and Summit Call completions. Users opt in to push notifications. The system is built on the browser Notifications API &mdash; no third-party service required.</div>
+      </div>
+    </div>
+
+    <div class="section-eyebrow" style="margin-top:56px;margin-bottom:12px;">The Stat Dashboard</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;">10 Real-Time Performance Cards.</h3>
+    <div class="section-rule"></div>
     <table class="hay-table">
-      <thead><tr><th>Action</th><th>HAY Earned</th><th>Trigger Type</th><th>Status</th></tr></thead>
+      <thead><tr><th>Stat Card</th><th>What It Tracks</th></tr></thead>
       <tbody>
-        <tr><td>Complete a Track</td><td>+50 HAY</td><td>Completion Event</td><td><span class="hay-badge hay-green">Active</span></td></tr>
-        <tr><td>Add Trail Notes to Completed Track</td><td>+25 HAY</td><td>Documentation Bonus</td><td><span class="hay-badge hay-green">Active</span></td></tr>
-        <tr><td>Complete 3 Tracks in a Day</td><td>+100 HAY</td><td>Streak Multiplier</td><td><span class="hay-badge hay-green">Active</span></td></tr>
-        <tr><td>Complete a Track Under Estimated Time</td><td>+75 HAY</td><td>Efficiency Bonus</td><td><span class="hay-badge hay-amber">Beta</span></td></tr>
-        <tr><td>Unlock a Goatification Badge</td><td>+150 HAY</td><td>Achievement Unlock</td><td><span class="hay-badge hay-green">Active</span></td></tr>
-        <tr><td>7-Day Completion Streak</td><td>+500 HAY</td><td>Streak Milestone</td><td><span class="hay-badge hay-amber">Beta</span></td></tr>
+        <tr><td><strong>Active Tracks</strong></td><td>Open items currently in the operational log</td></tr>
+        <tr><td><strong>Summit Calls</strong></td><td>Tracks flagged as urgent or critical</td></tr>
+        <tr><td><strong>Completed</strong></td><td>All-time Track completions</td></tr>
+        <tr><td><strong>Hay</strong></td><td>Current balance + progress to next Fresh Cheese conversion</td></tr>
+        <tr><td><strong>Fresh Cheese</strong></td><td>Total CCR (Cheese Churn Rate) earned</td></tr>
+        <tr><td><strong>Active Horns</strong></td><td>Count of live recurring prompt templates</td></tr>
+        <tr><td><strong>Clip Rate</strong></td><td>7-day completion vs. generation ratio &mdash; color-coded green (&ge;75%), amber (&ge;50%), red (&lt;50%)</td></tr>
+        <tr><td><strong>GAIT</strong></td><td>Consecutive daily completion streak</td></tr>
+        <tr><td><strong>Stakes %</strong></td><td>Today&rsquo;s resolved Tracks vs. logged Tracks</td></tr>
+        <tr><td><strong>Precision</strong></td><td>% of timed Tracks completed within their estimate. Unlocks after 5 timed completions.</td></tr>
       </tbody>
     </table>
   </div>
@@ -260,9 +284,12 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
     <h2 class="section-title">Built to Ship. Not Just to Demo.</h2>
     <div class="section-rule"></div>
     <div class="tech-grid">
-      <div class="tech-card"><div class="tech-card-label">AI Engine</div><div class="tech-card-value">ChatGPT 4o-mini</div><div class="tech-card-desc">OpenAI's ChatGPT 4o-mini powers the workflow routing, task sequencing, and intelligent triage logic at the core of the system.</div></div>
-      <div class="tech-card"><div class="tech-card-label">Development Platform</div><div class="tech-card-value">Replit</div><div class="tech-card-desc">Full-stack development and deployment on Replit — enabling rapid iteration and live production hosting without DevOps overhead.</div></div>
-      <div class="tech-card"><div class="tech-card-label">Deployment Status</div><div class="tech-card-value">Live Prototype</div><div class="tech-card-desc">Gated-access production prototype available at goatflow.app. Not a mockup — a functioning application with real user authentication and data persistence.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Language &amp; Framework</div><div class="tech-card-value">Python 3 + Streamlit</div><div class="tech-card-desc">The entire application is Python 3. Streamlit handles server-side rendering, session state, routing, and UI. Custom HTML/CSS is injected via <code>st.markdown(unsafe_allow_html=True)</code>. JavaScript behavior is injected via streamlit-components at zero height.</div></div>
+      <div class="tech-card"><div class="tech-card-label">AI Engine</div><div class="tech-card-value">GPT-4o-mini</div><div class="tech-card-desc">OpenAI&rsquo;s GPT-4o-mini powers the Churn Engine exclusively. No AI is called at page load &mdash; only on explicit user submission. The prompt is tuned to evaluate urgency and business impact, not just extract text.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Database</div><div class="tech-card-value">PostgreSQL + psycopg2</div><div class="tech-card-desc">Replit-managed PostgreSQL accessed via raw SQL (no ORM). Schema is auto-provisioned at startup. Per-user data isolation across all tables: users, player, operational_log, signals, directives, horns, invites.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Auth &amp; Access</div><div class="tech-card-value">Invite-Only + Custom Auth</div><div class="tech-card-desc">Gated registration via single-use invite codes. The claim is atomic &mdash; a guarded <code>UPDATE ... RETURNING</code> prevents race conditions. Passwords hashed server-side. No third-party auth providers.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Onboarding</div><div class="tech-card-value">Shepherd.js</div><div class="tech-card-desc">First-time users are walked through the interface with an interactive guided tour built on Shepherd.js (bundled in static/). An animal-character intro slideshow runs on first login. Tour completion is tracked per-user in PostgreSQL.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Deployment</div><div class="tech-card-value">Replit (.replit.app)</div><div class="tech-card-desc">Hosted on Replit. Workflow: <code>streamlit run app.py --server.port 5000</code>. Secrets managed via Replit&rsquo;s secrets panel: DATABASE_URL, OPENAI_API_KEY, SESSION_SECRET, ADMIN_USERNAME.</div></div>
     </div>
   </div>
 </section>
@@ -275,10 +302,10 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
       <h2 class="section-title">WorkGOAT — The Enterprise Layer.</h2>
       <div class="section-rule"></div>
       <div class="section-body">
-        <p>WorkGOAT is the enterprise-facing extension of the GOATflow system — designed to bring the same AI workflow routing and gamified accountability mechanisms to team and organizational contexts.</p>
-        <p>Where GOATflow handles individual chaos triage, <strong>WorkGOAT scales the architecture to multi-user environments</strong> — enabling managers to route work intelligently across teams, track collective throughput, and build the kind of operational accountability culture that most project management tools fail to create.</p>
+        <p>GOATflow is a subsidiary product of the <strong>WorkGOAT Ecosystem</strong> (workgoat.vip) — the enterprise-facing extension designed to bring the same AI operational intelligence and gamified accountability to team and organizational contexts.</p>
+        <p>Where GOATflow handles individual operational load, <strong>WorkGOAT scales the architecture to multi-user environments</strong> &mdash; enabling managers to route work intelligently across teams, track collective throughput, and build the kind of accountability culture that most project management tools fail to create.</p>
       </div>
-      <div style="margin-top:24px;"><a href="https://goatflow.app" target="_blank" class="btn-goat">Explore GOATflow</a></div>
+      <div style="margin-top:24px;"><a href="https://workgoat.vip" target="_blank" class="btn-goat">Explore WorkGOAT</a></div>
     </div>
   </div>
 </div>
