@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOATflow — AI Workflow Automation | Michael J. Hinkle III</title>
+<meta name="description" content="GOATflow: AI-powered workflow automation and chaos triage. Built on Replit + ChatGPT 4o-mini by Michael J. Hinkle III.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a2b48;--navy-dark:#0f1a2e;
+  --gold:#b8860b;--gold-light:#c8a84b;
+  --goat-green:#2d6a4f;--goat-green-light:#52b788;--goat-green-dark:#1b4332;
+  --goat-amber:#f4a261;
+  --goat-bg:#0d1f14;--goat-surface:#132a1c;--goat-surface2:#1a3826;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f5e9;line-height:1.6;}
+.site-nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(13,31,20,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(82,183,136,0.2);}
+.nav-brand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;text-decoration:none;}
+.nav-brand span{color:var(--goat-green-light);}
+.nav-links{display:flex;gap:22px;align-items:center;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--goat-green-light);}
+.nav-links .nav-cta{background:var(--goat-green);color:#fff !important;padding:8px 18px;border-radius:3px;}
+.nav-links .nav-cta:hover{background:var(--goat-green-light) !important;}
+.goat-hero{min-height:85vh;background:linear-gradient(135deg,var(--goat-bg) 0%,var(--goat-green-dark) 60%,#0a1a0f 100%);display:flex;align-items:center;padding:100px 40px 60px;position:relative;overflow:hidden;}
+.goat-hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 480px;gap:80px;align-items:center;position:relative;z-index:1;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--goat-green-light);margin-bottom:20px;display:block;}
+.hero-logo{margin-bottom:24px;}
+.hero-logo img{height:80px;width:auto;}
+.hero-rule{width:60px;height:3px;background:linear-gradient(90deg,var(--goat-green-light),transparent);margin-bottom:28px;}
+.hero-tagline{font-size:17px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;max-width:520px;margin-bottom:40px;}
+.hero-tagline strong{color:#fff;font-weight:600;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-goat{display:inline-block;background:var(--goat-green);color:#fff;padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-goat:hover{background:var(--goat-green-light);transform:translateY(-1px);}
+.btn-goat-outline{display:inline-block;border:1.5px solid rgba(82,183,136,0.4);color:var(--goat-green-light);padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-goat-outline:hover{border-color:var(--goat-green-light);background:rgba(82,183,136,0.08);}
+.btn-gold{display:inline-block;border:1.5px solid rgba(184,134,11,0.4);color:#c8a84b;padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-gold:hover{border-color:#c8a84b;background:rgba(184,134,11,0.08);}
+.hero-screenshot{border-radius:8px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(82,183,136,0.15);}
+.hero-screenshot img{width:100%;display:block;}
+.goat-stats{background:var(--goat-surface);padding:40px;border-top:3px solid var(--goat-green);border-bottom:1px solid rgba(82,183,136,0.1);}
+.goat-stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.goat-stat{text-align:center;}
+.goat-stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:var(--goat-green-light);margin-bottom:6px;}
+.goat-stat-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+.section{padding:80px 40px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--goat-green-light);margin-bottom:12px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,38px);font-weight:700;color:#fff;margin-bottom:16px;line-height:1.2;}
+.section-rule{width:48px;height:3px;background:var(--goat-green-light);margin-bottom:32px;}
+.section-body{font-size:16px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.7);max-width:680px;}
+.section-body p{margin-bottom:20px;}
+.section-body strong{font-weight:600;color:#fff;}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px;}
+.feature-card{background:var(--goat-surface);border:1px solid rgba(82,183,136,0.15);border-left:3px solid var(--goat-green-light);border-radius:4px;padding:28px;}
+.feature-card-icon{font-size:28px;margin-bottom:12px;display:block;}
+.feature-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;}
+.feature-card-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.7;}
+.screenshot-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.screenshot-item{border-radius:6px;overflow:hidden;border:1px solid rgba(82,183,136,0.15);background:var(--goat-surface);transition:transform 0.2s,border-color 0.2s;}
+.screenshot-item:hover{transform:translateY(-4px);border-color:rgba(82,183,136,0.4);}
+.screenshot-item img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover;object-position:top;}
+.screenshot-caption{padding:12px 14px;font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.5px;border-top:1px solid rgba(82,183,136,0.1);}
+.icon-showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;}
+.icon-card{background:var(--goat-surface);border:1px solid rgba(82,183,136,0.12);border-radius:8px;padding:24px;text-align:center;transition:transform 0.2s;}
+.icon-card:hover{transform:translateY(-3px);}
+.icon-card img{width:80px;height:80px;object-fit:contain;margin:0 auto 12px;display:block;}
+.icon-card-label{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+.hay-table{width:100%;border-collapse:collapse;margin-top:32px;}
+.hay-table th{background:var(--goat-green-dark);color:var(--goat-green-light);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 16px;text-align:left;border-bottom:2px solid rgba(82,183,136,0.2);}
+.hay-table td{padding:14px 16px;border-bottom:1px solid rgba(82,183,136,0.08);font-size:14px;color:rgba(255,255,255,0.75);}
+.hay-table tr:hover td{background:rgba(82,183,136,0.04);}
+.hay-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.hay-green{background:rgba(82,183,136,0.15);color:var(--goat-green-light);border:1px solid rgba(82,183,136,0.3);}
+.hay-amber{background:rgba(244,162,97,0.15);color:var(--goat-amber);border:1px solid rgba(244,162,97,0.3);}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+.tech-card{background:var(--goat-surface);border:1px solid rgba(82,183,136,0.12);border-radius:4px;padding:24px;}
+.tech-card-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--goat-green-light);margin-bottom:8px;}
+.tech-card-value{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;}
+.tech-card-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;}
+.split-section{background:var(--goat-surface);}
+.split-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;min-height:400px;}
+.split-img{overflow:hidden;}
+.split-img img{width:100%;height:100%;object-fit:contain;background:var(--goat-green-dark);padding:40px;display:block;}
+.split-content{padding:64px 48px;display:flex;flex-direction:column;justify-content:center;}
+.cta-section{background:linear-gradient(135deg,var(--goat-green-dark),var(--goat-bg));padding:80px 40px;text-align:center;border-top:3px solid var(--goat-green);}
+.cta-body{font-size:17px;font-weight:300;color:rgba(255,255,255,0.65);max-width:560px;margin:0 auto 40px;line-height:1.7;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.site-footer{background:#0a1208;border-top:1px solid rgba(82,183,136,0.1);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:16px;color:rgba(255,255,255,0.5);}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-nav a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--goat-green-light);}
+@media(max-width:900px){
+  .goat-hero-inner{grid-template-columns:1fr;}
+  .hero-screenshot{display:none;}
+  .feature-grid{grid-template-columns:1fr;}
+  .screenshot-gallery{grid-template-columns:1fr 1fr;}
+  .icon-showcase{grid-template-columns:repeat(2,1fr);}
+  .tech-grid{grid-template-columns:1fr;}
+  .split-inner{grid-template-columns:1fr;}
+  .goat-stats-inner{grid-template-columns:repeat(2,1fr);}
+  .site-nav{padding:0 20px;}
+  .section{padding:60px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Michael J. <span>Hinkle III</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html">Metrics</a></li>
+    <li><a href="flashrt.html">FlashRT</a></li>
+    <li><a href="nayaye.html">NayAye</a></li>
+    <li><a href="deb.html">The DEB</a></li>
+    <li><a href="goatflow.html" class="active">GOATflow</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<section class="goat-hero">
+  <div class="goat-hero-inner">
+    <div>
+      <span class="hero-eyebrow">AI Workflow Automation &amp; Chaos Triage</span>
+      <div class="hero-logo"><img src="assets/images/goatflow_primary_logo.png" alt="GOATflow"></div>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">GOATflow metabolizes your chaos into <strong>structured, executable workflows</strong>. Built on Replit + ChatGPT 4o-mini — it routes tasks intelligently, tracks progress with gamified accountability, and keeps you moving when complexity threatens to stall everything.</p>
+      <div class="hero-actions">
+        <a href="https://goatflow.app" target="_blank" class="btn-goat">Launch Live App</a>
+        <a href="#features" class="btn-goat-outline">Explore Features</a>
+        <a href="index.html" class="btn-gold">Full Portfolio</a>
+      </div>
+    </div>
+    <div class="hero-screenshot">
+      <img src="assets/images/goatflow_main_screen.jpg" alt="GOATflow Main Interface">
+    </div>
+  </div>
+</section>
+
+<div class="goat-stats">
+  <div class="goat-stats-inner">
+    <div class="goat-stat"><div class="goat-stat-num">AI</div><div class="goat-stat-label">ChatGPT 4o-mini Powered</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">Live</div><div class="goat-stat-label">Production Prototype</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">4</div><div class="goat-stat-label">Core System Pillars</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">HAY</div><div class="goat-stat-label">Reward Currency System</div></div>
+  </div>
+</div>
+
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow">What Is GOATflow?</div>
+    <h2 class="section-title">Your Workflow Doesn't Have to Be a Dumpster Fire.</h2>
+    <div class="section-rule"></div>
+    <div class="section-body">
+      <p>GOATflow is an AI-powered workflow automation and chaos triage application. The core problem it solves: when you have too many tasks, too many projects, and too many competing priorities, most productivity tools just give you a longer list. GOATflow gives you a <strong>structured, intelligent path through the chaos</strong>.</p>
+      <p>The AI engine — built on ChatGPT 4o-mini — doesn't just organize tasks. It routes them. It identifies dependencies, surfaces blockers, sequences work intelligently, and adapts as conditions change. The gamification layer (HAY currency, Goatifications, achievement tracking) is not decoration — it is a behavioral retention mechanism designed to keep users engaged with their own workflow systems long enough to actually finish things.</p>
+      <p>Built independently on Replit while leading full-time multi-site operations. This is a live, gated-access prototype — not a concept document.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features" style="background:var(--goat-surface);padding-top:60px;padding-bottom:60px;">
+  <div class="section-inner">
+    <div class="section-eyebrow">Core System Architecture</div>
+    <h2 class="section-title">Four Pillars. One Coherent System.</h2>
+    <div class="section-rule"></div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-card-icon">&#129302;</span>
+        <div class="feature-card-title">AI Workflow Routing</div>
+        <div class="feature-card-desc">The ChatGPT 4o-mini engine ingests your raw task list and outputs a structured, sequenced workflow — identifying dependencies, grouping related work, and routing tasks based on urgency, complexity, and available capacity. It doesn't just sort. It thinks.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-card-icon">&#127881;</span>
+        <div class="feature-card-title">Goatifications — Gamified Progress</div>
+        <div class="feature-card-desc">Task completion triggers Goatification events — achievement notifications, HAY currency rewards, and milestone recognition. The behavioral design is intentional: progress should feel like progress, not just a checkbox disappearing from a list.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-card-icon">&#128221;</span>
+        <div class="feature-card-title">Trail Notes — Contextual Memory</div>
+        <div class="feature-card-desc">Every completed track leaves a Trail Note — a structured record of what was done, how it was done, and what was learned. This creates an operational knowledge base that compounds over time, turning individual task completion into institutional memory.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-card-icon">&#128200;</span>
+        <div class="feature-card-title">Stats &amp; Performance Dashboard</div>
+        <div class="feature-card-desc">Real-time performance tracking across all active and completed workflows. Completion rates, velocity trends, HAY accumulation, and streak data give users a quantified view of their own operational throughput — making improvement measurable, not just felt.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="screenshots">
+  <div class="section-inner">
+    <div class="section-eyebrow">App Walkthrough</div>
+    <h2 class="section-title">See It in Action.</h2>
+    <div class="section-rule"></div>
+    <p class="section-body" style="margin-bottom:0;">Every screen below is from the live production prototype at goatflow.app — not mockups, not wireframes.</p>
+    <div class="screenshot-gallery">
+      <div class="screenshot-item"><img src="assets/images/goatflow_login_page.jpg" alt="Login"><div class="screenshot-caption">Login &amp; Authentication</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_main_screen.jpg" alt="Main Screen"><div class="screenshot-caption">Main Dashboard</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_active_tracks.jpg" alt="Active Tracks"><div class="screenshot-caption">Active Workflow Tracks</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_track_completed.jpg" alt="Track Completed"><div class="screenshot-caption">Track Completion Event</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_goatifications_menu.jpg" alt="Goatifications"><div class="screenshot-caption">Goatifications Menu</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_trail_notes.jpg" alt="Trail Notes"><div class="screenshot-caption">Trail Notes</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_completed_track_notes_option.jpg" alt="Completed Notes"><div class="screenshot-caption">Completed Track Notes</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_completed_track_trail_notes_view.jpg" alt="Trail Notes View"><div class="screenshot-caption">Trail Notes Detail View</div></div>
+      <div class="screenshot-item"><img src="assets/images/goatflow_horn_settings_tab.jpg" alt="Horn Settings"><div class="screenshot-caption">Horn Settings &amp; Preferences</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--goat-surface);padding-top:60px;padding-bottom:60px;" id="system">
+  <div class="section-inner">
+    <div class="section-eyebrow">System Elements</div>
+    <h2 class="section-title">The GOATflow Ecosystem.</h2>
+    <div class="section-rule"></div>
+    <div class="icon-showcase">
+      <div class="icon-card"><img src="assets/images/goatflow_hay.png" alt="HAY"><div class="icon-card-label">HAY Currency</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_goatification.png" alt="Goatification"><div class="icon-card-label">Goatification</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_horns.png" alt="Horns"><div class="icon-card-label">Horns System</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_churn_engine.png" alt="Churn Engine"><div class="icon-card-label">Churn Engine</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_fresh_cheese.png" alt="Fresh Cheese"><div class="icon-card-label">Fresh Cheese Reward</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_stats.png" alt="Stats"><div class="icon-card-label">Stats Dashboard</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_completed_tracks.png" alt="Completed Tracks"><div class="icon-card-label">Completed Tracks</div></div>
+      <div class="icon-card"><img src="assets/images/goatflow_task_completed_achievement.png" alt="Achievement"><div class="icon-card-label">Task Achievement</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hay">
+  <div class="section-inner">
+    <div class="section-eyebrow">Reward Architecture</div>
+    <h2 class="section-title">The HAY Economy.</h2>
+    <div class="section-rule"></div>
+    <div class="section-body"><p>HAY is GOATflow's internal reward currency. Every completed task, milestone, and streak earns HAY — which unlocks Goatifications, achievement badges, and system upgrades. The behavioral design is grounded in operant conditioning principles: <strong>variable reward schedules drive higher engagement than fixed ones</strong>.</p></div>
+    <table class="hay-table">
+      <thead><tr><th>Action</th><th>HAY Earned</th><th>Trigger Type</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Complete a Track</td><td>+50 HAY</td><td>Completion Event</td><td><span class="hay-badge hay-green">Active</span></td></tr>
+        <tr><td>Add Trail Notes to Completed Track</td><td>+25 HAY</td><td>Documentation Bonus</td><td><span class="hay-badge hay-green">Active</span></td></tr>
+        <tr><td>Complete 3 Tracks in a Day</td><td>+100 HAY</td><td>Streak Multiplier</td><td><span class="hay-badge hay-green">Active</span></td></tr>
+        <tr><td>Complete a Track Under Estimated Time</td><td>+75 HAY</td><td>Efficiency Bonus</td><td><span class="hay-badge hay-amber">Beta</span></td></tr>
+        <tr><td>Unlock a Goatification Badge</td><td>+150 HAY</td><td>Achievement Unlock</td><td><span class="hay-badge hay-green">Active</span></td></tr>
+        <tr><td>7-Day Completion Streak</td><td>+500 HAY</td><td>Streak Milestone</td><td><span class="hay-badge hay-amber">Beta</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" style="background:var(--goat-surface);padding-top:60px;padding-bottom:60px;">
+  <div class="section-inner">
+    <div class="section-eyebrow">Technical Architecture</div>
+    <h2 class="section-title">Built to Ship. Not Just to Demo.</h2>
+    <div class="section-rule"></div>
+    <div class="tech-grid">
+      <div class="tech-card"><div class="tech-card-label">AI Engine</div><div class="tech-card-value">ChatGPT 4o-mini</div><div class="tech-card-desc">OpenAI's ChatGPT 4o-mini powers the workflow routing, task sequencing, and intelligent triage logic at the core of the system.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Development Platform</div><div class="tech-card-value">Replit</div><div class="tech-card-desc">Full-stack development and deployment on Replit — enabling rapid iteration and live production hosting without DevOps overhead.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Deployment Status</div><div class="tech-card-value">Live Prototype</div><div class="tech-card-desc">Gated-access production prototype available at goatflow.app. Not a mockup — a functioning application with real user authentication and data persistence.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="split-section">
+  <div class="split-inner">
+    <div class="split-img"><img src="assets/images/goatflow_goathero_logo.png" alt="GOATflow Hero Logo"></div>
+    <div class="split-content">
+      <div class="section-eyebrow">Ecosystem Expansion</div>
+      <h2 class="section-title">WorkGOAT — The Enterprise Layer.</h2>
+      <div class="section-rule"></div>
+      <div class="section-body">
+        <p>WorkGOAT is the enterprise-facing extension of the GOATflow system — designed to bring the same AI workflow routing and gamified accountability mechanisms to team and organizational contexts.</p>
+        <p>Where GOATflow handles individual chaos triage, <strong>WorkGOAT scales the architecture to multi-user environments</strong> — enabling managers to route work intelligently across teams, track collective throughput, and build the kind of operational accountability culture that most project management tools fail to create.</p>
+      </div>
+      <div style="margin-top:24px;"><a href="https://goatflow.app" target="_blank" class="btn-goat">Explore GOATflow</a></div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--goat-green-light);">Built by Michael J. Hinkle III</div>
+    <h2 class="section-title">This Is What Applied AI Enablement Looks Like.</h2>
+    <div class="section-rule" style="margin:0 auto 24px;"></div>
+    <p class="cta-body">GOATflow was conceived, architected, and shipped while leading full-time multi-site operations. It is one of five AI systems in this portfolio — each one built to solve a real problem, not to demonstrate technical curiosity.</p>
+    <div class="cta-actions">
+      <a href="https://goatflow.app" target="_blank" class="btn-goat">Launch GOATflow</a>
+      <a href="index.html" class="btn-goat-outline">Full Portfolio</a>
+      <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="btn-gold">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-brand">Michael J. Hinkle III &nbsp;·&nbsp; Seattle, WA</div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="metrics.html">Metrics</a>
+    <a href="flashrt.html">FlashRT</a>
+    <a href="goatflow.html">GOATflow</a>
+    <a href="nayaye.html">NayAye</a>
+    <a href="deb.html">The DEB</a>
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank">LinkedIn</a>
+  </nav>
+</footer>
+
+</body>
+</html>

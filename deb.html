@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The DEB — Daily Executive Bubble | Michael J. Hinkle III</title>
+<meta name="description" content="The DEB: AI-automated daily executive briefing system built on Gumloop. Designed by Michael J. Hinkle III.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1a2b48;--navy-dark:#0f1a2e;
+  --gold:#b8860b;--gold-light:#c8a84b;
+  --deb-bg:#0d0a1a;--deb-surface:#160f28;--deb-surface2:#1e1435;
+  --deb-blue:#9333ea;--deb-blue-light:#c084fc;
+  --deb-accent:#f0e8f5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(--deb-accent);line-height:1.6;}
+.site-nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(10,14,26,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(192,132,252,0.2);}
+.nav-brand{font-family:"Playfair Display",serif;font-size:18px;font-weight:700;color:#fff;text-decoration:none;}
+.nav-brand span{color:var(--deb-blue-light);}
+.nav-links{display:flex;gap:22px;align-items:center;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--deb-blue-light);}
+.nav-links .nav-cta{background:var(--deb-blue);color:#fff !important;padding:8px 18px;border-radius:3px;}
+.nav-links .nav-cta:hover{background:var(--deb-blue-light) !important;}
+.deb-hero{min-height:85vh;background:linear-gradient(135deg,var(--deb-bg) 0%,#1a0d35 50%,#0a0614 100%);display:flex;align-items:center;padding:100px 40px 60px;position:relative;overflow:hidden;}
+.deb-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 40%,rgba(147,51,234,0.12) 0%,transparent 60%);}
+.deb-hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 480px;gap:80px;align-items:center;position:relative;z-index:1;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--deb-blue-light);margin-bottom:20px;display:block;}
+.hero-logo{margin-bottom:24px;}
+.hero-logo img{height:100px;width:auto;}
+.hero-rule{width:60px;height:3px;background:linear-gradient(90deg,var(--deb-blue-light),transparent);margin-bottom:28px;}
+.hero-tagline{font-size:17px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;max-width:520px;margin-bottom:40px;}
+.hero-tagline strong{color:#fff;font-weight:600;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-deb{display:inline-block;background:var(--deb-blue);color:#fff;padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-deb:hover{background:var(--deb-blue-light);transform:translateY(-1px);}
+.btn-deb-outline{display:inline-block;border:1.5px solid rgba(192,132,252,0.4);color:var(--deb-blue-light);padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-deb-outline:hover{border-color:var(--deb-blue-light);background:rgba(192,132,252,0.08);}
+.btn-gold{display:inline-block;border:1.5px solid rgba(184,134,11,0.4);color:#c8a84b;padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-gold:hover{border-color:#c8a84b;background:rgba(184,134,11,0.08);}
+.hero-node-img{border-radius:8px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(192,132,252,0.15);}
+.hero-node-img img{width:100%;display:block;}
+.deb-stats{background:var(--deb-surface);padding:40px;border-top:3px solid var(--deb-blue);border-bottom:1px solid rgba(192,132,252,0.1);}
+.deb-stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.deb-stat{text-align:center;}
+.deb-stat-num{font-family:"Bebas Neue",sans-serif;font-size:48px;line-height:1;color:#e879f9;margin-bottom:6px;}
+.deb-stat-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+.section{padding:80px 40px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--deb-blue-light);margin-bottom:12px;}
+.section-title{font-family:"Playfair Display",serif;font-size:clamp(26px,3vw,38px);font-weight:700;color:#fff;margin-bottom:16px;line-height:1.2;}
+.section-rule{width:48px;height:3px;background:var(--deb-blue-light);margin-bottom:32px;}
+.section-body{font-size:16px;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.7);max-width:680px;}
+.section-body p{margin-bottom:20px;}
+.section-body strong{font-weight:600;color:#fff;}
+.output-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.output-card{background:var(--deb-surface);border:1px solid rgba(192,132,252,0.15);border-top:3px solid var(--deb-blue-light);border-radius:4px;padding:24px;}
+.output-card-num{font-family:"Bebas Neue",sans-serif;font-size:32px;color:var(--deb-blue-light);margin-bottom:8px;}
+.output-card-title{font-family:"Playfair Display",serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;}
+.output-card-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.6;}
+.workflow-steps{margin-top:40px;}
+.workflow-step{display:grid;grid-template-columns:80px 1fr 1fr;gap:32px;align-items:center;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(192,132,252,0.08);}
+.workflow-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.step-num{font-family:"Bebas Neue",sans-serif;font-size:64px;line-height:1;color:rgba(192,132,252,0.2);text-align:center;}
+.step-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;}
+.step-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.7;}
+.step-img{border-radius:6px;overflow:hidden;border:1px solid rgba(192,132,252,0.15);box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.step-img img{width:100%;display:block;}
+.node-full{border-radius:8px;overflow:hidden;border:1px solid rgba(192,132,252,0.2);box-shadow:0 16px 48px rgba(0,0,0,0.5);margin-top:40px;}
+.node-full img{width:100%;display:block;}
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.audience-card{background:var(--deb-surface);border:1px solid rgba(192,132,252,0.12);border-left:3px solid var(--deb-blue-light);border-radius:4px;padding:24px;}
+.audience-card-title{font-family:"Playfair Display",serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;}
+.audience-card-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.6;}
+.logo-split{background:var(--deb-surface);padding:60px 40px;}
+.logo-split-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.logo-display{text-align:center;}
+.logo-display img{max-width:280px;width:100%;margin:0 auto;display:block;}
+.logo-caption{margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;}
+.cta-section{background:linear-gradient(135deg,#0a0614,var(--deb-bg));padding:80px 40px;text-align:center;border-top:3px solid var(--deb-blue);}
+.cta-body{font-size:17px;font-weight:300;color:rgba(255,255,255,0.65);max-width:560px;margin:0 auto 40px;line-height:1.7;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.site-footer{background:#06080f;border-top:1px solid rgba(192,132,252,0.08);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-family:"Playfair Display",serif;font-size:16px;color:rgba(255,255,255,0.5);}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-nav a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--deb-blue-light);}
+@media(max-width:900px){
+  .deb-hero-inner{grid-template-columns:1fr;}
+  .hero-node-img{display:none;}
+  .output-grid{grid-template-columns:1fr;}
+  .workflow-step{grid-template-columns:1fr;gap:16px;}
+  .step-num{font-size:40px;text-align:left;}
+  .audience-grid{grid-template-columns:1fr;}
+  .logo-split-inner{grid-template-columns:1fr;}
+  .deb-stats-inner{grid-template-columns:repeat(2,1fr);}
+  .site-nav{padding:0 20px;}
+  .section{padding:60px 20px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Michael J. <span>Hinkle III</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html">Metrics</a></li>
+    <li><a href="flashrt.html">FlashRT</a></li>
+    <li><a href="nayaye.html">NayAye</a></li>
+    <li><a href="deb.html" class="active">The DEB</a></li>
+    <li><a href="goatflow.html">GOATflow</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
+  </ul>
+</nav>
+<section class="deb-hero">
+  <div class="deb-hero-inner">
+    <div>
+      <span class="hero-eyebrow">AI-Automated Executive Briefing System</span>
+      <div class="hero-logo"><img src="assets/images/The_DEB_primary_logo.png" alt="The DEB"></div>
+      <div class="hero-rule"></div>
+      <p class="hero-tagline">The DEB delivers a <strong>structured, AI-generated executive briefing</strong> every morning — synthesizing operational data, news, and priorities into a single, actionable daily brief. Built on Gumloop with a multi-node automation architecture.</p>
+      <div class="hero-actions">
+        <a href="#workflow" class="btn-deb">See the Workflow</a>
+        <a href="#output" class="btn-deb-outline">View Output Structure</a>
+        <a href="index.html" class="btn-gold">Full Portfolio</a>
+      </div>
+    </div>
+    <div class="hero-node-img">
+      <img src="assets/images/gumloop_the_deb_node_structure.jpg" alt="The DEB Node Structure">
+    </div>
+  </div>
+</section>
+<div class="deb-stats">
+  <div class="deb-stats-inner">
+    <div class="deb-stat"><div class="deb-stat-num">AI</div><div class="deb-stat-label">GPT-4 Powered</div></div>
+    <div class="deb-stat"><div class="deb-stat-num">Daily</div><div class="deb-stat-label">Automated Delivery</div></div>
+    <div class="deb-stat"><div class="deb-stat-num">9</div><div class="deb-stat-label">Build Steps</div></div>
+    <div class="deb-stat"><div class="deb-stat-num">0</div><div class="deb-stat-label">Manual Effort Required</div></div>
+  </div>
+</div>
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-eyebrow">What Is The DEB?</div>
+    <h2 class="section-title">Your Morning Brief. Automated. Intelligent. Actionable.</h2>
+    <div class="section-rule"></div>
+    <div class="section-body">
+      <p>The DEB — Daily Executive Bubble — is an AI-powered briefing system that eliminates the cognitive overhead of morning information triage. Instead of spending 30-45 minutes scanning emails, news feeds, and operational dashboards, the DEB synthesizes it all into a <strong>single structured brief delivered before the workday begins</strong>.</p>
+      <p>Built on Gumloop with a multi-node workflow architecture, the DEB pulls from configurable data sources, runs them through a GPT-4 synthesis layer, and outputs a formatted executive brief tailored to the user's role, priorities, and communication preferences.</p>
+      <p>This is not a dashboard. It is not a summary tool. It is a <strong>fully automated intelligence briefing system</strong> — the kind of thing that used to require a dedicated analyst, now running on a $20/month automation stack.</p>
+    </div>
+  </div>
+</section>
+<section class="section" id="output" style="background:var(--deb-surface);padding-top:60px;padding-bottom:60px;">
+  <div class="section-inner">
+    <div class="section-eyebrow">Output Architecture</div>
+    <h2 class="section-title">What the DEB Delivers Every Morning.</h2>
+    <div class="section-rule"></div>
+    <div class="output-grid">
+      <div class="output-card"><div class="output-card-num">01</div><div class="output-card-title">Priority Intelligence</div><div class="output-card-desc">Top 3-5 items requiring attention today — ranked by urgency, impact, and deadline proximity. No noise. No filler.</div></div>
+      <div class="output-card"><div class="output-card-num">02</div><div class="output-card-title">Operational Snapshot</div><div class="output-card-desc">Key metrics and status indicators from configured data sources — compliance rates, open items, escalations, and performance deltas from prior day.</div></div>
+      <div class="output-card"><div class="output-card-num">03</div><div class="output-card-title">Market &amp; Industry Signals</div><div class="output-card-desc">Curated news and industry developments relevant to the user's sector — filtered for signal, stripped of noise, summarized for executive consumption.</div></div>
+      <div class="output-card"><div class="output-card-num">04</div><div class="output-card-title">Decision Prompts</div><div class="output-card-desc">Specific decisions or actions the AI flags as requiring human judgment today — framed with context, options, and recommended next steps.</div></div>
+      <div class="output-card"><div class="output-card-num">05</div><div class="output-card-title">Calendar Intelligence</div><div class="output-card-desc">Meeting prep summaries, agenda context, and pre-read synthesis for scheduled calls — so every meeting starts with the right frame.</div></div>
+      <div class="output-card"><div class="output-card-num">06</div><div class="output-card-title">Formatted for Action</div><div class="output-card-desc">Output is structured, scannable, and role-specific — not a wall of AI text. Designed to be read in under 5 minutes and acted on immediately.</div></div>
+    </div>
+  </div>
+</section>
+<section class="section" id="workflow">
+  <div class="section-inner">
+    <div class="section-eyebrow">Build Walkthrough</div>
+    <h2 class="section-title">How It's Built — Step by Step.</h2>
+    <div class="section-rule"></div>
+    <p class="section-body" style="margin-bottom:0;">The DEB was built on Gumloop using a 9-step workflow architecture. Every screenshot below is from the actual build process.</p>
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <div class="step-num">01</div>
+        <div class="step-content"><div class="step-title">Login &amp; Initialize Workspace</div><div class="step-desc">Access the Gumloop platform and initialize a new workflow. The DEB lives as a standalone automation that can be triggered manually or on a schedule.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step1_after_login.jpg" alt="Step 1"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">02</div>
+        <div class="step-content"><div class="step-title">Enter the Core Prompt</div><div class="step-desc">The master prompt defines the DEB's output structure, tone, and priorities. This is the intelligence layer — where the briefing format, section headers, and synthesis instructions are encoded.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step2_enter_prompt.jpg" alt="Step 2"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">03</div>
+        <div class="step-content"><div class="step-title">Configure Prompt Preferences</div><div class="step-desc">Role-specific preferences are set here — industry focus, communication style, priority weighting, and output length. This is what makes the DEB personalized rather than generic.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step3_prompt_preferences.jpg" alt="Step 3"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">04</div>
+        <div class="step-content"><div class="step-title">Build the Prompt Chain</div><div class="step-desc">The prompt chain connects data inputs to synthesis nodes. Each node handles a specific section of the brief — allowing modular updates without rebuilding the entire workflow.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step4_prompt_continue.jpg" alt="Step 4"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">05</div>
+        <div class="step-content"><div class="step-title">Extend &amp; Refine the Chain</div><div class="step-desc">Additional synthesis nodes are added for market intelligence, operational data, and decision prompts. Each node feeds into the final assembly layer.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step5_prompt_continue.jpg" alt="Step 5"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">06</div>
+        <div class="step-content"><div class="step-title">Test the DEB Output</div><div class="step-desc">Initial test run reveals output quality and formatting issues. The first run is intentionally imperfect — the testing phase is where the brief gets shaped into something actually useful.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step6_test_deb.jpg" alt="Step 6"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">07</div>
+        <div class="step-content"><div class="step-title">Refine &amp; Fix Output Quality</div><div class="step-desc">Prompt adjustments are made based on test output. This iteration cycle is where the DEB goes from "AI-generated text" to "executive-grade briefing."</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step7_test_deb_fixed.jpg" alt="Step 7"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">08</div>
+        <div class="step-content"><div class="step-title">Run Final Test &amp; Save</div><div class="step-desc">Final validation run confirms output quality across all sections. The workflow is saved and configured for scheduled delivery.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step8_run_save.jpg" alt="Step 8"></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">09</div>
+        <div class="step-content"><div class="step-title">The DEB — Live Output</div><div class="step-desc">The final output: a structured, formatted executive briefing ready for morning consumption. This is what lands in the inbox before the workday begins.</div></div>
+        <div class="step-img"><img src="assets/images/gumloop_step9_the_deb_output.jpg" alt="Step 9"></div>
+      </div>
+    </div>
+    <div class="section-eyebrow" style="margin-top:60px;">Node Architecture</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:16px;">The Full Workflow Map.</h3>
+    <div class="node-full"><img src="assets/images/gumloop_the_deb_node_structure.jpg" alt="Full Node Structure"></div>
+  </div>
+</section>
+<div class="logo-split">
+  <div class="logo-split-inner">
+    <div>
+      <div class="section-eyebrow">Who Is The DEB For?</div>
+      <h2 class="section-title">Built for Anyone Who Leads at Scale.</h2>
+      <div class="section-rule"></div>
+      <div class="audience-grid">
+        <div class="audience-card"><div class="audience-card-title">Operations Leaders</div><div class="audience-card-desc">Multi-site managers and directors who need a daily operational snapshot without spending an hour pulling it together manually.</div></div>
+        <div class="audience-card"><div class="audience-card-title">Executives &amp; Founders</div><div class="audience-card-desc">C-suite and founder-operators who need market intelligence, priority triage, and decision context before their first meeting of the day.</div></div>
+        <div class="audience-card"><div class="audience-card-title">Program Managers</div><div class="audience-card-desc">PMs managing multiple workstreams who need a consolidated status view across projects, stakeholders, and open items — delivered automatically.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="logo-display"><img src="assets/images/The_DEB_primary_logo.png" alt="The DEB Primary Logo"><div class="logo-caption">Primary Logo</div></div>
+      <div class="logo-display" style="margin-top:32px;"><img src="assets/images/The_DEB_secondary_logo.png" alt="The DEB Secondary Logo"><div class="logo-caption">Secondary Logo</div></div>
+    </div>
+  </div>
+</div>
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--deb-blue-light);">Built by Michael J. Hinkle III</div>
+    <h2 class="section-title">AI That Works Before You Do.</h2>
+    <div class="section-rule" style="margin:0 auto 24px;"></div>
+    <p class="cta-body">The DEB is one of five AI systems in this portfolio — each built to solve a real operational problem, not to demonstrate technical curiosity. This is what applied AI enablement looks like from someone who has also led 10,000+ address logistics networks.</p>
+    <div class="cta-actions">
+      <a href="index.html" class="btn-deb">View Full Portfolio</a>
+      <a href="portfolio.html" class="btn-deb-outline">Leadership Portfolio</a>
+      <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="btn-gold">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="footer-brand">Michael J. Hinkle III &nbsp;&middot;&nbsp; Seattle, WA</div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="metrics.html">Metrics</a>
+    <a href="flashrt.html">FlashRT</a>
+    <a href="goatflow.html">GOATflow</a>
+    <a href="nayaye.html">NayAye</a>
+    <a href="deb.html">The DEB</a>
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank">LinkedIn</a>
+  </nav>
+</footer>
+</body>
+</html>

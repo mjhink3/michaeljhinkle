@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashRT &mdash; AI-Assisted Carrier Guidance System | Michael J. Hinkle III</title>
+<meta name="description" content="FlashRT: An AI-assisted carrier guidance system that eliminates the cognitive friction of learning a new delivery case. Conceived by Michael J. Hinkle III.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--flash-bg:#050d1a;--flash-surface:#0a1628;--flash-surface2:#0f1e35;--flash-blue:#1d6aff;--flash-blue-light:#60a5fa;--flash-blue-dark:#1e40af;--flash-sky:#38bdf8;--flash-sky-light:#7dd3fc;--flash-text:#f1f5f9;--flash-muted:rgba(241,245,249,0.6);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var(--flash-text);line-height:1.65;}
+.site-nav{position:fixed;top:0;left:0;right:0;height:58px;background:rgba(5,13,26,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(96,165,250,0.15);}
+.nav-brand{font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:700;color:#fff;text-decoration:none;}
+.nav-brand span{color:var(--flash-blue-light);}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border-radius:3px;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--flash-blue-light);}
+.nav-links .nav-cta{background:var(--flash-blue);color:#fff !important;padding:7px 16px;border-radius:3px;}
+.nav-links .nav-cta:hover{background:var(--flash-blue-light) !important;color:#000 !important;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-top:58px;}
+.hero-bg{position:absolute;inset:0;background-image:url('assets/images/MJP_FlashRT_coverphoto.png');background-size:cover;background-position:center;filter:brightness(0.3);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,13,26,0.98) 0%,rgba(5,13,26,0.55) 60%,rgba(5,13,26,0.2) 100%);}
+.hero-content{position:relative;z-index:2;padding:0 80px 72px;max-width:860px;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--flash-blue-light);margin-bottom:18px;display:block;}
+.hero-wordmark{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,120px);line-height:0.9;letter-spacing:2px;color:#fff;margin-bottom:10px;}
+.hero-wordmark span{color:var(--flash-blue-light);}
+.hero-subtitle{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,22px);font-style:italic;color:rgba(255,255,255,0.55);margin-bottom:28px;}
+.hero-rule{width:60px;height:3px;background:linear-gradient(90deg,var(--flash-blue-light),transparent);margin-bottom:28px;}
+.hero-lead{font-size:17px;font-weight:300;color:rgba(255,255,255,0.82);line-height:1.75;max-width:680px;margin-bottom:40px;}
+.hero-lead strong{font-weight:600;color:#fff;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-flash{display:inline-block;background:var(--flash-blue);color:#fff;padding:14px 32px;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-flash:hover{background:var(--flash-blue-light);transform:translateY(-1px);color:#000;}
+.btn-flash-outline{display:inline-block;border:1.5px solid rgba(96,165,250,0.4);color:var(--flash-blue-light);padding:14px 32px;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-flash-outline:hover{border-color:var(--flash-blue-light);background:rgba(96,165,250,0.08);}
+.stat-bar{background:var(--flash-surface);border-top:3px solid var(--flash-blue);border-bottom:1px solid rgba(96,165,250,0.1);padding:36px 80px;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-item{padding:0 32px 0 0;}.stat-item+.stat-item{padding-left:32px;border-left:1px solid rgba(96,165,250,0.15);}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:var(--flash-blue-light);margin-bottom:6px;}
+.stat-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--flash-muted);}
+.section{padding:80px;}.section-alt{background:var(--flash-surface);}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--flash-blue-light);margin-bottom:12px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,42px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:24px;}
+.section-title em{color:var(--flash-blue-light);font-style:normal;}
+.section-body{font-size:16px;font-weight:300;color:var(--flash-muted);line-height:1.8;max-width:720px;margin-bottom:20px;}
+.section-body strong{font-weight:600;color:#fff;}
+.section-rule{width:48px;height:2px;background:var(--flash-blue);margin-bottom:32px;}
+.problem-block{background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.15);border-left:4px solid var(--flash-blue-light);padding:32px 40px;margin:40px 0;max-width:800px;}
+.problem-block p{font-size:16px;font-weight:300;color:rgba(255,255,255,0.85);line-height:1.8;}
+.problem-block p+p{margin-top:16px;}
+.workflow-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border:1px solid rgba(96,165,250,0.15);}
+.workflow-col{padding:36px 40px;}.workflow-col.before{background:rgba(255,255,255,0.03);}.workflow-col.after{background:rgba(29,106,255,0.08);}
+.workflow-col-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;}
+.workflow-col.before .workflow-col-label{color:rgba(255,255,255,0.35);}.workflow-col.after .workflow-col-label{color:var(--flash-blue-light);}
+.workflow-step{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;flex-shrink:0;width:28px;}
+.workflow-col.before .step-num{color:rgba(255,255,255,0.2);}.workflow-col.after .step-num{color:var(--flash-blue-light);}
+.step-text{font-size:14px;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.5;padding-top:3px;}
+.workflow-col.after .step-text{color:rgba(255,255,255,0.88);}.step-text strong{font-weight:600;color:#fff;}
+.principles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px;}
+.principle-card{background:var(--flash-surface2);border:1px solid rgba(96,165,250,0.12);border-top:3px solid var(--flash-blue);padding:28px 32px;}
+.principle-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;}
+.principle-card-body{font-size:14px;font-weight:300;color:var(--flash-muted);line-height:1.65;}
+.value-table{width:100%;border-collapse:collapse;margin:36px 0;font-size:14px;}
+.value-table th{background:var(--flash-surface2);color:var(--flash-blue-light);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 20px;text-align:left;border-bottom:2px solid var(--flash-blue);}
+.value-table td{padding:14px 20px;border-bottom:1px solid rgba(96,165,250,0.1);color:rgba(255,255,255,0.8);font-weight:300;}
+.value-table tr:last-child td{border-bottom:none;font-weight:600;color:#fff;background:rgba(29,106,255,0.08);}
+.value-table td.highlight{color:var(--flash-blue-light);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;}
+.assumptions-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:14px;}
+.assumptions-table th{background:var(--flash-surface2);color:var(--flash-blue-light);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:12px 20px;text-align:left;border-bottom:2px solid var(--flash-blue);}
+.assumptions-table td{padding:12px 20px;border-bottom:1px solid rgba(96,165,250,0.1);color:rgba(255,255,255,0.75);font-weight:300;}
+.assumptions-table td:last-child{color:var(--flash-sky-light);font-weight:600;}
+.market-list{list-style:none;margin:24px 0;}
+.market-list li{font-size:15px;font-weight:300;color:rgba(255,255,255,0.75);padding:12px 0 12px 28px;border-bottom:1px solid rgba(96,165,250,0.1);position:relative;line-height:1.6;}
+.market-list li:last-child{border-bottom:none;}
+.market-list li::before{content:'>';position:absolute;left:0;color:var(--flash-blue-light);font-size:12px;top:14px;}
+.roadmap-list{list-style:none;margin:28px 0;}
+.roadmap-list li{display:flex;align-items:flex-start;gap:20px;padding:16px 0;border-bottom:1px solid rgba(96,165,250,0.1);}
+.roadmap-list li:last-child{border-bottom:none;}
+.roadmap-dot{width:10px;height:10px;border-radius:50%;background:var(--flash-blue-light);flex-shrink:0;margin-top:6px;}
+.roadmap-text{font-size:15px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.6;}
+.status-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px;}
+.status-card{background:var(--flash-surface2);border:1px solid rgba(96,165,250,0.12);padding:24px 28px;}
+.status-card-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--flash-blue-light);margin-bottom:10px;}
+.status-card-text{font-size:14px;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.6;}
+.pull-quote{border-left:4px solid var(--flash-blue-light);padding:24px 36px;margin:40px 0;background:rgba(96,165,250,0.05);}
+.pull-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.6;}
+.ip-notice{background:rgba(255,255,255,0.03);border:1px solid rgba(96,165,250,0.1);padding:20px 32px;margin-top:40px;font-size:12px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.7;font-style:italic;}
+.cta-section{background:linear-gradient(135deg,var(--flash-blue-dark),var(--flash-bg));padding:80px;text-align:center;border-top:1px solid rgba(96,165,250,0.2);}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);font-weight:900;color:#fff;margin-bottom:16px;}
+.cta-body{font-size:16px;font-weight:300;color:var(--flash-muted);max-width:560px;margin:0 auto 36px;line-height:1.75;}
+.site-footer{background:rgba(5,13,26,0.98);border-top:1px solid rgba(96,165,250,0.1);padding:32px 80px;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-size:13px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.5px;}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--flash-blue-light);}
+@media(max-width:768px){.hero-content,.section,.stat-bar,.cta-section,.site-footer{padding-left:24px;padding-right:24px;}.stat-bar{grid-template-columns:repeat(2,1fr);}.workflow-grid,.principles-grid,.status-grid{grid-template-columns:1fr;}.nav-links a:not(.nav-cta){display:none;}}
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Michael J. <span>Hinkle III</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="metrics.html">Metrics</a>
+    <a href="flashrt.html" class="active">FlashRT</a>
+    <a href="nayaye.html">NayAye</a>
+    <a href="deb.html">The DEB</a>
+    <a href="goatflow.html">GOATflow</a>
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="nav-cta">LinkedIn</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">AI-Assisted Carrier Guidance System</span>
+    <div class="hero-wordmark">Flash<span>RT</span></div>
+    <div class="hero-subtitle">Scan. Illuminate. Place.</div>
+    <div class="hero-rule"></div>
+    <p class="hero-lead"><strong>FlashRT eliminates the cognitive friction of learning a new delivery case.</strong> A carrier scans an incoming mail piece. FlashRT reads the address and instantly indicates the correct physical slot on the sorting case &mdash; removing the need to manually search, cross-reference printed materials, or rely on memory during the learning phase.</p>
+    <div class="hero-actions">
+      <a href="#the-problem" class="btn-flash">The Problem It Solves</a>
+      <a href="#commercial-value" class="btn-flash-outline">Commercial Value</a>
+      <a href="portfolio.html" class="btn-flash-outline">Full Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<div class="stat-bar">
+  <div class="stat-item"><div class="stat-num">$180M+</div><div class="stat-label">Estimated Annual Labor Efficiency Value</div></div>
+  <div class="stat-item"><div class="stat-num">300K</div><div class="stat-label">USPS Carriers &mdash; Addressable Market</div></div>
+  <div class="stat-item"><div class="stat-num">2.4x</div><div class="stat-label">Onboarding Cycles Per Route Per Year</div></div>
+  <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">Existing Technology Solving This Problem</div></div>
+</div>
+
+<section class="section" id="the-problem">
+  <div class="section-eyebrow">The Problem</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Every Last-Mile Network Has the Same <em>Invisible Bottleneck.</em></h2>
+  <div class="problem-block">
+    <p>Every last-mile delivery organization faces the same invisible bottleneck: <strong>new carrier onboarding.</strong> Learning a delivery route is not simply a matter of knowing the streets. It requires internalizing the precise physical layout of a sorting case &mdash; hundreds of individual address slots that must become muscle memory before a carrier can work efficiently and accurately.</p>
+    <p>This learning curve costs organizations weeks of reduced productivity per new hire, generates sorting errors that damage customer trust, and places disproportionate supervisory burden on experienced staff during a new carrier's earliest and most critical weeks.</p>
+    <p><strong>Manual instruction, printed route books, and repetitive practice have been the standard for decades. No technology has meaningfully addressed the physical, in-the-moment challenge of guiding a new carrier through the casing process in real time.</strong></p>
+  </div>
+</section>
+
+<section class="section section-alt" id="the-solution">
+  <div class="section-eyebrow">The Solution</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">FlashRT Transforms the Sorting Case Into <em>a Responsive, Intelligent Workspace.</em></h2>
+  <p class="section-body">FlashRT is an AI-assisted carrier guidance system designed to eliminate the cognitive friction of learning a new delivery case. Using a mobile device, a carrier scans an incoming mail piece. FlashRT reads the address, references the route's organizational structure, and <strong>instantly indicates the correct physical slot on the sorting case</strong> &mdash; removing the need to manually search, cross-reference printed materials, or rely on memory during the learning phase.</p>
+  <p class="section-body">The result is a fundamentally different onboarding experience. Instead of learning the case <em>and then</em> sorting mail, new carriers sort mail and learn the case simultaneously &mdash; guided in real time by an intelligent system that responds to each piece as it is handled.</p>
+  <div class="pull-quote"><p>"The FlashRT scan moment: mobile device reads address, case slot illuminates instantly."</p></div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="section-eyebrow">The Workflow</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Before and After FlashRT.</h2>
+  <p class="section-body">The difference is not incremental. It is structural. The casing process goes from a memory-dependent, error-prone manual search to a scan-guided, confidence-building workflow.</p>
+  <div class="workflow-grid">
+    <div class="workflow-col before">
+      <div class="workflow-col-label">Without FlashRT</div>
+      <div class="workflow-step"><div class="step-num">1</div><div class="step-text">Carrier receives mail piece</div></div>
+      <div class="workflow-step"><div class="step-num">2</div><div class="step-text">Reads address manually</div></div>
+      <div class="workflow-step"><div class="step-num">3</div><div class="step-text">Searches printed route book</div></div>
+      <div class="workflow-step"><div class="step-num">4</div><div class="step-text">Scans case visually, row by row</div></div>
+      <div class="workflow-step"><div class="step-num">5</div><div class="step-text">Places in slot &mdash; <strong>with significant error risk</strong></div></div>
+    </div>
+    <div class="workflow-col after">
+      <div class="workflow-col-label">With FlashRT</div>
+      <div class="workflow-step"><div class="step-num">1</div><div class="step-text">Carrier receives mail piece</div></div>
+      <div class="workflow-step"><div class="step-num">2</div><div class="step-text">Scans piece with mobile device</div></div>
+      <div class="workflow-step"><div class="step-num">3</div><div class="step-text">FlashRT reads address instantly</div></div>
+      <div class="workflow-step"><div class="step-num">4</div><div class="step-text"><strong>Correct slot illuminates immediately</strong></div></div>
+      <div class="workflow-step"><div class="step-num">5</div><div class="step-text">Places in slot &mdash; <strong>guided, accurate, confident</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="design">
+  <div class="section-eyebrow">System Design</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Built to Work <em>Inside</em> the Real Operation.</h2>
+  <p class="section-body">The FlashRT system is designed around four operating principles derived directly from the realities of last-mile delivery environments:</p>
+  <div class="principles-grid">
+    <div class="principle-card">
+      <div class="principle-card-title">Works Within Existing Infrastructure</div>
+      <div class="principle-card-body">Requires no case redesign or facility modification beyond the guidance system itself. FlashRT integrates into the physical environment as it already exists &mdash; not as it would need to be rebuilt.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-card-title">Operates at Sorting Speed</div>
+      <div class="principle-card-body">Delivers guidance fast enough to match a carrier's natural working pace without creating new friction or workflow interruption. Speed is not a feature &mdash; it is a requirement.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-card-title">Scales Across Route Complexity</div>
+      <div class="principle-card-body">Handles the full range of address structures, including standard ranges, exceptions, and rural delivery variations that make real-world routes significantly more complex than simplified models suggest.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-card-title">Functions as a Training Accelerant</div>
+      <div class="principle-card-body">Designed so that carriers develop genuine route knowledge through the guided experience rather than becoming reliant on the system indefinitely. The goal is competence, not dependency.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="market">
+  <div class="section-eyebrow">Market Opportunity</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Every Sorting Station Is a <em>FlashRT Opportunity.</em></h2>
+  <p class="section-body">The last-mile delivery industry is among the largest employers in the United States and faces persistent structural challenges in carrier recruitment, onboarding speed, and retention. Every major delivery network &mdash; postal, private, and emerging &mdash; shares the onboarding problem FlashRT is designed to solve.</p>
+  <ul class="market-list">
+    <li>USPS employs approximately <strong>300,000 carriers nationally</strong> across ~31,000 post offices</li>
+    <li>FedEx, UPS, Amazon Logistics, and hundreds of regional carriers face <strong>identical onboarding challenges</strong></li>
+    <li>Carrier turnover rates in last-mile delivery create <strong>recurring onboarding costs at scale</strong></li>
+    <li><strong>No technology currently exists</strong> that addresses the physical, in-the-moment case guidance problem</li>
+  </ul>
+</section>
+
+<section class="section section-alt" id="commercial-value">
+  <div class="section-eyebrow">Commercial Value</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Estimated Labor Efficiency Value.</h2>
+  <p class="section-body">The following projections are built conservatively from a single-route baseline and scaled to illustrate the commercial value at multiple deployment levels. All assumptions are stated explicitly and the methodology is transparent.</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin:40px 0 16px;">Baseline Assumptions</h3>
+  <table class="assumptions-table">
+    <thead><tr><th>Assumption</th><th>Value Used</th></tr></thead>
+    <tbody>
+      <tr><td>Time saved per carrier per day (onboarding phase)</td><td>1 hour (conservative)</td></tr>
+      <tr><td>Active onboarding learning phase duration</td><td>10 working days (2 weeks)</td></tr>
+      <tr><td>New carrier onboarding cycles per route per year</td><td>2.4 cycles (reflects industry turnover)</td></tr>
+      <tr><td>Carrier base hourly compensation</td><td>$25.00 / hour</td></tr>
+      <tr><td>Fully-loaded labor cost (with benefits)</td><td>$33.75 / hour (~1.35x base)</td></tr>
+      <tr><td>Supervisory time saved per onboarding cycle</td><td>5 hours @ $35.00 / hour</td></tr>
+      <tr><td>Addressable USPS market for national calculation</td><td>~6,200 offices (20% of ~31,000)</td></tr>
+    </tbody>
+  </table>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin:40px 0 8px;">Single Route &mdash; The Conservative Baseline</h3>
+  <div style="background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.15);padding:24px 32px;margin-bottom:32px;font-size:14px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.9;">
+    1 hour saved/day &times; 10 days = <strong style="color:#fff;">10 hours saved per onboarding cycle</strong><br>
+    10 hours &times; 2.4 cycles/year = <strong style="color:#fff;">24 hours saved per route annually</strong><br>
+    Carrier savings: 24 hrs &times; $33.75 = <strong style="color:var(--flash-blue-light);">$810 / route / year</strong><br>
+    Supervisory savings: 5 hrs &times; $35 &times; 2.4 cycles = <strong style="color:var(--flash-blue-light);">$420 / route / year</strong><br>
+    Combined total: <strong style="color:var(--flash-sky-light);font-size:16px;">$1,230 per route per year</strong>
+  </div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin:0 0 8px;">FlashRT Estimated Labor Efficiency Value by Scale</h3>
+  <p style="font-size:13px;font-weight:300;color:var(--flash-muted);margin-bottom:20px;">Conservative baseline: 1 hour saved per carrier per day | 2.4 onboarding cycles per route per year | Fully-loaded labor cost applied</p>
+  <table class="value-table">
+    <thead><tr><th>Deployment Scale</th><th>Hours Saved / Year</th><th>Full Value (Loaded)</th><th>Base Wage Value</th></tr></thead>
+    <tbody>
+      <tr><td>Single Route</td><td>24 hrs</td><td class="highlight">$1,230</td><td>$810</td></tr>
+      <tr><td>Single Office (6 routes)</td><td>144 hrs</td><td class="highlight">$7,380</td><td>$4,860</td></tr>
+      <tr><td>District (75 offices)</td><td>10,800 hrs</td><td class="highlight">$553,500</td><td>$364,500</td></tr>
+      <tr><td><strong>National (20% market)</strong></td><td><strong>892,800 hrs</strong></td><td class="highlight">$180M+</td><td>$120M+</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;font-weight:300;color:var(--flash-muted);line-height:1.7;">Values represent fully-loaded labor efficiency estimates combining direct carrier savings and supervisory time savings. Error reduction value, redelivery cost savings, and retention improvement represent additional value not captured above. This does not include FedEx, UPS, Amazon Logistics, or regional carrier networks.</p>
+</section>
+
+<section class="section" id="status">
+  <div class="section-eyebrow">Development Status</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Where FlashRT Stands Today.</h2>
+  <div class="status-grid">
+    <div class="status-card">
+      <div class="status-card-label">Completed</div>
+      <div class="status-card-text">Full technical specification and prototype build plan completed. Performance testing protocol with defined acceptance criteria established. Commercialization roadmap developed including staged pilot strategy. Enterprise device platform compatibility assessed.</div>
+    </div>
+    <div class="status-card">
+      <div class="status-card-label">IP Status</div>
+      <div class="status-card-text">Intellectual property documentation in progress. FlashRT was independently conceived and developed by Michael J. Hinkle III in 2025, drawing on over a decade of direct operational experience managing last-mile delivery teams, carrier onboarding processes, and route performance across multiple markets.</div>
+    </div>
+  </div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin:48px 0 20px;">Near-Term Roadmap</h3>
+  <ul class="roadmap-list">
+    <li><div class="roadmap-dot"></div><div class="roadmap-text">Hardware prototype build and bench testing</div></li>
+    <li><div class="roadmap-dot"></div><div class="roadmap-text">Independent pilot with non-USPS mailroom or delivery environment</div></li>
+    <li><div class="roadmap-dot"></div><div class="roadmap-text">ROI validation through structured performance data collection</div></li>
+    <li><div class="roadmap-dot"></div><div class="roadmap-text">Partnership and commercialization conversations with delivery industry operators</div></li>
+  </ul>
+</section>
+
+<section class="section section-alt" id="about">
+  <div class="section-eyebrow">About the Inventor</div>
+  <div class="section-rule"></div>
+  <h2 class="section-title">Built by Someone Who <em>Lived the Problem.</em></h2>
+  <p class="section-body">Michael J. Hinkle III is an operational program management leader with 12+ years of experience in distributed field service, workforce development, and compliance governance in high-pressure, regulated environments. He brings a rare combination of deep operational domain expertise and applied AI tool proficiency to the development of technology solutions grounded in real-world operational experience.</p>
+  <div class="pull-quote"><p>"FlashRT was conceived from direct, sustained operational experience with the carrier onboarding problem &mdash; not as an outside observer but as a leader who has personally managed the cost, frustration, and systemic inefficiency of manual case learning across multiple delivery markets."</p></div>
+  <div class="ip-notice">This page presents FlashRT at the concept and commercial value level. Technical implementation details are protected and available only under mutual non-disclosure agreement. Unauthorized replication of the FlashRT concept may constitute intellectual property infringement.</div>
+</section>
+
+<section class="cta-section">
+  <div class="section-eyebrow" style="margin-bottom:16px;">Get in Touch</div>
+  <h2 class="cta-title">Conversations with potential development partners,<br>pilot organizations, and commercialization advisors are welcome.</h2>
+  <p class="cta-body">Full technical specification available under mutual NDA.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="btn-flash">Connect on LinkedIn</a>
+    <a href="portfolio.html" class="btn-flash-outline">Leadership Portfolio</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-brand">Michael J. Hinkle III &nbsp;&middot;&nbsp; Seattle, WA</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="metrics.html">Metrics</a>
+    <a href="goatflow.html">GOATflow</a>
+    <a href="nayaye.html">NayAye</a>
+    <a href="deb.html">The DEB</a>
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+</body>
+</html>
