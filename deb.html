@@ -88,12 +88,111 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
 .footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
 .footer-nav a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;}
 .footer-nav a:hover{color:var(--deb-blue-light);}
+/* ---- PIPELINE STEPS ---- */
+.pipeline-steps { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+.pipeline-step {
+  display: grid; grid-template-columns: 56px 1fr 40px;
+  align-items: center; gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(192,132,252,0.08);
+}
+.pipeline-step:last-child { border-bottom: none; }
+.pipeline-icon {
+  width: 48px; height: 48px;
+  border: 1px solid rgba(192,132,252,0.2);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(192,132,252,0.04);
+  flex-shrink: 0;
+}
+.pipeline-title {
+  font-family: "Playfair Display", serif;
+  font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 4px;
+}
+.pipeline-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.65; }
+.pipeline-arrow { font-size: 20px; color: rgba(192,132,252,0.3); text-align: center; }
+
+/* ---- PROMPT BLOCK ---- */
+.prompt-block {
+  margin-top: 36px;
+  border: 1px solid rgba(192,132,252,0.2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.prompt-block-header {
+  background: #0d0a1a;
+  border-bottom: 1px solid rgba(192,132,252,0.2);
+  padding: 14px 24px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+}
+.prompt-block-label {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 14px; letter-spacing: 2px;
+  color: var(--deb-blue-light);
+}
+.prompt-block-badge {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 3px 8px; border-radius: 2px;
+}
+.prompt-block-body {
+  padding: 28px 32px;
+  background: rgba(13,10,26,0.8);
+}
+.prompt-block-body p {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.65); line-height: 1.75;
+  margin-bottom: 14px;
+}
+.prompt-block-body p:last-child { margin-bottom: 0; }
+.prompt-block-body p strong { font-weight: 600; color: var(--deb-blue-light); }
+.prompt-block-body ol {
+  padding-left: 20px; margin-bottom: 14px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.prompt-block-body ol li {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.65); line-height: 1.65;
+}
+
+/* ---- DEDICATION ---- */
+.deb-dedication {
+  background: linear-gradient(135deg, #0a0614 0%, #1a0d35 50%, #0a0614 100%);
+  border-top: 1px solid rgba(192,132,252,0.12);
+  border-bottom: 3px solid var(--deb-blue);
+  padding: 80px 40px;
+  text-align: center;
+}
+.deb-dedication-inner { max-width: 640px; margin: 0 auto; }
+.deb-dedication-name {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700; color: #fff;
+  margin: 12px 0 28px;
+}
+.deb-dedication-inner p {
+  font-size: 16px; font-weight: 300;
+  color: rgba(255,255,255,0.6); line-height: 1.75;
+  margin-bottom: 12px;
+}
+.deb-dedication-close {
+  margin-top: 24px !important;
+  font-style: italic;
+  color: rgba(192,132,252,0.7) !important;
+}
+
 @media(max-width:900px){
   .deb-hero-inner{grid-template-columns:1fr;}
   .hero-node-img{display:none;}
   .output-grid{grid-template-columns:1fr;}
   .workflow-step{grid-template-columns:1fr;gap:16px;}
-  .step-num{font-size:40px;text-align:left;}
+  .pipeline-step { grid-template-columns: 40px 1fr; }
+  .pipeline-arrow { display: none; }
+  .prompt-block-header { flex-direction: column; align-items: flex-start; }
+  .deb-dedication { padding: 60px 24px; }
+
   .audience-grid{grid-template-columns:1fr;}
   .logo-split-inner{grid-template-columns:1fr;}
   .deb-stats-inner{grid-template-columns:repeat(2,1fr);}
@@ -122,10 +221,10 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
       <span class="hero-eyebrow">AI-Automated Executive Briefing System</span>
       <div class="hero-logo"><img src="The_DEB_primary_logo.png" alt="The DEB"></div>
       <div class="hero-rule"></div>
-      <p class="hero-tagline">The DEB delivers a <strong>structured, AI-generated executive briefing</strong> every morning — synthesizing operational data, news, and priorities into a single, actionable daily brief. Built on Gumloop with a multi-node automation architecture.</p>
+      <p class="hero-tagline"><strong>Turn Noise &rarr; Signal Automatically.</strong> The DEB delivers a <strong>structured, AI-generated executive briefing</strong> every morning &mdash; synthesizing operational data, news, and priorities into a single, actionable daily brief. Built on Gumloop with a multi-node automation architecture.</p>
       <div class="hero-actions">
         <a href="#workflow" class="btn-deb">See the Workflow</a>
-        <a href="#output" class="btn-deb-outline">View Output Structure</a>
+        <a href="#workflow" class="btn-deb-outline">View Output</a>
         <a href="index.html" class="btn-gold">Full Portfolio</a>
       </div>
     </div>
@@ -138,8 +237,8 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
   <div class="deb-stats-inner">
     <div class="deb-stat"><div class="deb-stat-num">AI</div><div class="deb-stat-label">GPT-4 Powered</div></div>
     <div class="deb-stat"><div class="deb-stat-num">Daily</div><div class="deb-stat-label">Automated Delivery</div></div>
-    <div class="deb-stat"><div class="deb-stat-num">9</div><div class="deb-stat-label">Build Steps</div></div>
-    <div class="deb-stat"><div class="deb-stat-num">0</div><div class="deb-stat-label">Manual Effort Required</div></div>
+    <div class="deb-stat"><div class="deb-stat-num">AI</div><div class="deb-stat-label">Assembled Workflow</div></div>
+    <div class="deb-stat"><div class="deb-stat-num">1</div><div class="deb-stat-label">Manual Step &mdash; Time Trigger Setup</div></div>
   </div>
 </div>
 <section class="section" id="about">
@@ -159,22 +258,85 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
     <div class="section-eyebrow">Output Architecture</div>
     <h2 class="section-title">What the DEB Delivers Every Morning.</h2>
     <div class="section-rule"></div>
+    <p class="section-body">Every edition of the DEB delivers three core outputs. They are structured to move the reader from information to insight to action in under five minutes — no noise, no filler, no wall of AI text.</p>
     <div class="output-grid">
-      <div class="output-card"><div class="output-card-num">01</div><div class="output-card-title">Priority Intelligence</div><div class="output-card-desc">Top 3-5 items requiring attention today — ranked by urgency, impact, and deadline proximity. No noise. No filler.</div></div>
-      <div class="output-card"><div class="output-card-num">02</div><div class="output-card-title">Operational Snapshot</div><div class="output-card-desc">Key metrics and status indicators from configured data sources — compliance rates, open items, escalations, and performance deltas from prior day.</div></div>
-      <div class="output-card"><div class="output-card-num">03</div><div class="output-card-title">Market &amp; Industry Signals</div><div class="output-card-desc">Curated news and industry developments relevant to the user's sector — filtered for signal, stripped of noise, summarized for executive consumption.</div></div>
-      <div class="output-card"><div class="output-card-num">04</div><div class="output-card-title">Decision Prompts</div><div class="output-card-desc">Specific decisions or actions the AI flags as requiring human judgment today — framed with context, options, and recommended next steps.</div></div>
-      <div class="output-card"><div class="output-card-num">05</div><div class="output-card-title">Calendar Intelligence</div><div class="output-card-desc">Meeting prep summaries, agenda context, and pre-read synthesis for scheduled calls — so every meeting starts with the right frame.</div></div>
-      <div class="output-card"><div class="output-card-num">06</div><div class="output-card-title">Formatted for Action</div><div class="output-card-desc">Output is structured, scannable, and role-specific — not a wall of AI text. Designed to be read in under 5 minutes and acted on immediately.</div></div>
+      <div class="output-card">
+        <div class="output-card-num">01</div>
+        <div class="output-card-title">Top 3 Signals</div>
+        <div class="output-card-desc">The most important developments surfaced from configured feeds that day — ranked by relevance, deduplicated, and stripped of noise before they reach you.</div>
+      </div>
+      <div class="output-card">
+        <div class="output-card-num">02</div>
+        <div class="output-card-title">Why It Matters</div>
+        <div class="output-card-desc">Context that turns raw information into insight. For each signal, the AI generates 1&ndash;2 lines on business or technology impact &mdash; so you know what to do with it, not just that it happened.</div>
+      </div>
+      <div class="output-card">
+        <div class="output-card-num">03</div>
+        <div class="output-card-title">Forward-Looking Cues</div>
+        <div class="output-card-desc">Early indicators of what&rsquo;s next. Each signal includes a forward-looking trend cue &mdash; a short synthesized read on where the signal points and what to watch.</div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- BEHIND THE SCENES -->
+<section class="section" id="pipeline" style="background:var(--deb-surface2);">
+  <div class="section-inner">
+    <div class="section-eyebrow">What&rsquo;s Happening Behind the Scenes</div>
+    <h2 class="section-title">Four Stages. Zero Manual Work.</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">From the moment the trigger fires to the moment the brief lands in the inbox, the DEB runs a four-stage automated pipeline &mdash; invisible, reliable, and reproducible every morning.</p>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="pipeline-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#c084fc" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="#c084fc" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="#c084fc" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="#c084fc" stroke-width="1.5"/></svg>
+        </div>
+        <div class="pipeline-content">
+          <div class="pipeline-title">Pulls Multiple Sources</div>
+          <div class="pipeline-desc">Gathers from all configured RSS feeds simultaneously &mdash; no sequential bottlenecks, no missed sources.</div>
+        </div>
+        <div class="pipeline-arrow">&darr;</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M7 12h10M10 18h4" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="pipeline-content">
+          <div class="pipeline-title">Filters Signal</div>
+          <div class="pipeline-desc">Applies relevance scoring and deduplication &mdash; only the top 3 highest-signal articles advance to the insight layer.</div>
+        </div>
+        <div class="pipeline-arrow">&darr;</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#c084fc" stroke-width="1.5"/><path d="M12 5v2M12 17v2M5 12H3M21 12h-2M7.05 7.05l-1.41-1.41M18.36 18.36l-1.41-1.41M7.05 16.95l-1.41 1.41M18.36 5.64l-1.41 1.41" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="pipeline-content">
+          <div class="pipeline-title">Adds Insight</div>
+          <div class="pipeline-desc">Generates why-it-matters context and a forward-looking cue per article &mdash; turning raw headlines into executive intelligence.</div>
+        </div>
+        <div class="pipeline-arrow">&darr;</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="#c084fc" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="pipeline-content">
+          <div class="pipeline-title">Failover Protection</div>
+          <div class="pipeline-desc">Retries failed steps automatically. If a feed is broken or returns weak content, the system substitutes a fallback source &mdash; you never receive an empty brief.</div>
+        </div>
+        <div class="pipeline-arrow" style="visibility:hidden;">&darr;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="workflow">
   <div class="section-inner">
     <div class="section-eyebrow">Build Walkthrough</div>
-    <h2 class="section-title">How It's Built — Step by Step.</h2>
+    <h2 class="section-title">How It&rsquo;s Built &mdash; Step by Step.</h2>
     <div class="section-rule"></div>
-    <p class="section-body" style="margin-bottom:0;">The DEB was built on Gumloop using a 9-step workflow architecture. Every screenshot below is from the actual build process.</p>
+    <p class="section-body" style="margin-bottom:0;">The DEB is built on Gumloop. No coding required. The AI assembles the workflow from a single master prompt &mdash; you answer four questions and hit Run. Every screenshot below is from the actual build process.</p>
     <div class="workflow-steps">
       <div class="workflow-step">
         <div class="step-num">01</div>
@@ -218,8 +380,8 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
       </div>
       <div class="workflow-step">
         <div class="step-num">09</div>
-        <div class="step-content"><div class="step-title">The DEB — Live Output</div><div class="step-desc">The final output: a structured, formatted executive briefing ready for morning consumption. This is what lands in the inbox before the workday begins.</div></div>
-        <div class="step-img"><img src="gumloop_step9_the_deb_output.jpg" alt="Step 9"></div>
+        <div class="step-content"><div class="step-title">The DEB &mdash; Live Output</div><div class="step-desc">The final product: a clean, structured plain-text email delivered to your inbox each morning. Top Signals, Why It Matters, and Forward-Looking Cues &mdash; formatted for fast reading, with source links included. No dashboard. No app. Just signal, delivered.</div></div>
+        <div class="step-img"><img src="gumloop_step9_the_deb_output.jpg" alt="The DEB final output email"></div>
       </div>
     </div>
     <div class="section-eyebrow" style="margin-top:60px;">Node Architecture</div>
@@ -234,9 +396,9 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
       <h2 class="section-title">Built for Anyone Who Leads at Scale.</h2>
       <div class="section-rule"></div>
       <div class="audience-grid">
-        <div class="audience-card"><div class="audience-card-title">Operations Leaders</div><div class="audience-card-desc">Multi-site managers and directors who need a daily operational snapshot without spending an hour pulling it together manually.</div></div>
-        <div class="audience-card"><div class="audience-card-title">Executives &amp; Founders</div><div class="audience-card-desc">C-suite and founder-operators who need market intelligence, priority triage, and decision context before their first meeting of the day.</div></div>
-        <div class="audience-card"><div class="audience-card-title">Program Managers</div><div class="audience-card-desc">PMs managing multiple workstreams who need a consolidated status view across projects, stakeholders, and open items — delivered automatically.</div></div>
+        <div class="audience-card"><div class="audience-card-title">Operators &amp; Program Managers</div><div class="audience-card-desc">Multi-site managers and directors who need a daily operational snapshot without spending an hour pulling it together manually.</div></div>
+        <div class="audience-card"><div class="audience-card-title">Founders &amp; Builders</div><div class="audience-card-desc">C-suite and founder-operators who need market intelligence, priority triage, and decision context before their first meeting of the day.</div></div>
+        <div class="audience-card"><div class="audience-card-title"><span style="color:var(--deb-blue-light);">Anyone</span> Overwhelmed by Information Noise</div><div class="audience-card-desc">If your mornings start with 40 tabs and 200 unread emails, the DEB is for you. It doesn&rsquo;t matter what industry. If you need signal before noise, this runs for you.</div></div>
       </div>
     </div>
     <div>
@@ -248,13 +410,66 @@ body{font-family:"Source Sans 3",sans-serif;background:var(--deb-bg);color:var(-
 <section class="cta-section">
   <div class="section-inner">
     <div class="section-eyebrow" style="color:var(--deb-blue-light);">Built by Michael J. Hinkle III</div>
-    <h2 class="section-title">AI That Works Before You Do.</h2>
+    <h2 class="section-title">What Would You Automate If You Got 1 Hour Back Every Week?</h2>
     <div class="section-rule" style="margin:0 auto 24px;"></div>
-    <p class="cta-body">The DEB is one of five AI systems in this portfolio — each built to solve a real operational problem, not to demonstrate technical curiosity. This is what applied AI enablement looks like from someone who has also led 10,000+ address logistics networks.</p>
+    <p class="cta-body">Turn daily noise into signal. Build your own DEB in minutes. Save ~1 hour/week. Start small. Scale fast.</p>
+    <p class="cta-body" style="margin-top:-20px;">The DEB is one of five AI systems in this portfolio &mdash; each built to solve a real operational problem, not to demonstrate technical curiosity. This is what applied AI enablement looks like from someone who has also led 10,000+ address logistics networks.</p>
     <div class="cta-actions">
       <a href="index.html" class="btn-deb">View Full Portfolio</a>
       <a href="portfolio.html" class="btn-deb-outline">Leadership Portfolio</a>
       <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="btn-gold">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FULL PROMPT SECTION -->
+<section class="section" id="prompt" style="background:var(--deb-surface);">
+  <div class="section-inner">
+    <div class="section-eyebrow">Full Build Prompt</div>
+    <h2 class="section-title">Copy &rarr; Paste &rarr; Done.</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">No coding required. Paste the prompt below into the Gumloop AI assistant and answer four questions. The system builds itself.</p>
+    <div class="prompt-block">
+      <div class="prompt-block-header">
+        <span class="prompt-block-label">THE DEB &mdash; Master Build Prompt</span>
+        <span class="prompt-block-badge">Gumloop AI Agent Builder</span>
+      </div>
+      <div class="prompt-block-body">
+        <p>Copy and paste this entire prompt into the Gumloop AI assistant to build your own personalized daily news briefing from scratch.</p>
+        <p><strong>Before we build, I need a few things from you:</strong></p>
+        <ol>
+          <li>What&rsquo;s your email address? (This is where your daily briefing will be delivered.)</li>
+          <li>What time would you like to receive your daily DEB, and what is your timezone? (e.g., 7:00 AM, America/Los_Angeles)</li>
+          <li>What are your interests or professional focus areas? (e.g., AI &amp; machine learning, finance, healthcare, startups, cybersecurity)</li>
+          <li>Do you have specific websites or RSS feed URLs you&rsquo;d like to pull from? (Or say &ldquo;suggest sources for me&rdquo; and the AI will recommend feeds based on your interests.)</li>
+        </ol>
+        <p><strong>Once you&rsquo;ve answered the above, here&rsquo;s exactly what we&rsquo;ll build:</strong></p>
+        <p>Build a flow called &ldquo;THE DEB &mdash; Daily Executive Bubble&rdquo; using the preferences above.</p>
+        <p><strong>Step 1 &mdash; RSS Feeds:</strong> Add one RSS Feed Reader node per source. Each node pulls 5 items, outputting Titles and URLs only. Label each node by source name.</p>
+        <p><strong>Step 2 &mdash; Combine Feeds:</strong> Add a custom node called &ldquo;RSS Feed Combiner&rdquo; that outputs a single formatted text block called &ldquo;Combined Articles&rdquo; listing each article as: Title: [title] | URL: [url]</p>
+        <p><strong>Step 3 &mdash; Signal Filter (Ask AI):</strong> Nickname: &ldquo;Signal Filter + Failover.&rdquo; Prompt: &ldquo;You are selecting high-signal articles from a combined RSS feed list. Select the top 3 most useful and relevant articles. Rules: Prioritize higher-quality sources. Never return fewer than 3 items. Selection criteria: usefulness, clarity, business or technology impact. Return EXACTLY: Item 1: Title: ... Link: ... Item 2: Title: ... Link: ... Item 3: Title: ... Link: ...&rdquo;</p>
+        <p><strong>Step 4 &mdash; Insight Generator (Ask AI):</strong> Nickname: &ldquo;Insight Generator.&rdquo; Prompt: &ldquo;For each of the 3 selected articles, produce: Insight (1-sentence summary), Link (exact), Why (1&ndash;2 lines on relevance), Cue (short forward-looking trend). Rules: Always populate all fields. Never leave placeholders. Copy links exactly as given.&rdquo;</p>
+        <p><strong>Step 5 &mdash; Format as THE DEB (Ask AI):</strong> Nickname: &ldquo;Format as THE DEB.&rdquo; Output format: TOP SIGNALS / WHY IT MATTERS / CUES &mdash; each with 3 bullet items. Rules: Replace every placeholder with real content. Never output brackets, template text, or ellipses.</p>
+        <p><strong>Step 6 &mdash; Today&rsquo;s Date:</strong> Add a Datetime node. Format: %B %-d, %Y. Use the timezone provided.</p>
+        <p><strong>Step 7 &mdash; Send via Gmail:</strong> Recipient: email provided. Subject: THE DEB &mdash; Daily Executive Bubble | [Today&rsquo;s Date]. Body: formatted DEB output. Save as Draft: OFF.</p>
+        <p><strong>Step 8 &mdash; Daily Trigger:</strong> Add a New Time Trigger. Set it to fire daily at the time and timezone provided. <em>Note: Activating the time trigger requires one manual confirmation step &mdash; this is a standard Gumloop security feature to prevent users from accidentally auto-charging credits. Once confirmed, the DEB runs fully automatically every morning with no further input required.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEDICATION -->
+<section class="deb-dedication">
+  <div class="section-inner">
+    <div class="deb-dedication-inner">
+      <div class="deb-dedication-text">
+        <div class="section-eyebrow" style="color:rgba(192,132,252,0.5);">Dedicated To</div>
+        <h2 class="deb-dedication-name">Debra Hinkle (1959&ndash;2015)</h2>
+        <p>IT project manager, systems thinker, and someone who always cut through noise to focus on what mattered.</p>
+        <p>She shaped how I think about clarity, work, and building better systems.</p>
+        <p>I think she would&rsquo;ve appreciated where technology is heading.</p>
+        <p class="deb-dedication-close"><em>This project is built in that spirit.</em></p>
+      </div>
     </div>
   </div>
 </section>
