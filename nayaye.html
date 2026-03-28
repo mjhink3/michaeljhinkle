@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NayAye &mdash; Unofficial Office of the Digital Surveyor | Michael J. Hinkle III</title>
-<meta name="description" content="NayAye: A decision-support engine that provides necessary friction in a market flooded with AI yes-men. Built by Michael J. Hinkle III.">
+<meta name="description" content="NayAye: A decision-support engine that provides necessary friction in a market flooded with AI yes-men. Built by Michael J. Hinkle III, Penn State Information Sciences.">
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -18,12 +18,20 @@
   --gold: #b8860b;
   --gold-dark: #8a6308;
   --ink: #1a2b48;
+  /* Blueprint palette */
+  --blueprint-bg: #0d1f3c;
+  --blueprint-line: rgba(100,160,255,0.55);
+  --blueprint-bright: #4a9eff;
+  --blueprint-dim: rgba(100,160,255,0.25);
+  --blueprint-text: #c8deff;
+  --blueprint-label: rgba(200,222,255,0.55);
+  --blueprint-accent: #f0c040;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: var(--parchment); color: var(--navy); line-height: 1.65; }
 
-/* ---- SITE NAV (matches rest of site) ---- */
+/* ---- SITE NAV ---- */
 .site-nav {
   position: fixed; top: 0; left: 0; right: 0; height: 58px;
   background: rgba(245,242,237,0.97); backdrop-filter: blur(12px);
@@ -86,28 +94,17 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
 .hero-lede strong { font-weight: 700; }
 .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .btn-primary {
-  display: inline-block;
-  background: var(--navy);
-  color: var(--parchment);
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px; font-weight: 700;
-  padding: 12px 32px;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: background 0.2s;
+  display: inline-block; background: var(--navy); color: var(--parchment);
+  font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 700;
+  padding: 12px 32px; text-decoration: none; border-radius: 2px; transition: background 0.2s;
 }
 .btn-primary:hover { background: var(--gold); }
 .btn-outline {
   display: inline-block;
-  border: 1.5px solid var(--parchment-border);
-  color: var(--navy);
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px; font-weight: 400;
-  font-style: italic;
-  padding: 12px 32px;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: border-color 0.2s, background 0.2s;
+  border: 1.5px solid var(--parchment-border); color: var(--navy);
+  font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 400;
+  font-style: italic; padding: 12px 32px; text-decoration: none;
+  border-radius: 2px; transition: border-color 0.2s, background 0.2s;
 }
 .btn-outline:hover { border-color: var(--navy); background: var(--navy-ghost); }
 
@@ -125,293 +122,473 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
 .section-title {
   font-family: 'Libre Baskerville', serif;
   font-size: clamp(24px, 3vw, 36px);
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.2;
-  margin-bottom: 8px;
+  font-weight: 700; color: var(--navy);
+  line-height: 1.2; margin-bottom: 8px;
 }
 .section-title em { font-style: italic; color: var(--gold-dark); }
-.section-rule {
-  width: 48px; height: 1px;
-  background: var(--parchment-border);
-  margin-bottom: 32px;
-}
+.section-rule { width: 48px; height: 1px; background: var(--parchment-border); margin-bottom: 32px; }
 .section-body {
   font-family: 'Inter', sans-serif;
   font-size: 16px; font-weight: 300;
-  color: var(--navy-light);
-  line-height: 1.8;
-  max-width: 680px;
-  margin-bottom: 20px;
+  color: var(--navy-light); line-height: 1.8;
+  max-width: 680px; margin-bottom: 20px;
 }
 .section-body strong { font-weight: 600; color: var(--navy); }
+
+/* ---- WHY IT MATTERS — emotional anchor ---- */
+.why-anchor {
+  background: var(--navy);
+  padding: 72px 80px;
+  border-top: 3px solid var(--gold);
+  border-bottom: 3px solid var(--gold);
+}
+.why-anchor .section-inner { max-width: 960px; }
+.why-anchor .section-eyebrow { color: rgba(245,242,237,0.4); }
+.why-anchor .section-title { color: var(--parchment); }
+.why-anchor .section-title em { color: var(--gold); }
+.why-anchor .section-rule { background: rgba(245,242,237,0.2); }
+.why-lede {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.85;
+  color: rgba(245,242,237,0.9);
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+.why-lede strong { color: var(--parchment); font-weight: 700; }
+.why-bridge {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  gap: 0;
+  margin: 48px 0 32px;
+  max-width: 860px;
+}
+.why-side {
+  border: 1px solid rgba(245,242,237,0.15);
+  border-top: 3px solid var(--gold);
+  background: rgba(255,255,255,0.04);
+  padding: 28px 32px;
+}
+.why-side-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.why-side-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--parchment);
+  margin-bottom: 10px;
+}
+.why-side-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: rgba(245,242,237,0.6);
+  line-height: 1.65;
+}
+.why-side-body strong { font-weight: 500; color: rgba(245,242,237,0.85); }
+.why-arrow {
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 6px;
+}
+.why-arrow svg { display: block; }
+.why-arrow-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.7;
+}
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 0; }
+.why-card {
+  border: 1px solid rgba(245,242,237,0.12);
+  border-left: 3px solid var(--gold);
+  background: rgba(255,255,255,0.04);
+  padding: 24px 28px;
+}
+.why-card-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--parchment);
+  margin-bottom: 8px;
+}
+.why-card-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: rgba(245,242,237,0.6);
+  line-height: 1.65;
+}
 
 /* ---- PHILOSOPHY BLOCK ---- */
 .philosophy-card {
   border: 1px solid var(--parchment-border);
   border-left: 3px solid var(--navy);
   background: rgba(255,255,255,0.5);
-  padding: 36px 40px;
-  margin: 40px 0;
-  max-width: 800px;
+  padding: 36px 40px; margin: 40px 0; max-width: 800px;
 }
 .philosophy-card p {
   font-family: 'Libre Baskerville', serif;
-  font-size: 17px;
-  color: var(--navy);
-  line-height: 1.8;
+  font-size: 17px; color: var(--navy); line-height: 1.8;
 }
 .philosophy-card p + p { margin-top: 16px; }
 
-/* ---- WORKFLOW STAGES ---- */
+/* ---- BLUEPRINT WORKFLOW VISUAL ---- */
+.blueprint-section {
+  background: var(--blueprint-bg);
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+}
+/* grid paper background */
+.blueprint-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(74,158,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,158,255,0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.blueprint-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(74,158,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,158,255,0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+.blueprint-section .section-eyebrow { color: var(--blueprint-label); }
+.blueprint-section .section-title { color: var(--blueprint-text); }
+.blueprint-section .section-title em { color: var(--blueprint-accent); }
+.blueprint-section .section-rule { background: var(--blueprint-dim); }
+.blueprint-section .section-body { color: var(--blueprint-label); }
+.blueprint-section .section-body strong { color: var(--blueprint-text); }
+
+/* Blueprint stages */
+.bp-workflow {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 48px 0 0;
+}
+.bp-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  flex-shrink: 0;
+  position: relative;
+}
+.bp-connector-line {
+  position: absolute;
+  left: 8px; right: 8px; top: 50%;
+  height: 1px;
+  background: var(--blueprint-line);
+}
+.bp-connector-arrow {
+  position: relative;
+  z-index: 1;
+  width: 20px; height: 20px;
+  background: var(--blueprint-bg);
+  border: 1px solid var(--blueprint-bright);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.bp-connector-arrow svg { display: block; }
+.bp-connector-label {
+  position: absolute;
+  bottom: calc(50% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 7px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--blueprint-bright);
+  white-space: nowrap;
+}
+
+.bp-stage {
+  flex: 1;
+  border: 1px solid var(--blueprint-line);
+  background: rgba(13,31,60,0.8);
+  position: relative;
+  padding: 32px 28px 28px;
+}
+.bp-stage::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--blueprint-bright);
+}
+.bp-stage-num {
+  position: absolute;
+  top: -1px; right: -1px;
+  background: var(--blueprint-bright);
+  color: var(--blueprint-bg);
+  font-family: 'Inter', sans-serif;
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 8px;
+}
+.bp-stage-icon {
+  margin-bottom: 20px;
+  width: 44px; height: 44px;
+  border: 1px solid var(--blueprint-line);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.bp-stage-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--blueprint-bright);
+  margin-bottom: 8px;
+}
+.bp-stage-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--blueprint-text);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.bp-stage-sub {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 12px; font-style: italic;
+  color: var(--blueprint-accent);
+  margin-bottom: 16px;
+}
+.bp-stage-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 300;
+  color: var(--blueprint-label);
+  line-height: 1.7;
+}
+.bp-stage-desc strong { font-weight: 500; color: var(--blueprint-text); }
+.bp-dims {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--blueprint-dim);
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.bp-dim {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--blueprint-dim);
+}
+.bp-dim span {
+  display: block;
+  font-size: 10px; font-weight: 700;
+  color: var(--blueprint-bright);
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+.bp-legend {
+  margin-top: 32px;
+  padding: 16px 20px;
+  border: 1px dashed var(--blueprint-dim);
+  display: flex; gap: 28px; flex-wrap: wrap; align-items: center;
+}
+.bp-legend-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--blueprint-label);
+}
+.bp-legend-item {
+  display: flex; align-items: center; gap: 8px;
+}
+.bp-legend-swatch {
+  width: 16px; height: 2px;
+}
+.bp-legend-item span {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--blueprint-label);
+}
+.bp-project-tag {
+  position: absolute;
+  bottom: 16px; right: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--blueprint-dim);
+}
+
+/* ---- WORKFLOW STAGES (list below blueprint) ---- */
 .stages { display: flex; flex-direction: column; gap: 2px; margin: 40px 0; }
 .stage {
-  display: grid;
-  grid-template-columns: 80px 1fr;
+  display: grid; grid-template-columns: 80px 1fr;
   border: 1px solid var(--parchment-border);
   background: rgba(255,255,255,0.4);
 }
 .stage-num {
-  background: var(--navy);
-  color: var(--parchment);
+  background: var(--navy); color: var(--parchment);
   font-family: 'Libre Baskerville', serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 28px 16px;
-  text-align: center;
-  gap: 6px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 28px 16px; text-align: center; gap: 6px;
 }
 .stage-num .stage-label { font-size: 9px; letter-spacing: 2px; opacity: 0.7; }
 .stage-body { padding: 28px 36px; }
-.stage-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 18px; font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 6px;
-}
-.stage-subtitle {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 13px; font-style: italic;
-  color: var(--gold-dark);
-  margin-bottom: 12px;
-}
-.stage-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 300;
-  color: var(--navy-light);
-  line-height: 1.7;
-}
+.stage-title { font-family: 'Libre Baskerville', serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.stage-subtitle { font-family: 'Libre Baskerville', serif; font-size: 13px; font-style: italic; color: var(--gold-dark); margin-bottom: 12px; }
+.stage-desc { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300; color: var(--navy-light); line-height: 1.7; }
 .stage-desc strong { font-weight: 600; color: var(--navy); }
 
 /* ---- TECH STACK ---- */
 .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
 .tech-card {
   border: 1px dashed var(--parchment-border);
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.5); padding: 24px 28px;
+}
+.tech-card-label { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--navy-faint); margin-bottom: 8px; }
+.tech-card-value { font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.tech-card-desc { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--navy-light); line-height: 1.6; }
+.tech-determinism {
+  margin-top: 28px;
+  border: 1px solid var(--parchment-border);
+  border-left: 3px solid var(--gold-dark);
+  background: rgba(138,99,8,0.04);
   padding: 24px 28px;
 }
-.tech-card-label {
+.tech-determinism-label {
   font-family: 'Inter', sans-serif;
   font-size: 9px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
-  color: var(--navy-faint);
-  margin-bottom: 8px;
+  color: var(--gold-dark);
+  margin-bottom: 10px;
 }
-.tech-card-value {
+.tech-determinism p {
   font-family: 'Libre Baskerville', serif;
-  font-size: 16px; font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 6px;
+  font-size: 15px; color: var(--navy); line-height: 1.75;
 }
-.tech-card-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px; font-weight: 300;
-  color: var(--navy-light);
-  line-height: 1.6;
+.tech-determinism code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  background: rgba(26,43,72,0.08);
+  border: 1px solid var(--parchment-border);
+  padding: 2px 6px; border-radius: 2px;
+  color: var(--navy);
 }
 
 /* ---- DELIVERABLES ---- */
 .deliverables { display: flex; flex-direction: column; gap: 2px; margin-top: 40px; }
-.deliverable {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  border: 1px solid var(--parchment-border);
-  background: rgba(255,255,255,0.4);
-}
+.deliverable { display: grid; grid-template-columns: 200px 1fr; border: 1px solid var(--parchment-border); background: rgba(255,255,255,0.4); }
 .deliverable-label {
-  background: var(--parchment-dark);
-  border-right: 1px solid var(--parchment-border);
-  padding: 24px 28px;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px; font-weight: 700;
-  color: var(--navy);
-  display: flex;
-  align-items: center;
+  background: var(--parchment-dark); border-right: 1px solid var(--parchment-border);
+  padding: 24px 28px; font-family: 'Libre Baskerville', serif;
+  font-size: 14px; font-weight: 700; color: var(--navy);
+  display: flex; align-items: center;
 }
 .deliverable-desc {
-  padding: 24px 32px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 300;
-  color: var(--navy-light);
-  line-height: 1.65;
-  display: flex;
-  align-items: center;
+  padding: 24px 32px; font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 300; color: var(--navy-light);
+  line-height: 1.65; display: flex; align-items: center;
 }
 .deliverable-desc strong { font-weight: 600; color: var(--navy); }
 
-/* ---- IMPACT GRID ---- */
-.impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
-.impact-card {
-  border: 1px solid var(--parchment-border);
-  border-top: 3px solid var(--navy);
-  background: rgba(255,255,255,0.5);
-  padding: 28px 32px;
-}
-.impact-card-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 16px; font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.impact-card-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px; font-weight: 300;
-  color: var(--navy-light);
-  line-height: 1.65;
-}
-
 /* ---- SCREENSHOTS ---- */
 .screenshots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
-.screenshot {
-  border: 1px solid var(--parchment-border);
-  border-radius: 2px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.4);
-}
+.screenshot { border: 1px solid var(--parchment-border); border-radius: 2px; overflow: hidden; background: rgba(255,255,255,0.4); }
 .screenshot img { width: 100%; display: block; }
-.screenshot-cap {
-  padding: 10px 14px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 1px; text-transform: uppercase;
-  color: var(--navy-faint);
-  border-top: 1px solid var(--parchment-border);
-}
+.screenshot-cap { padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--navy-faint); border-top: 1px solid var(--parchment-border); }
 
 /* ---- PULL QUOTE ---- */
-.pull-quote {
-  border-left: 3px solid var(--gold);
-  padding: 20px 32px;
-  margin: 40px 0;
-  background: rgba(184,134,11,0.04);
-}
-.pull-quote p {
-  font-family: 'Libre Baskerville', serif;
-  font-size: 18px; font-style: italic;
-  color: var(--navy);
-  line-height: 1.65;
-}
-.pull-quote cite {
-  display: block;
-  margin-top: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--navy-faint);
-  font-style: normal;
-}
+.pull-quote { border-left: 3px solid var(--gold); padding: 20px 32px; margin: 40px 0; background: rgba(184,134,11,0.04); }
+.pull-quote p { font-family: 'Libre Baskerville', serif; font-size: 18px; font-style: italic; color: var(--navy); line-height: 1.65; }
+.pull-quote cite { display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--navy-faint); font-style: normal; }
 
 /* ---- CTA ---- */
-.cta-section {
-  padding: 80px;
-  text-align: center;
-  background: var(--navy);
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-.cta-title {
-  font-family: 'Libre Baskerville', serif;
-  font-size: clamp(22px, 3vw, 34px);
-  font-weight: 700;
-  color: var(--parchment);
-  margin-bottom: 16px;
-}
-.cta-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px; font-weight: 300;
-  color: rgba(245,242,237,0.65);
-  max-width: 520px;
-  margin: 0 auto 36px;
-  line-height: 1.75;
-}
-.btn-parchment {
-  display: inline-block;
-  background: var(--parchment);
-  color: var(--navy);
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px; font-weight: 700;
-  padding: 12px 32px;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: background 0.2s;
-  margin: 0 8px;
-}
+.cta-section { padding: 80px; text-align: center; background: var(--navy); border-top: 1px solid rgba(255,255,255,0.1); }
+.cta-title { font-family: 'Libre Baskerville', serif; font-size: clamp(22px, 3vw, 34px); font-weight: 700; color: var(--parchment); margin-bottom: 16px; }
+.cta-body { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 300; color: rgba(245,242,237,0.65); max-width: 520px; margin: 0 auto 36px; line-height: 1.75; }
+.btn-parchment { display: inline-block; background: var(--parchment); color: var(--navy); font-family: 'Libre Baskerville', serif; font-size: 14px; font-weight: 700; padding: 12px 32px; text-decoration: none; border-radius: 2px; transition: background 0.2s; margin: 0 8px; }
 .btn-parchment:hover { background: var(--gold); color: var(--parchment); }
-.btn-parchment-outline {
-  display: inline-block;
-  border: 1.5px solid rgba(245,242,237,0.3);
-  color: rgba(245,242,237,0.7);
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px; font-style: italic;
-  padding: 12px 32px;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: border-color 0.2s;
-  margin: 0 8px;
-}
+.btn-parchment-outline { display: inline-block; border: 1.5px solid rgba(245,242,237,0.3); color: rgba(245,242,237,0.7); font-family: 'Libre Baskerville', serif; font-size: 14px; font-style: italic; padding: 12px 32px; text-decoration: none; border-radius: 2px; transition: border-color 0.2s; margin: 0 8px; }
 .btn-parchment-outline:hover { border-color: rgba(245,242,237,0.7); color: var(--parchment); }
 
-/* ---- FOOTER ---- */
+/* ---- SOVEREIGN FOOTER ---- */
 .site-footer {
-  background: var(--parchment-dark);
-  border-top: 1px solid var(--parchment-border);
-  padding: 28px 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  background: var(--navy);
+  border-top: 3px solid var(--gold);
+  padding: 32px 80px;
+  display: flex; flex-direction: column; gap: 20px;
 }
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-brand-block {}
 .footer-brand {
   font-family: 'Libre Baskerville', serif;
-  font-size: 13px;
-  color: var(--navy-faint);
+  font-size: 15px; font-weight: 700;
+  color: var(--parchment);
+  margin-bottom: 4px;
 }
-.footer-links { display: flex; gap: 24px; }
+.footer-credential {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.footer-location {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 300;
+  color: rgba(245,242,237,0.4);
+}
+.footer-links { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
 .footer-links a {
   font-family: 'Inter', sans-serif;
   font-size: 11px; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase;
-  color: var(--navy-faint);
-  text-decoration: none;
-  transition: color 0.2s;
+  color: rgba(245,242,237,0.4);
+  text-decoration: none; transition: color 0.2s;
 }
-.footer-links a:hover { color: var(--navy); }
+.footer-links a:hover { color: var(--parchment); }
+.footer-divider {
+  border: none; border-top: 1px solid rgba(245,242,237,0.08);
+}
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-seal {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-style: italic;
+  color: rgba(245,242,237,0.3);
+}
+.footer-project-id {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(245,242,237,0.2);
+}
 
 @media(max-width: 768px) {
-  .hero, .section, .cta-section, .site-footer { padding-left: 24px; padding-right: 24px; }
+  .hero, .section, .cta-section, .site-footer, .blueprint-section, .why-anchor { padding-left: 24px; padding-right: 24px; }
   .stage { grid-template-columns: 1fr; }
   .stage-num { flex-direction: row; justify-content: flex-start; padding: 16px 24px; gap: 12px; }
-  .tech-grid, .impact-grid { grid-template-columns: 1fr; }
+  .tech-grid, .why-grid { grid-template-columns: 1fr; }
   .screenshots { grid-template-columns: repeat(2, 1fr); }
   .deliverable { grid-template-columns: 1fr; }
   .deliverable-label { border-right: none; border-bottom: 1px solid var(--parchment-border); }
   .nav-links a:not(.nav-cta) { display: none; }
+  .bp-workflow { flex-direction: column; }
+  .bp-connector { width: auto; height: 40px; }
+  .bp-connector-line { top: 8px; bottom: 8px; left: 50%; right: auto; width: 1px; height: auto; }
+  .bp-connector-label { bottom: auto; top: calc(50% + 14px); }
+  .why-bridge { grid-template-columns: 1fr; }
+  .why-arrow { display: none; }
+  .footer-top { flex-direction: column; }
 }
 </style>
 </head>
@@ -440,9 +617,63 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   <div class="hero-office">Unofficial Office of the Digital Surveyor</div>
   <p class="hero-lede">In a market flooded with AI &ldquo;Yes-Men,&rdquo; NayAye provides the <strong>necessary friction</strong>. A decision-support engine modeled after the pragmatic, skeptical, and systematic intelligence of Benjamin Franklin &mdash; it forces the user to justify their stack before granting the &ldquo;Aye.&rdquo;</p>
   <div class="hero-actions">
-    <a href="#workflow" class="btn-primary">Survey Thy Route</a>
+    <a href="#why" class="btn-primary">The Operational Logic</a>
     <a href="https://nayaye.vercel.app" target="_blank" rel="noopener" class="btn-outline">Open the App</a>
     <a href="portfolio.html" class="btn-outline">Full Portfolio</a>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS — EMOTIONAL HEART, MOVED TO TOP -->
+<section class="why-anchor" id="why">
+  <div class="section-inner">
+    <div class="section-eyebrow">Why It Matters</div>
+    <h2 class="section-title">Twelve Years of Physical Logistics.<br><em>One Digital Instrument.</em></h2>
+    <div class="section-rule"></div>
+
+    <p class="why-lede">Every constraint in NayAye&rsquo;s architecture &mdash; the staged intake, the forced audit, the contingency path &mdash; was learned on loading docks, ferry terminals, and rural routes where a single planning failure cascades into systemic disruption. <strong>The app is the artifact. The twelve years behind it are the credential.</strong></p>
+
+    <!-- Bridge Diagram -->
+    <div class="why-bridge">
+      <div class="why-side">
+        <div class="why-side-label">The Origin</div>
+        <div class="why-side-title">Physical Logistics<br>Operations</div>
+        <div class="why-side-body">
+          <strong>12 years</strong> managing route coverage, carrier constraints, contingency planning, and constraint-based decision-making at operational scale. Every plan required a fallback. Every route had to account for failure.
+        </div>
+      </div>
+      <div class="why-arrow">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14M14 7l5 5-5 5" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="why-arrow-label">Translates</span>
+      </div>
+      <div class="why-side">
+        <div class="why-side-label">The Instrument</div>
+        <div class="why-side-title">Digital Infrastructure<br>Architecture</div>
+        <div class="why-side-body">
+          <strong>Systems-level thinking</strong> applied to software selection: define the cargo, audit the constraints, chart the most efficient path, map the contingency. The discipline is identical. Only the medium has changed.
+        </div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Eliminating Software Sprawl</div>
+        <div class="why-card-body">NayAye reduces &ldquo;Choice Paralysis&rdquo; and the accumulation of redundant, overlapping tools. The audit stage identifies over-engineered paths before the user commits resources &mdash; the same discipline applied to managing route coverage and carrier assignments at scale.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Cost-Conscious by Design</div>
+        <div class="why-card-body">The Budget constraint in Stage 1 is not a filter &mdash; it is a forcing function. The engine actively identifies free and low-cost alternatives for small-scale operations, ensuring recommendations are proportionate to actual operational scale.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Systems Thinking, Applied</div>
+        <div class="why-card-body">The three-stage workflow &mdash; Intake, Audit, Route &mdash; mirrors any well-run logistics operation: define the cargo, identify the constraints, chart the most efficient path. NayAye demonstrates that this discipline is not industry-specific. It is transferable.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Contingency as Standard Practice</div>
+        <div class="why-card-body">The Contingency Path is not an afterthought. It reflects a professional standard developed over 12 years managing operations where a broken scanner, a missed ferry, or a route gap cascades into systemic failure. Every plan needs a fallback.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -463,46 +694,118 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   </div>
 </section>
 
-<!-- WORKFLOW -->
-<section class="section section-alt" id="workflow">
-  <div class="section-inner">
-    <div class="section-eyebrow">The Functional Workflow</div>
+<!-- BLUEPRINT WORKFLOW VISUALIZATION -->
+<section class="blueprint-section" id="workflow">
+  <div class="section-inner" style="position:relative;z-index:1;">
+    <div class="section-eyebrow">The Functional Workflow &mdash; Blueprint Schematic</div>
     <h2 class="section-title">Survey &amp; Route: <em>Three Stages.</em></h2>
     <div class="section-rule"></div>
-    <p class="section-body">NayAye operates on a three-stage &ldquo;Survey &amp; Route&rdquo; logic. Each stage is sequential and deliberate &mdash; the engine will not advance to a recommendation until the prior stage is resolved.</p>
-    <div class="stages">
-      <div class="stage">
-        <div class="stage-num">
-          <span>Stage 1</span>
-          <span class="stage-label">The Intake</span>
+    <p class="section-body">NayAye operates on a three-stage &ldquo;Survey &amp; Route&rdquo; logic. Each stage is <strong>sequential and deliberate</strong> &mdash; the engine will not advance to a recommendation until the prior stage is resolved. This is not a suggestion pipeline. It is a deterministic workflow.</p>
+
+    <div class="bp-workflow">
+      <!-- Stage 1 -->
+      <div class="bp-stage">
+        <div class="bp-stage-num">Stage 01</div>
+        <div class="bp-stage-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="3" y="3" width="16" height="16" rx="1" stroke="#4a9eff" stroke-width="1"/>
+            <line x1="7" y1="8" x2="15" y2="8" stroke="#4a9eff" stroke-width="1"/>
+            <line x1="7" y1="11" x2="15" y2="11" stroke="#4a9eff" stroke-width="1"/>
+            <line x1="7" y1="14" x2="11" y2="14" stroke="#4a9eff" stroke-width="1"/>
+          </svg>
         </div>
-        <div class="stage-body">
-          <div class="stage-title">The Inquiry</div>
-          <div class="stage-subtitle">Define the Cargo before charting the route.</div>
-          <div class="stage-desc">The user inputs a goal &mdash; for example, &ldquo;I want to automate my email marketing.&rdquo; They then define their <strong>Cargo</strong>: Budget, Technical Skill Level, and Privacy Requirements. This intake prevents the engine from recommending solutions that are misaligned with the user&rsquo;s actual operational constraints before the analysis begins.</div>
+        <div class="bp-stage-label">Intake</div>
+        <div class="bp-stage-title">The Inquiry</div>
+        <div class="bp-stage-sub">Define the Cargo before charting the route.</div>
+        <div class="bp-stage-desc">User inputs a goal and defines their <strong>operational constraints</strong>: Budget, Technical Skill Level, and Privacy Requirements. The engine accepts no ambiguity at this stage.</div>
+        <div class="bp-dims">
+          <div class="bp-dim">Input<span>Goal + Constraints</span></div>
+          <div class="bp-dim">Output<span>Constraint Set</span></div>
         </div>
+        <div class="bp-project-tag">NayAye &mdash; Intake Module</div>
       </div>
-      <div class="stage">
-        <div class="stage-num">
-          <span>Stage 2</span>
-          <span class="stage-label">The Audit</span>
+
+      <!-- Connector 1→2 -->
+      <div class="bp-connector">
+        <div class="bp-connector-line"></div>
+        <div class="bp-connector-arrow">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+            <path d="M2 4h5M5 2l2 2-2 2" stroke="#4a9eff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <div class="stage-body">
-          <div class="stage-title">The Nay</div>
-          <div class="stage-subtitle">The Ben Franklin Reality Check.</div>
-          <div class="stage-desc">Instead of immediately suggesting tools, the engine first identifies <strong>Operational Waste</strong>. It surfaces over-engineered paths, redundant costs, and privacy risks that the user may not have considered. This is the core differentiator: NayAye challenges the premise before it validates the plan. No other AI tool in this category is designed to push back first.</div>
-        </div>
+        <div class="bp-connector-label">Lock</div>
       </div>
-      <div class="stage">
-        <div class="stage-num">
-          <span>Stage 3</span>
-          <span class="stage-label">The Route</span>
+
+      <!-- Stage 2 -->
+      <div class="bp-stage">
+        <div class="bp-stage-num">Stage 02</div>
+        <div class="bp-stage-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="#4a9eff" stroke-width="1"/>
+            <line x1="11" y1="7" x2="11" y2="11" stroke="#4a9eff" stroke-width="1.5"/>
+            <line x1="11" y1="11" x2="14" y2="14" stroke="#4a9eff" stroke-width="1.5"/>
+            <circle cx="11" cy="11" r="1" fill="#4a9eff"/>
+          </svg>
         </div>
-        <div class="stage-body">
-          <div class="stage-title">The Aye</div>
-          <div class="stage-subtitle">Primary route and contingency path, both mapped.</div>
-          <div class="stage-desc">Only after the &ldquo;Nay&rdquo; is addressed does the engine provide a <strong>Primary tool recommendation</strong> and a <strong>Backup Contingency Plan</strong>. The dual-path output is a direct translation of logistics-grade planning discipline into digital infrastructure decision-making &mdash; every route needs a fallback.</div>
+        <div class="bp-stage-label">Audit</div>
+        <div class="bp-stage-title">The Nay</div>
+        <div class="bp-stage-sub">The Ben Franklin Reality Check.</div>
+        <div class="bp-stage-desc">Before any tool is suggested, the engine identifies <strong>Operational Waste</strong>: over-engineered paths, redundant costs, and privacy risks. The engine challenges the premise before it validates the plan. No other AI tool in this category is designed to push back first.</div>
+        <div class="bp-dims">
+          <div class="bp-dim">Input<span>Constraint Set</span></div>
+          <div class="bp-dim">Output<span>Waste Report</span></div>
         </div>
+        <div class="bp-project-tag">NayAye &mdash; Audit Module</div>
+      </div>
+
+      <!-- Connector 2→3 -->
+      <div class="bp-connector">
+        <div class="bp-connector-line"></div>
+        <div class="bp-connector-arrow">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+            <path d="M2 4h5M5 2l2 2-2 2" stroke="#4a9eff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="bp-connector-label">Clear</div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="bp-stage">
+        <div class="bp-stage-num">Stage 03</div>
+        <div class="bp-stage-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M4 11 L9 16 L18 6" stroke="#f0c040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 17 L8 17 M4 17 L4 13" stroke="#4a9eff" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="bp-stage-label">Route</div>
+        <div class="bp-stage-title">The Aye</div>
+        <div class="bp-stage-sub">Primary route and contingency path, both mapped.</div>
+        <div class="bp-stage-desc">Only after the Nay is addressed does the engine provide a <strong>Primary tool recommendation</strong> and a <strong>Backup Contingency Plan</strong>. Dual-path output is a direct translation of logistics-grade planning discipline into digital infrastructure &mdash; every route needs a fallback.</div>
+        <div class="bp-dims">
+          <div class="bp-dim">Output A<span>Primary Route</span></div>
+          <div class="bp-dim">Output B<span>Contingency</span></div>
+        </div>
+        <div class="bp-project-tag">NayAye &mdash; Route Module</div>
+      </div>
+    </div>
+
+    <div class="bp-legend">
+      <div class="bp-legend-title">Legend</div>
+      <div class="bp-legend-item">
+        <div class="bp-legend-swatch" style="background:var(--blueprint-bright);"></div>
+        <span>Sequential Logic Gate</span>
+      </div>
+      <div class="bp-legend-item">
+        <div class="bp-legend-swatch" style="background:var(--blueprint-accent);"></div>
+        <span>Approved Output</span>
+      </div>
+      <div class="bp-legend-item">
+        <div class="bp-legend-swatch" style="background:var(--blueprint-dim); border-top: 1px dashed rgba(100,160,255,0.4);"></div>
+        <span>Constraint Boundary</span>
+      </div>
+      <div style="margin-left:auto;">
+        <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(100,160,255,0.3);">MJH-III &mdash; NayAye Workflow v1.0</span>
       </div>
     </div>
   </div>
@@ -538,7 +841,7 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
     <div class="section-eyebrow">Technical Architecture</div>
     <h2 class="section-title">The Stack Behind <em>the Surveyor.</em></h2>
     <div class="section-rule"></div>
-    <p class="section-body">NayAye is built to demonstrate systems-level thinking across the full stack &mdash; from AI logic engine to UI/UX to data structure. Each component was selected deliberately to serve the product&rsquo;s core function.</p>
+    <p class="section-body">NayAye is built to demonstrate systems-level thinking across the full stack &mdash; from AI logic engine to UI/UX to data structure. Each component was selected deliberately to serve the product&rsquo;s core function. The architecture is designed to eliminate hallucination at the recommendation layer by making AI responsible only for language, not for routing logic.</p>
     <div class="tech-grid">
       <div class="tech-card">
         <div class="tech-card-label">Logic Engine</div>
@@ -560,6 +863,12 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
         <div class="tech-card-value">JSON Tool Libraries</div>
         <div class="tech-card-desc">JSON-based tool libraries map user constraints (Budget and Skill Level) to specific software capabilities, enabling deterministic routing logic beneath the AI layer.</div>
       </div>
+    </div>
+
+    <!-- Deterministic Logic Callout -->
+    <div class="tech-determinism">
+      <div class="tech-determinism-label">Deterministic Architecture &mdash; Design Note</div>
+      <p>The routing logic in NayAye is <strong>not generated by the AI.</strong> Tool recommendations are drawn from structured <code>JSON libraries</code> that map user constraints to pre-validated software options. The AI is responsible for language, tone, and audit reasoning &mdash; it is <em>deliberately constrained</em> from hallucinating tool recommendations by the data layer beneath it. This separation of concerns &mdash; deterministic routing beneath a generative voice layer &mdash; is the core architectural decision. It is not accidental. It reflects a logistics operator&rsquo;s instinct to never let the narrator choose the route.</p>
     </div>
   </div>
 </section>
@@ -600,34 +909,6 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   </div>
 </section>
 
-<!-- IMPACT / RECRUITER SECTION -->
-<section class="section section-alt" id="impact">
-  <div class="section-inner">
-    <div class="section-eyebrow">Why It Matters</div>
-    <h2 class="section-title">The Operational Logic <em>Behind the App.</em></h2>
-    <div class="section-rule"></div>
-    <p class="section-body">NayAye is not a productivity tool. It is a demonstration of how 12 years of physical logistics discipline &mdash; route planning, contingency management, constraint-based decision-making &mdash; translates directly into digital infrastructure design. The app is the artifact. The thinking behind it is the credential.</p>
-    <div class="impact-grid">
-      <div class="impact-card">
-        <div class="impact-card-title">Eliminating Software Sprawl</div>
-        <div class="impact-card-body">NayAye is designed to reduce &ldquo;Choice Paralysis&rdquo; and the accumulation of redundant, overlapping tools. The audit stage identifies over-engineered paths before the user commits resources &mdash; the same discipline applied to managing route coverage and carrier assignments at scale.</div>
-      </div>
-      <div class="impact-card">
-        <div class="impact-card-title">Cost-Conscious by Design</div>
-        <div class="impact-card-body">The Budget constraint in Stage 1 is not a filter &mdash; it is a forcing function. The engine actively identifies free and low-cost alternatives for small-scale operations, ensuring recommendations are proportionate to the user&rsquo;s actual operational scale.</div>
-      </div>
-      <div class="impact-card">
-        <div class="impact-card-title">Systems Thinking, Applied</div>
-        <div class="impact-card-body">The three-stage workflow &mdash; Intake, Audit, Route &mdash; mirrors the structure of any well-run logistics operation: define the cargo, identify the constraints, chart the most efficient path. NayAye demonstrates that this discipline is not industry-specific. It is transferable.</div>
-      </div>
-      <div class="impact-card">
-        <div class="impact-card-title">Contingency as Standard Practice</div>
-        <div class="impact-card-body">The Contingency Path deliverable is not an afterthought. It reflects a professional standard developed over 12 years of managing operations where a single point of failure &mdash; a broken scanner, a missed ferry, a route with no coverage &mdash; cascades into systemic disruption. Every plan needs a fallback.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section class="cta-section">
   <div class="section-eyebrow" style="color:rgba(245,242,237,0.4);margin-bottom:16px;">Try It. Challenge It.</div>
@@ -639,16 +920,28 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   </div>
 </section>
 
+<!-- SOVEREIGN FOOTER -->
 <footer class="site-footer">
-  <div class="footer-brand">Michael J. Hinkle III &nbsp;&middot;&nbsp; Seattle, WA</div>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="metrics.html">Metrics</a>
-    <a href="flashrt.html">FlashRT</a>
-    <a href="deb.html">The DEB</a>
-    <a href="goatflow.html">GOATflow</a>
-    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank">LinkedIn</a>
+  <div class="footer-top">
+    <div class="footer-brand-block">
+      <div class="footer-brand">Michael J. Hinkle III</div>
+      <div class="footer-credential">B.S. Information Sciences &mdash; Penn State University</div>
+      <div class="footer-location">Seattle, WA &nbsp;&middot;&nbsp; Systems Architecture &amp; Operational Intelligence</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="metrics.html">Metrics</a>
+      <a href="flashrt.html">FlashRT</a>
+      <a href="deb.html">The DEB</a>
+      <a href="goatflow.html">GOATflow</a>
+      <a href="https://linkedin.com/in/michaeljhinkle" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <div class="footer-seal"><em>&ldquo;Survey thy route before thou chartest the course.&rdquo;</em></div>
+    <div class="footer-project-id">NayAye &mdash; Unofficial Office of the Digital Surveyor &mdash; MJH-III</div>
   </div>
 </footer>
 
