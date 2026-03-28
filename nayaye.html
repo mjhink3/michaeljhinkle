@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NayAye — AI Workflow Routing Engine | Michael J. Hinkle III</title>
+<meta name="description" content="NayAye is an AI workflow routing engine that matches any task to the optimal AI tool based on skill level, budget, privacy requirements, and output type. From post roads to prompt roads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ── NayAye App-Match Theme ─────────────────────────────────
+   Colors extracted directly from nayaye.vercel.app:
+   - Background:  #F5F2ED  (parchment)
+   - Navy:        #1A2B48  (rgb 26,43,72)
+   - Gold:        #B8860B  (rgb 184,134,11)
+   - Card border: rgba(26,43,72,0.2) dashed
+   - Font H1/btn: Libre Baskerville, serif
+   - Font body:   Inter, sans-serif
+─────────────────────────────────────────────────────────── */
+
+:root {
+  --na-parchment: #F5F2ED;
+  --na-parchment-dark: #EDE8DF;
+  --na-navy: #1A2B48;
+  --na-gold: #B8860B;
+  --na-gold-light: #D4A017;
+  --na-border: rgba(26,43,72,0.2);
+  --na-border-dashed: rgba(26,43,72,0.25);
+  --na-muted: rgba(26,43,72,0.4);
+  --na-text: rgb(26,43,72);
+}
+
+/* Override body background for this page only */
+body.nayaye-body {
+  background: var(--na-parchment);
+  color: var(--na-text);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── SITE NAV — adapted to parchment bg ── */
+body.nayaye-body .site-nav {
+  background: var(--na-navy);
+  border-bottom: 2px solid var(--na-gold);
+}
+
+/* ── NAYAYE HERO ── */
+.na-hero {
+  background: var(--na-parchment);
+  padding: 52px 40px 44px;
+  text-align: center;
+  border-bottom: 1px solid var(--na-border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle paper texture overlay */
+.na-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.na-hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header row: logo + title side by side (mirrors the app layout) */
+.na-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.na-logo {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.na-title-block {
+  text-align: left;
+}
+
+.na-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(44px, 7vw, 72px);
+  font-weight: 700;
+  color: var(--na-navy);
+  line-height: 1;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.na-tagline {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--na-gold);
+  margin-top: 6px;
+  letter-spacing: 0;
+}
+
+.na-subheader {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--na-muted);
+  text-transform: uppercase;
+  margin: 14px 0 28px;
+  border-top: 1px solid var(--na-border);
+  border-bottom: 1px solid var(--na-border);
+  padding: 8px 0;
+}
+
+/* ── FORM CARD (mirrors the app's dashed-border card) ── */
+.na-card {
+  background: rgba(245,242,237,0.3);
+  border: 1px solid var(--na-border-dashed);
+  border-style: dashed;
+  padding: 24px 28px;
+  margin: 0 auto 28px;
+  max-width: 680px;
+  text-align: left;
+}
+
+.na-card-question {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--na-navy);
+  margin-bottom: 12px;
+}
+
+.na-input-mock {
+  background: rgba(245,242,237,0.3);
+  border: 1px solid var(--na-border-dashed);
+  border-style: dashed;
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: var(--na-muted);
+  font-style: italic;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  min-height: 72px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.na-selects-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.na-select-group label {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--na-navy);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.na-select-mock {
+  background: white;
+  border: 1px solid var(--na-border-dashed);
+  border-style: dashed;
+  padding: 6px 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--na-navy);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.na-select-mock::after {
+  content: '▾';
+  color: var(--na-muted);
+  font-size: 10px;
+}
+
+.na-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--na-parchment);
+  background: var(--na-navy);
+  border: none;
+  padding: 10px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.na-btn:hover { background: #0f1e35; }
+
+.na-btn-icon { font-size: 14px; }
+
+/* CTA buttons below the card */
+.na-cta-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.na-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--na-navy);
+  background: transparent;
+  border: 1px solid var(--na-border-dashed);
+  border-style: dashed;
+  padding: 9px 22px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.na-btn-outline:hover { background: rgba(26,43,72,0.06); }
+
+/* ── DIVIDER RULE ── */
+.na-rule {
+  border: none;
+  border-top: 1px solid var(--na-border);
+  margin: 0;
+}
+
+/* ── CONTENT SECTIONS ── */
+.na-section {
+  background: var(--na-parchment);
+  padding: 52px 40px;
+  border-bottom: 1px solid var(--na-border);
+}
+
+.na-section--alt {
+  background: var(--na-parchment-dark);
+  padding: 52px 40px;
+  border-bottom: 1px solid var(--na-border);
+}
+
+.na-section--dark {
+  background: var(--na-navy);
+  padding: 52px 40px;
+}
+
+.na-section-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.na-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--na-gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.na-eyebrow--light {
+  color: rgba(212,160,23,0.8);
+}
+
+.na-heading {
+  font-family: 'Libre Baskerville', serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 700;
+  color: var(--na-navy);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.na-heading--light {
+  color: var(--na-parchment);
+}
+
+.na-heading-rule {
+  width: 48px;
+  height: 2px;
+  background: var(--na-gold);
+  margin: 14px 0 24px;
+}
+
+.na-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--na-text);
+  line-height: 1.8;
+  max-width: 680px;
+}
+
+.na-body p { margin-bottom: 16px; }
+.na-body p:last-child { margin-bottom: 0; }
+.na-body strong { font-weight: 600; color: var(--na-navy); }
+.na-body em { font-family: 'Libre Baskerville', serif; font-style: italic; color: var(--na-gold); }
+
+/* ── HOW IT WORKS — three dashed cards ── */
+.na-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.na-how-card {
+  border: 1px dashed var(--na-border-dashed);
+  padding: 22px 20px;
+  background: rgba(245,242,237,0.5);
+  position: relative;
+}
+
+.na-how-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--na-navy);
+  color: var(--na-parchment);
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  letter-spacing: 1px;
+}
+
+.na-how-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--na-navy);
+  margin-bottom: 8px;
+}
+
+.na-how-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(26,43,72,0.75);
+  line-height: 1.65;
+}
+
+/* ── SCREENSHOT GALLERY ── */
+.na-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.na-gallery-item {
+  border: 1px dashed var(--na-border-dashed);
+  overflow: hidden;
+  background: white;
+}
+
+.na-gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.na-gallery-item:hover img { opacity: 0.9; }
+
+.na-gallery-caption {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--na-muted);
+  padding: 8px 12px;
+  text-align: center;
+  border-top: 1px solid var(--na-border);
+}
+
+/* ── TECH DETAILS ── */
+.na-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.na-detail-card {
+  border: 1px dashed rgba(245,242,237,0.25);
+  padding: 20px 22px;
+  background: rgba(245,242,237,0.04);
+}
+
+.na-detail-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--na-gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.na-detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.na-detail-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(245,242,237,0.7);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(245,242,237,0.06);
+  line-height: 1.4;
+}
+
+.na-detail-list li:last-child { border-bottom: none; }
+
+/* ── PULL QUOTE (app-style) ── */
+.na-pull-quote {
+  border-left: 3px solid var(--na-gold);
+  padding: 14px 20px;
+  margin: 28px 0;
+  background: rgba(184,134,11,0.04);
+}
+
+.na-pull-quote p {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--na-navy);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── FOOTER QUOTE (mirrors app footer) ── */
+.na-footer-quote {
+  text-align: center;
+  padding: 28px 40px;
+  background: var(--na-parchment-dark);
+  border-top: 1px solid var(--na-border);
+}
+
+.na-footer-quote p {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--na-muted);
+  margin: 0;
+}
+
+/* ── SITE FOOTER ── */
+body.nayaye-body .site-footer {
+  background: var(--na-navy);
+  border-top: 2px solid var(--na-gold);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .na-hero { padding: 40px 20px 36px; }
+  .na-header-row { flex-direction: column; gap: 12px; }
+  .na-title-block { text-align: center; }
+  .na-selects-row { grid-template-columns: repeat(2, 1fr); }
+  .na-section, .na-section--alt, .na-section--dark { padding: 40px 20px; }
+  .na-how-grid { grid-template-columns: 1fr; }
+  .na-gallery { grid-template-columns: 1fr; }
+  .na-detail-grid { grid-template-columns: 1fr; }
+  .na-footer-quote { padding: 24px 20px; }
+}
+
+@media (max-width: 480px) {
+  .na-selects-row { grid-template-columns: 1fr 1fr; }
+  .na-card { padding: 18px 16px; }
+}
+</style>
+</head>
+<body class="nayaye-body">
+
+<!-- ── SITE NAV ── -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Michael J. Hinkle III</a>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html">Metrics</a></li>
+    <li><a href="flashrt.html">FlashRT</a></li>
+    <li><a href="nayaye.html" class="active">NayAye</a></li>
+    <li><a href="deb.html">The DEB</a></li>
+    <li><a href="goatflow.html">GOATflow</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO — mirrors the app's header layout ── -->
+<div class="na-hero">
+  <div class="na-hero-inner">
+
+    <!-- Logo + Title row (same layout as the live app) -->
+    <div class="na-header-row">
+      <img src="assets/images/NayAye_logo_icon_original.png" alt="NayAye Logo" class="na-logo">
+      <div class="na-title-block">
+        <div class="na-title">NayAye</div>
+        <div class="na-tagline">From post roads to prompt roads.</div>
+      </div>
+    </div>
+
+    <div class="na-subheader">Unofficial Office of the Digital Surveyor</div>
+
+    <!-- Mock UI card — styled exactly like the live app's form card -->
+    <div class="na-card">
+      <div class="na-card-question">What art thou trying to do?</div>
+      <div class="na-input-mock">e.g., I wish to automate my correspondence with the local printer...</div>
+      <div class="na-selects-row">
+        <div class="na-select-group">
+          <label>Skill Level</label>
+          <div class="na-select-mock">Beginner</div>
+        </div>
+        <div class="na-select-group">
+          <label>Budget</label>
+          <div class="na-select-mock">Free</div>
+        </div>
+        <div class="na-select-group">
+          <label>Privacy</label>
+          <div class="na-select-mock">Medium</div>
+        </div>
+        <div class="na-select-group">
+          <label>Output</label>
+          <div class="na-select-mock">Writing</div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:4px;">
+        <a href="https://nayaye.vercel.app/" target="_blank" rel="noopener" class="na-btn">
+          <span class="na-btn-icon">🗺</span> Survey Thy Route
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA row -->
+    <div class="na-cta-row">
+      <a href="https://nayaye.vercel.app/" target="_blank" rel="noopener" class="na-btn">Try the Live Application</a>
+      <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="na-btn-outline">Connect on LinkedIn</a>
+    </div>
+
+  </div>
+</div>
+
+<hr class="na-rule">
+
+<!-- ── THE PROBLEM ── -->
+<div class="na-section">
+  <div class="na-section-inner">
+    <span class="na-eyebrow">The Problem It Solves</span>
+    <div class="na-heading">The AI Tool Landscape Is a Maze</div>
+    <div class="na-heading-rule"></div>
+    <div class="na-body">
+      <p>There are hundreds of AI tools available today — and the number grows every week. The question is never "does an AI exist that can do this?" The question is: <strong>which one should I use, right now, for this specific task, given my constraints?</strong></p>
+      <p>NayAye answers that question. It takes your task, your skill level, your budget, your privacy requirements, and your desired output format — and routes you to the optimal tool with a clear explanation of why. No jargon. No vendor bias. No wasted time.</p>
+      <p>Built and deployed independently on Vercel. The old-timey surveyor theme is intentional — navigating the AI landscape requires the same instincts as navigating unfamiliar territory: <em>know your tools, trust your read of the situation, and ride toward the right answer.</em></p>
+    </div>
+    <div class="na-pull-quote">
+      <p>"An investment in knowledge pays the best interest." — B.F.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<div class="na-section--alt">
+  <div class="na-section-inner">
+    <span class="na-eyebrow">How It Works</span>
+    <div class="na-heading">Three Questions. One Routing Decision.</div>
+    <div class="na-heading-rule"></div>
+    <div class="na-how-grid">
+      <div class="na-how-card" data-num="I">
+        <div class="na-how-title">What's the Task?</div>
+        <div class="na-how-text">Describe what you need to accomplish — writing, analysis, image generation, code, research, automation, or anything else. Plain language. No technical jargon required.</div>
+      </div>
+      <div class="na-how-card" data-num="II">
+        <div class="na-how-title">What Are Your Constraints?</div>
+        <div class="na-how-text">Skill level, budget, privacy sensitivity, and output format all factor into the routing decision. NayAye weighs them all simultaneously — not sequentially.</div>
+      </div>
+      <div class="na-how-card" data-num="III">
+        <div class="na-how-title">Receive Your Route</div>
+        <div class="na-how-text">A clear recommendation: which tool to use, why it fits your situation, and how to get started immediately. No hedging. No "it depends." A route.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SCREENSHOTS ── -->
+<div class="na-section">
+  <div class="na-section-inner">
+    <span class="na-eyebrow">Application Screenshots</span>
+    <div class="na-heading">See It In Action</div>
+    <div class="na-heading-rule"></div>
+    <div class="na-gallery">
+      <div class="na-gallery-item">
+        <img src="assets/images/NayAye_home_page.jpg" alt="NayAye Home Page — Task Input Interface">
+        <div class="na-gallery-caption">Home — Task Input Interface</div>
+      </div>
+      <div class="na-gallery-item">
+        <img src="assets/images/NayAye_home_page_question1.jpg" alt="NayAye Routing Question 1">
+        <div class="na-gallery-caption">Routing Question 1 — Task Type</div>
+      </div>
+      <div class="na-gallery-item">
+        <img src="assets/images/NayAye_home_page_question2.jpg" alt="NayAye Routing Question 2">
+        <div class="na-gallery-caption">Routing Question 2 — Constraints</div>
+      </div>
+      <div class="na-gallery-item">
+        <img src="assets/images/NayAye_home_page_answer1.jpg" alt="NayAye Routing Result">
+        <div class="na-gallery-caption">Routing Result — Tool Recommendation</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:8px;">
+      <a href="https://nayaye.vercel.app/" target="_blank" rel="noopener" class="na-btn">Survey Thy Route — Try It Live</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── TECHNICAL DETAILS ── -->
+<div class="na-section--dark">
+  <div class="na-section-inner">
+    <span class="na-eyebrow na-eyebrow--light">Technical Details</span>
+    <div class="na-heading na-heading--light">Built and Deployed Independently</div>
+    <div style="width:48px; height:2px; background:var(--na-gold); margin:14px 0 28px;"></div>
+    <div class="na-detail-grid">
+      <div class="na-detail-card">
+        <div class="na-detail-title">Deployment</div>
+        <ul class="na-detail-list">
+          <li>Deployed on Vercel — live at nayaye.vercel.app</li>
+          <li>Independently conceived, built &amp; shipped</li>
+          <li>No team. No agency. No template.</li>
+          <li>React front-end with GPT-4 routing engine</li>
+        </ul>
+      </div>
+      <div class="na-detail-card">
+        <div class="na-detail-title">Design Philosophy</div>
+        <ul class="na-detail-list">
+          <li>Surveyor theme is intentional — not decorative</li>
+          <li>Navigating AI = navigating unmapped territory</li>
+          <li>Memorable brand identity in a crowded space</li>
+          <li>Personality-forward, function-first</li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;">
+      <a href="https://nayaye.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">Try NayAye Live</a>
+      <a href="portfolio.html" class="btn btn-outline">View Full Portfolio</a>
+      <a href="goatflow.html" class="btn btn-outline--light btn">See GOATflow</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── APP FOOTER QUOTE (mirrors the live app's footer) ── -->
+<div class="na-footer-quote">
+  <p>NayAye is a personal research project — an Unofficial Office of the Digital Surveyor.</p>
+  <p style="margin-top:6px; font-size:12px;">"An investment in knowledge pays the best interest." — B.F.</p>
+</div>
+
+<!-- ── SITE FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">Michael J. Hinkle III</div>
+      <div class="footer-tagline">Operations &amp; Program Management Leader · Seattle, WA</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="metrics.html">Metrics</a></li>
+      <li><a href="flashrt.html">FlashRT</a></li>
+      <li><a href="nayaye.html">NayAye</a></li>
+      <li><a href="deb.html">The DEB</a></li>
+      <li><a href="goatflow.html">GOATflow</a></li>
+      <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 Michael J. Hinkle III. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>

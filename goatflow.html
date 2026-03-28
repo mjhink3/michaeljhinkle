@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOATflow — AI Workflow Triage System | Michael J. Hinkle III</title>
+<meta name="description" content="GOATflow is a sovereign AI task management system that encodes user values, extracts signal from noise, and turns daily chaos into a documented record of output and work ethic.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ── GOATFLOW HERO ─────────────────────────────────────────── */
+.goat-hero {
+  background: var(--navy);
+  padding: 64px 40px 52px;
+  position: relative;
+  overflow: hidden;
+}
+.goat-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(37,99,168,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(200,168,75,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.goat-hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.goat-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 8vw, 96px);
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+.goat-wordmark span { color: var(--gold); }
+
+/* Pillar cards */
+.pillar-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 32px 0;
+}
+.pillar-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 3px solid var(--gold);
+  padding: 20px 18px;
+}
+.pillar-card-icon {
+  font-size: 20px;
+  margin-bottom: 10px;
+  display: block;
+}
+.pillar-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.pillar-card-text {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+/* Screenshot gallery */
+.goat-screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px 0;
+}
+.goat-screenshot-item {
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.goat-screenshot-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s;
+}
+.goat-screenshot-item:hover img { transform: scale(1.02); }
+.goat-screenshot-caption {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+/* Ecosystem section */
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 28px 0;
+}
+.ecosystem-card {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-top: 3px solid var(--navy);
+  padding: 24px 22px;
+}
+.ecosystem-card--gold { border-top-color: var(--gold); }
+.ecosystem-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.ecosystem-card-text {
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.65;
+}
+
+/* Reward system table */
+.reward-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 13px;
+}
+.reward-table th {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--rule);
+}
+.reward-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--body);
+  font-weight: 300;
+  vertical-align: top;
+}
+.reward-table tr:last-child td { border-bottom: none; }
+.reward-table td:first-child { font-weight: 600; color: var(--navy); }
+
+@media (max-width: 900px) {
+  .pillar-row { grid-template-columns: repeat(2, 1fr); }
+  .goat-screenshot-grid { grid-template-columns: repeat(2, 1fr); }
+  .ecosystem-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .pillar-row { grid-template-columns: 1fr 1fr; }
+  .goat-screenshot-grid { grid-template-columns: 1fr 1fr; }
+  .goat-hero { padding: 48px 20px 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Michael J. Hinkle III</a>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html">Metrics</a></li>
+    <li><a href="flashrt.html">FlashRT</a></li>
+    <li><a href="nayaye.html">NayAye</a></li>
+    <li><a href="deb.html">The DEB</a></li>
+    <li><a href="goatflow.html" class="active">GOATflow</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="goat-hero">
+  <div class="goat-hero-inner">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
+      <span style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border:1px solid rgba(200,168,75,0.4); color:var(--gold); border-radius:2px;">Live Web Application</span>
+      <span style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.4); border-radius:2px;">Sovereign AI System</span>
+      <span style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.4); border-radius:2px;">goatflow.app</span>
+    </div>
+    <div class="goat-wordmark"><span>GOAT</span>flow</div>
+    <div style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; color:rgba(255,255,255,0.5); margin-bottom:16px;">Metabolize Your To-Do List.</div>
+    <div style="font-family:'Playfair Display',serif; font-size:15px; font-style:italic; color:rgba(200,168,75,0.7); border-left:3px solid var(--gold); padding-left:16px; max-width:560px; line-height:1.7; margin-bottom:24px;">Grab life by the horns. Leave the bull behind.</div>
+    <div style="font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.8; max-width:640px; margin-bottom:36px;">GOATflow is the first sovereign AI system that encodes your values, learns your patterns, evolves with your inputs, and turns daily chaos into a documented record of who you are when you are working. Not another thing to keep track of — the tool that keeps track of everything else.</div>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="https://goatflow.app/" target="_blank" rel="noopener" class="btn btn-primary">Try GOATflow Live</a>
+      <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="btn btn-outline">Connect on LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<div class="gold-bar"></div>
+
+<!-- ── FOUR PILLARS ── -->
+<div class="section section--dark">
+  <div class="section-inner">
+    <span class="eyebrow eyebrow--light">The Solution — Sovereign AI</span>
+    <h2 class="heading-xl" style="font-size:clamp(26px,4vw,38px); margin-bottom:20px;">Four Pillars. One System.</h2>
+    <div class="rule"></div>
+    <div class="pillar-row">
+      <div class="pillar-card">
+        <span class="pillar-card-icon">🦌</span>
+        <div class="pillar-card-title">HORNS</div>
+        <div class="pillar-card-text">Your values, encoded. User-defined rules the AI never breaks. "Family first." "Compliance beats every deadline." Set once. Govern everything. Evolve them as you grow.</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-card-icon">📡</span>
+        <div class="pillar-card-title">TRACKS</div>
+        <div class="pillar-card-text">Signal extracted from noise. Drop a photo, voice memo, email, or document. GPT-4o extracts only what requires action. Summit Calls flag what cannot wait. The bull gets cut. Every time.</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-card-icon">📋</span>
+        <div class="pillar-card-title">TRAIL NOTES</div>
+        <div class="pillar-card-text">Your work ethic, documented. Every completed Track is timestamped. Optional notes capture what helped or hindered. The AI learns your patterns and adapts scoring, messaging, and prioritization accordingly.</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-card-icon">🔒</span>
+        <div class="pillar-card-title">STATELESS</div>
+        <div class="pillar-card-text">OpSec compliant. Source documents purged immediately after signal extraction. Built for high-sensitivity operational environments where data security is non-negotiable.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SCREENSHOTS ── -->
+<div class="section section--white">
+  <div class="section-inner">
+    <span class="eyebrow">Application Screenshots</span>
+    <h2 class="heading-lg">The Interface</h2>
+    <div class="rule"></div>
+    <div class="goat-screenshot-grid">
+      <div class="goat-screenshot-item">
+        <img src="assets/images/goatflow_main_screen.jpg" alt="GOATflow Main Screen">
+        <div class="goat-screenshot-caption">Main Dashboard</div>
+      </div>
+      <div class="goat-screenshot-item">
+        <img src="assets/images/goatflow_active_tracks.jpg" alt="GOATflow Active Tracks">
+        <div class="goat-screenshot-caption">Active Tracks</div>
+      </div>
+      <div class="goat-screenshot-item">
+        <img src="assets/images/goatflow_horn_settings_tab.jpg" alt="GOATflow Horn Settings">
+        <div class="goat-screenshot-caption">HORNS — Values Configuration</div>
+      </div>
+      <div class="goat-screenshot-item">
+        <img src="assets/images/goatflow_trail_notes.jpg" alt="GOATflow Trail Notes">
+        <div class="goat-screenshot-caption">Trail Notes — Work Log</div>
+      </div>
+      <div class="goat-screenshot-item">
+        <img src="assets/images/goatflow_track_completed.jpg" alt="GOATflow Track Completed">
+        <div class="goat-screenshot-caption">Track Completion &amp; HAY Reward</div>
+      </div>
+      <div class="goat-screenshot-item">
+        <img src="assets/images/goatflow_goatifications_menu.jpg" alt="GOATflow Goatifications">
+        <div class="goat-screenshot-caption">GOATifications — Reward System</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:8px;">
+      <a href="https://goatflow.app/" target="_blank" rel="noopener" class="btn btn-primary">Try GOATflow Live</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── REWARD SYSTEM ── -->
+<div class="section section--cream">
+  <div class="section-inner">
+    <span class="eyebrow">The Reward System</span>
+    <h2 class="heading-lg">HAY, Cheese &amp; the Ecosystem Bridge</h2>
+    <div class="rule"></div>
+    <div class="body-text" style="max-width:680px; margin-bottom:24px;">
+      <p>GOATflow turns completed work into a persistent, portable record of output. Every Track completed earns HAY. HAY converts to Fresh Cheese. Fresh Cheese ports to WorkGOAT — the companion credentialing platform — at 1:1 on launch. Users arrive with proof of work already banked.</p>
+    </div>
+    <table class="reward-table">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>HAY Earned</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Standard Track Completed</td>
+          <td>+10 HAY</td>
+          <td>Base reward for any completed Track</td>
+        </tr>
+        <tr>
+          <td>Summit Call Completed</td>
+          <td>+50 HAY</td>
+          <td>High-priority flagged items earn 5× base</td>
+        </tr>
+        <tr>
+          <td>Speed Bonus</td>
+          <td>+25 HAY</td>
+          <td>Completed within time estimate</td>
+        </tr>
+        <tr>
+          <td>Difficulty Multiplier</td>
+          <td>Variable</td>
+          <td>Based on personal completion history — the system learns what is hard for you</td>
+        </tr>
+        <tr>
+          <td>500 HAY → 1 Fresh Cheese</td>
+          <td>Persistent Asset</td>
+          <td>Ports to WorkGOAT at 1:1 on launch</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pull-quote">
+      <p>"The game is the reward layer. The tool is the reason. The transformation is what happens when you stop noticing you are using both."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── ECOSYSTEM ── -->
+<div class="section section--white">
+  <div class="section-inner">
+    <span class="eyebrow">The Ecosystem</span>
+    <h2 class="heading-lg">GOATflow + WorkGOAT</h2>
+    <div class="rule"></div>
+    <div class="ecosystem-grid">
+      <div class="ecosystem-card ecosystem-card--gold">
+        <div class="ecosystem-card-title">GOATflow — The Daily Tool</div>
+        <div class="ecosystem-card-text">Captures work ethic in real time. Every Track completed, every Summit Call resolved, every Trail Note logged — all of it feeds a persistent record of who you are when you are working. The chaos gets smaller. The record gets longer.</div>
+      </div>
+      <div class="ecosystem-card">
+        <div class="ecosystem-card-title">WorkGOAT — The Credential Layer</div>
+        <div class="ecosystem-card-text">The companion platform that credentials the pattern GOATflow forms over months and years. Two products. One philosophy: document the small wins, build the proof, carry it everywhere. No resume has ever been able to show what WorkGOAT will show.</div>
+      </div>
+    </div>
+    <div class="body-text" style="max-width:680px;">
+      <p>The WorkGOAT ecosystem extends this further with a team layer — Herds, HerdBosses, Pasture Levels, and a full identity and accountability system that makes team performance visible, measurable, and portable. The full white paper is available on request.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHO IT'S FOR ── -->
+<div class="section section--dark">
+  <div class="section-inner">
+    <span class="eyebrow eyebrow--light">Who It's For</span>
+    <h2 class="heading-xl" style="font-size:clamp(26px,4vw,38px); margin-bottom:20px;">Built for Anyone Grinding Under Information Overload</h2>
+    <div class="rule"></div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px;">
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-left:3px solid var(--gold); padding:18px 20px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; color:var(--gold); text-transform:uppercase; margin-bottom:6px;">Managers &amp; Team Leads</div>
+        <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.6); line-height:1.5;">Voice Bray employee requests on the spot. Never lose a follow-up again.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-left:3px solid var(--gold); padding:18px 20px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; color:var(--gold); text-transform:uppercase; margin-bottom:6px;">Logistics &amp; Operations</div>
+        <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.6); line-height:1.5;">Post-it photos, voice memos, documents — triaged to action in seconds.</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-left:3px solid var(--gold); padding:18px 20px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; color:var(--gold); text-transform:uppercase; margin-bottom:6px;">Anyone Grinding XP</div>
+        <div style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.6); line-height:1.5;">If you like games and you have too much going on — this was built for you.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="https://goatflow.app/" target="_blank" rel="noopener" class="btn btn-primary">Try GOATflow Live</a>
+      <a href="portfolio.html" class="btn btn-outline">View Full Portfolio</a>
+      <a href="flashrt.html" class="btn btn-outline--light btn">See FlashRT</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">Michael J. Hinkle III</div>
+      <div class="footer-tagline">Operations &amp; Program Management Leader · Seattle, WA</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="metrics.html">Metrics</a></li>
+      <li><a href="flashrt.html">FlashRT</a></li>
+      <li><a href="nayaye.html">NayAye</a></li>
+      <li><a href="deb.html">The DEB</a></li>
+      <li><a href="goatflow.html">GOATflow</a></li>
+      <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 Michael J. Hinkle III. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>
