@@ -444,7 +444,7 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
 .stage-desc strong { font-weight: 600; color: var(--navy); }
 
 /* ---- TECH STACK ---- */
-.tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+.tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
 .tech-card {
   border: 1px dashed var(--parchment-border);
   background: rgba(255,255,255,0.5); padding: 24px 28px;
@@ -491,7 +491,7 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
 .deliverable-desc {
   padding: 24px 32px; font-family: 'Inter', sans-serif;
   font-size: 14px; font-weight: 300; color: var(--navy-light);
-  line-height: 1.65; display: flex; align-items: center;
+  line-height: 1.65;
 }
 .deliverable-desc strong { font-weight: 600; color: var(--navy); }
 
@@ -577,7 +577,7 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   .hero, .section, .cta-section, .site-footer, .blueprint-section, .why-anchor { padding-left: 24px; padding-right: 24px; }
   .stage { grid-template-columns: 1fr; }
   .stage-num { flex-direction: row; justify-content: flex-start; padding: 16px 24px; gap: 12px; }
-  .tech-grid, .why-grid { grid-template-columns: 1fr; }
+  .tech-grid, .impact-grid, .why-grid { grid-template-columns: 1fr; }
   .screenshots { grid-template-columns: repeat(2, 1fr); }
   .deliverable { grid-template-columns: 1fr; }
   .deliverable-label { border-right: none; border-bottom: 1px solid var(--parchment-border); }
@@ -617,79 +617,43 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   <div class="hero-office">Unofficial Office of the Digital Surveyor</div>
   <p class="hero-lede">In a market flooded with AI &ldquo;Yes-Men,&rdquo; NayAye provides the <strong>necessary friction</strong>. A decision-support engine modeled after the pragmatic, skeptical, and systematic intelligence of Benjamin Franklin &mdash; it forces the user to justify their stack before granting the &ldquo;Aye.&rdquo;</p>
   <div class="hero-actions">
-    <a href="#why" class="btn-primary">The Operational Logic</a>
+    <a href="#why" class="btn-primary">The Philosophy</a>
     <a href="https://nayaye.vercel.app" target="_blank" rel="noopener" class="btn-outline">Open the App</a>
     <a href="portfolio.html" class="btn-outline">Full Portfolio</a>
   </div>
 </section>
 
-<!-- WHY IT MATTERS — EMOTIONAL HEART, MOVED TO TOP -->
+<!-- PHILOSOPHY + WHY -->
 <section class="why-anchor" id="why">
-  <div class="section-inner">
-    <div class="section-eyebrow">Why It Matters</div>
-    <h2 class="section-title">Twelve Years of Physical Logistics.<br><em>One Digital Instrument.</em></h2>
-    <div class="section-rule"></div>
-
-    <p class="why-lede">Every constraint in NayAye&rsquo;s architecture &mdash; the staged intake, the forced audit, the contingency path &mdash; was learned on loading docks, ferry terminals, and rural routes where a single planning failure cascades into systemic disruption. <strong>The app is the artifact. The twelve years behind it are the credential.</strong></p>
-
-    <!-- Bridge Diagram -->
-    <div class="why-bridge">
-      <div class="why-side">
-        <div class="why-side-label">The Origin</div>
-        <div class="why-side-title">Physical Logistics<br>Operations</div>
-        <div class="why-side-body">
-          <strong>12 years</strong> managing route coverage, carrier constraints, contingency planning, and constraint-based decision-making at operational scale. Every plan required a fallback. Every route had to account for failure.
-        </div>
-      </div>
-      <div class="why-arrow">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12h14M14 7l5 5-5 5" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="why-arrow-label">Translates</span>
-      </div>
-      <div class="why-side">
-        <div class="why-side-label">The Instrument</div>
-        <div class="why-side-title">Digital Infrastructure<br>Architecture</div>
-        <div class="why-side-body">
-          <strong>Systems-level thinking</strong> applied to software selection: define the cargo, audit the constraints, chart the most efficient path, map the contingency. The discipline is identical. Only the medium has changed.
-        </div>
-      </div>
-    </div>
-
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-card-title">Eliminating Software Sprawl</div>
-        <div class="why-card-body">NayAye reduces &ldquo;Choice Paralysis&rdquo; and the accumulation of redundant, overlapping tools. The audit stage identifies over-engineered paths before the user commits resources &mdash; the same discipline applied to managing route coverage and carrier assignments at scale.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-title">Cost-Conscious by Design</div>
-        <div class="why-card-body">The Budget constraint in Stage 1 is not a filter &mdash; it is a forcing function. The engine actively identifies free and low-cost alternatives for small-scale operations, ensuring recommendations are proportionate to actual operational scale.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-title">Systems Thinking, Applied</div>
-        <div class="why-card-body">The three-stage workflow &mdash; Intake, Audit, Route &mdash; mirrors any well-run logistics operation: define the cargo, identify the constraints, chart the most efficient path. NayAye demonstrates that this discipline is not industry-specific. It is transferable.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-title">Contingency as Standard Practice</div>
-        <div class="why-card-body">The Contingency Path is not an afterthought. It reflects a professional standard developed over 12 years managing operations where a broken scanner, a missed ferry, or a route gap cascades into systemic failure. Every plan needs a fallback.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<section class="section" id="philosophy">
   <div class="section-inner">
     <div class="section-eyebrow">The Core Philosophy</div>
     <h2 class="section-title">The Necessary <em>Friction.</em></h2>
     <div class="section-rule"></div>
-    <div class="philosophy-card">
-      <p>Most AI tools are designed to agree with you. They accelerate decisions without questioning whether those decisions are correct, cost-effective, or even necessary. The result is software sprawl, redundant subscriptions, and choice paralysis masquerading as productivity.</p>
-      <p>NayAye is built on the opposite premise. Before any recommendation is made, the engine audits the user&rsquo;s intent, identifies operational waste, and surfaces the friction points that most tools are incentivized to ignore. Only after the &ldquo;Nay&rdquo; is addressed does the &ldquo;Aye&rdquo; get granted.</p>
+
+    <p class="why-lede">Most AI tools are designed to agree with you &mdash; accelerating decisions without questioning whether those decisions are correct, cost-effective, or even necessary. NayAye is built on the opposite premise. The engine audits intent before it issues a recommendation. Only after the &ldquo;Nay&rdquo; is addressed does the &ldquo;Aye&rdquo; get granted.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-title">Against Software Sprawl</div>
+        <div class="why-card-body">The audit stage surfaces over-engineered approaches, redundant costs, and misaligned tool choices before the user commits. Identifying the wrong path is as valuable as recommending the right one.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Cost-Conscious by Design</div>
+        <div class="why-card-body">Budget is a first-class constraint, not a filter applied at the end. The engine actively identifies free and proportionate options for small-scale operations &mdash; it won&rsquo;t recommend a steam engine to crack a walnut.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Constraint-Based Routing</div>
+        <div class="why-card-body">Skill level and privacy requirements shape the recommendation as much as budget. The output is matched to the operator, not to the most impressive-sounding tool in the catalog.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-title">Contingency as Standard</div>
+        <div class="why-card-body">Every recommendation includes a second-best option. A plan without a fallback is an assumption, not a strategy. The Surveyor maps both routes.</div>
+      </div>
     </div>
-    <div class="pull-quote">
+
+    <div class="pull-quote" style="border-left-color:var(--gold);background:rgba(184,134,11,0.06);margin-top:40px;">
       <p>&ldquo;An investment in knowledge pays the best interest.&rdquo;</p>
-      <cite>&mdash; Benjamin Franklin, the model for NayAye&rsquo;s decision logic</cite>
+      <cite>&mdash; Benjamin Franklin &mdash; the model for NayAye&rsquo;s decision logic</cite>
     </div>
   </div>
 </section>
@@ -718,10 +682,6 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
         <div class="bp-stage-title">The Inquiry</div>
         <div class="bp-stage-sub">Define the Cargo before charting the route.</div>
         <div class="bp-stage-desc">User inputs a goal and defines their <strong>operational constraints</strong>: Budget, Technical Skill Level, and Privacy Requirements. The engine accepts no ambiguity at this stage.</div>
-        <div class="bp-dims">
-          <div class="bp-dim">Input<span>Goal + Constraints</span></div>
-          <div class="bp-dim">Output<span>Constraint Set</span></div>
-        </div>
         <div class="bp-project-tag">NayAye &mdash; Intake Module</div>
       </div>
 
@@ -751,10 +711,6 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
         <div class="bp-stage-title">The Nay</div>
         <div class="bp-stage-sub">The Ben Franklin Reality Check.</div>
         <div class="bp-stage-desc">Before any tool is suggested, the engine identifies <strong>Operational Waste</strong>: over-engineered paths, redundant costs, and privacy risks. The engine challenges the premise before it validates the plan. No other AI tool in this category is designed to push back first.</div>
-        <div class="bp-dims">
-          <div class="bp-dim">Input<span>Constraint Set</span></div>
-          <div class="bp-dim">Output<span>Waste Report</span></div>
-        </div>
         <div class="bp-project-tag">NayAye &mdash; Audit Module</div>
       </div>
 
@@ -782,30 +738,7 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
         <div class="bp-stage-title">The Aye</div>
         <div class="bp-stage-sub">Primary route and contingency path, both mapped.</div>
         <div class="bp-stage-desc">Only after the Nay is addressed does the engine provide a <strong>Primary tool recommendation</strong> and a <strong>Backup Contingency Plan</strong>. Dual-path output is a direct translation of logistics-grade planning discipline into digital infrastructure &mdash; every route needs a fallback.</div>
-        <div class="bp-dims">
-          <div class="bp-dim">Output A<span>Primary Route</span></div>
-          <div class="bp-dim">Output B<span>Contingency</span></div>
-        </div>
         <div class="bp-project-tag">NayAye &mdash; Route Module</div>
-      </div>
-    </div>
-
-    <div class="bp-legend">
-      <div class="bp-legend-title">Legend</div>
-      <div class="bp-legend-item">
-        <div class="bp-legend-swatch" style="background:var(--blueprint-bright);"></div>
-        <span>Sequential Logic Gate</span>
-      </div>
-      <div class="bp-legend-item">
-        <div class="bp-legend-swatch" style="background:var(--blueprint-accent);"></div>
-        <span>Approved Output</span>
-      </div>
-      <div class="bp-legend-item">
-        <div class="bp-legend-swatch" style="background:var(--blueprint-dim); border-top: 1px dashed rgba(100,160,255,0.4);"></div>
-        <span>Constraint Boundary</span>
-      </div>
-      <div style="margin-left:auto;">
-        <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(100,160,255,0.3);">MJH-III &mdash; NayAye Workflow v1.0</span>
       </div>
     </div>
   </div>
@@ -815,21 +748,25 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
 <section class="section" id="deliverables">
   <div class="section-inner">
     <div class="section-eyebrow">Key Features &amp; Deliverables</div>
-    <h2 class="section-title">Three Artifacts. <em>One Survey.</em></h2>
+    <h2 class="section-title">Four Artifacts. <em>One Survey.</em></h2>
     <div class="section-rule"></div>
-    <p class="section-body">When the survey is complete, the user receives three distinct deliverables. Each is designed to be immediately actionable &mdash; not a list of options, but a structured decision package.</p>
+    <p class="section-body">When the survey is complete, the user receives four distinct deliverables. Each is drawn from an analysis against a curated Tool Catalog of over 30 industry-leading platforms &mdash; and each is designed to be immediately actionable, not a list of options.</p>
     <div class="deliverables">
       <div class="deliverable">
-        <div class="deliverable-label">The Verdict</div>
-        <div class="deliverable-desc">A <strong>witty, contrarian assessment</strong> of the user&rsquo;s current plan. Written in NayAye&rsquo;s signature 18th-century voice, it identifies the specific inefficiencies in the user&rsquo;s proposed approach before any recommendation is made.</div>
+        <div class="deliverable-label">NayAye&rsquo;s Verdict</div>
+        <div class="deliverable-desc">A <strong>witty, Franklin-flavored critique</strong> of the user&rsquo;s proposed approach. Written in the Sovereign&rsquo;s 18th-century voice, it identifies the specific inefficiencies and over-complications before any recommendation is made.</div>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-label">The Best Route</div>
+        <div class="deliverable-desc">A specific <strong>Best Tool recommendation</strong> and a <strong>Second-Best Option</strong> &mdash; both drawn from the Tool Catalog and matched against the user&rsquo;s Budget, Skill Level, and Privacy constraints.</div>
       </div>
       <div class="deliverable">
         <div class="deliverable-label">The B.Free Map</div>
-        <div class="deliverable-desc">A visual <strong>&ldquo;Route Flow&rdquo;</strong> &mdash; called The Prompt Road &mdash; showing exactly how to connect the recommended tools in sequence. Not a suggestion list. A map.</div>
+        <div class="deliverable-desc">A <strong>4&ndash;6 stage roadmap</strong> called The Surveyed Route &mdash; taking the project from idea to completion. Named after Benjamin Franklin&rsquo;s signature and his philosophy of path-of-least-resistance efficiency. Not a suggestion list. A map.</div>
       </div>
       <div class="deliverable">
-        <div class="deliverable-label">The Contingency Path</div>
-        <div class="deliverable-desc">A <strong>secondary tool recommendation</strong> in case the primary &ldquo;Bridge&rdquo; fails. A direct translation of logistics contingency planning into digital infrastructure decision-making.</div>
+        <div class="deliverable-label">First Action</div>
+        <div class="deliverable-desc">The <strong>single most important step</strong> to take right now. Not a roadmap. Not a list. One action &mdash; the one that unlocks everything else. This is the Surveyor&rsquo;s final word.</div>
       </div>
     </div>
   </div>
@@ -845,30 +782,40 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
     <div class="tech-grid">
       <div class="tech-card">
         <div class="tech-card-label">Logic Engine</div>
-        <div class="tech-card-value">Gemini 1.5 Flash</div>
-        <div class="tech-card-desc">High-speed, long-context reasoning selected for its ability to hold the full survey context across all three stages without truncation or drift.</div>
+        <div class="tech-card-value">Gemini 2.0 Flash</div>
+        <div class="tech-card-desc">High-speed, low-latency reasoning via the <code style="font-family:monospace;font-size:11px;background:rgba(26,43,72,0.07);padding:1px 5px;border-radius:2px;">@google/genai</code> SDK. Flash&rsquo;s long context window holds the full survey state across all three stages without truncation or drift.</div>
       </div>
       <div class="tech-card">
-        <div class="tech-card-label">System Persona</div>
-        <div class="tech-card-value">Custom Chain-of-Thought Prompt</div>
-        <div class="tech-card-desc">A custom-engineered system prompt utilizing Chain-of-Thought (CoT) reasoning to maintain the Sovereign/18th-century tone without sacrificing modern technical accuracy.</div>
+        <div class="tech-card-label">Structured Output</div>
+        <div class="tech-card-value">JSON Schema Enforcement</div>
+        <div class="tech-card-desc">NayAye constrains the AI to a strict JSON Schema, ensuring every response returns a valid, predictable object &mdash; Verdicts, Tool IDs, Map Stages, and First Action &mdash; that the UI can render deterministically.</div>
       </div>
       <div class="tech-card">
-        <div class="tech-card-label">UI / UX</div>
-        <div class="tech-card-value">React &mdash; Hosted on Vercel</div>
-        <div class="tech-card-desc">A minimalist React-based interface designed for mobile-first &ldquo;one-screen&rdquo; utility. The entire workflow completes within a single viewport &mdash; no navigation required.</div>
+        <div class="tech-card-label">Frontend &amp; Framework</div>
+        <div class="tech-card-value">React 18 &mdash; Vite &mdash; TypeScript</div>
+        <div class="tech-card-desc">A single-page application built for speed and type safety. TypeScript enforces strict typing across all advisory logic and API responses. Vite delivers near-instant build times.</div>
       </div>
       <div class="tech-card">
-        <div class="tech-card-label">Data Structure</div>
-        <div class="tech-card-value">JSON Tool Libraries</div>
-        <div class="tech-card-desc">JSON-based tool libraries map user constraints (Budget and Skill Level) to specific software capabilities, enabling deterministic routing logic beneath the AI layer.</div>
+        <div class="tech-card-label">Styling</div>
+        <div class="tech-card-value">Tailwind CSS</div>
+        <div class="tech-card-desc">Powers the &ldquo;Legacy-Modern&rdquo; aesthetic &mdash; parchment tones (<code style="font-family:monospace;font-size:11px;background:rgba(26,43,72,0.07);padding:1px 5px;border-radius:2px;">#F5F2ED</code>) and deep navy (<code style="font-family:monospace;font-size:11px;background:rgba(26,43,72,0.07);padding:1px 5px;border-radius:2px;">#1A2B48</code>) &mdash; with utility-first responsiveness.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-label">Animation</div>
+        <div class="tech-card-value">Framer Motion</div>
+        <div class="tech-card-desc">Handles the &ldquo;Slam-in&rdquo; reveal animations for survey results and smooth transitions between states. Motion is earned &mdash; deployed at high-impact moments, not scattered throughout.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-label">Infrastructure</div>
+        <div class="tech-card-value">Google Cloud Run</div>
+        <div class="tech-card-desc">The application is containerized and deployed on Google Cloud Platform. Cloud Run scales automatically and maintains high availability &mdash; no server management required.</div>
       </div>
     </div>
 
     <!-- Deterministic Logic Callout -->
     <div class="tech-determinism">
-      <div class="tech-determinism-label">Deterministic Architecture &mdash; Design Note</div>
-      <p>The routing logic in NayAye is <strong>not generated by the AI.</strong> Tool recommendations are drawn from structured <code>JSON libraries</code> that map user constraints to pre-validated software options. The AI is responsible for language, tone, and audit reasoning &mdash; it is <em>deliberately constrained</em> from hallucinating tool recommendations by the data layer beneath it. This separation of concerns &mdash; deterministic routing beneath a generative voice layer &mdash; is the core architectural decision. It is not accidental. It reflects a logistics operator&rsquo;s instinct to never let the narrator choose the route.</p>
+      <div class="tech-determinism-label">Structured Output &mdash; Design Note</div>
+      <p>NayAye uses <strong>JSON Schema enforcement</strong> to constrain what the AI is permitted to return. Every response must conform to a strict schema &mdash; Verdict, Tool IDs, Map Stages, First Action &mdash; ensuring the UI always receives a valid, predictable object. The AI cannot return freeform text at the recommendation layer. This is not a prompt instruction. It is an <em>enforced structural contract</em> at the API level. The Sovereign voice handles language. The schema handles truth.</p>
     </div>
   </div>
 </section>
@@ -925,7 +872,7 @@ body { font-family: 'Inter', sans-serif; background: var(--parchment); color: va
   <div class="footer-top">
     <div class="footer-brand-block">
       <div class="footer-brand">Michael J. Hinkle III</div>
-      <div class="footer-credential">B.S. Information Sciences &mdash; Penn State University</div>
+      <div class="footer-credential">A.S. Information Sciences &amp; Technology &mdash; Penn State University</div>
       <div class="footer-location">Seattle, WA &nbsp;&middot;&nbsp; Systems Architecture &amp; Operational Intelligence</div>
     </div>
     <div class="footer-links">
