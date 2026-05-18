@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GOATflow — AI Workflow Automation | Michael J. Hinkle III</title>
-<meta name="description" content="GOATflow: AI-powered workflow automation and chaos triage. Built on Replit + ChatGPT 4o-mini by Michael J. Hinkle III.">
+<meta name="description" content="GOATflow: AI-powered workflow automation and chaos triage. Built on Streamlit + Google Gemini by Michael J. Hinkle III.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -132,7 +132,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
       <span class="hero-eyebrow">AI-Powered Operational Intelligence Dashboard</span>
       <div class="hero-logo"><img src="goatflow_primary_logo.png" alt="GOATflow"></div>
       <div class="hero-rule"></div>
-      <p class="hero-tagline">GOATflow ingests raw operational intelligence &mdash; emails, documents, notes, voice memos &mdash; and returns <strong>prioritized, structured action items called Tracks</strong>. Built on Python &amp; Streamlit, powered by GPT-4o-mini, hosted on Replit.</p>
+      <p class="hero-tagline">GOATflow ingests raw operational intelligence &mdash; emails, documents, notes, voice memos &mdash; and returns <strong>prioritized, structured action items called Tracks</strong>. Built on Python &amp; Streamlit, powered by Google Gemini, hosted on Streamlit Community Cloud.</p>
       <div class="hero-actions">
         <a href="https://goatflow.app" target="_blank" class="btn-goat">Launch Live App</a>
         <a href="#features" class="btn-goat-outline">Explore Features</a>
@@ -147,7 +147,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
 
 <div class="goat-stats">
   <div class="goat-stats-inner">
-    <div class="goat-stat"><div class="goat-stat-num">GPT</div><div class="goat-stat-label">4o-mini Churn Engine</div></div>
+    <div class="goat-stat"><div class="goat-stat-num">GEMINI</div><div class="goat-stat-label">AI Churn Engine</div></div>
     <div class="goat-stat"><div class="goat-stat-num">7</div><div class="goat-stat-label">Ascension Levels</div></div>
     <div class="goat-stat"><div class="goat-stat-num">10</div><div class="goat-stat-label">Real-Time Stat Cards</div></div>
     <div class="goat-stat"><div class="goat-stat-num">HAY</div><div class="goat-stat-label">Dual-Currency Economy</div></div>
@@ -161,8 +161,8 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
     <div class="section-rule"></div>
     <div class="section-body">
       <p>Most productivity tools are passive record-keepers. GOATflow is active — it ingests raw operational intelligence (emails, documents, voice memos, images, pasted notes) and returns prioritized, structured action items called <strong>Tracks</strong>. Drop the intel into the Track Sieve. The Churn Engine does the rest.</p>
-      <p>The AI backbone — GPT-4o-mini via OpenAI — processes each submission and extracts Tracks with a title, description, priority tier (Micro / Standard / High-Leverage / GOAT), optional time estimate, and Summit Call flag for urgent items. It thinks like an operator&rsquo;s chief of staff: not just extracting tasks but evaluating relative urgency and business impact.</p>
-      <p>A gamification layer — dual-currency economy, 7-level ascension system, real-time stat dashboard, and browser-native Goatifications — drives consistent follow-through. Built on Python 3 + Streamlit, hosted on Replit. Invite-only access. This is a live production application with real auth and persistent data &mdash; not a demo.</p>
+      <p>The AI backbone — Google Gemini 1.5 Flash via the <code>google-genai</code> SDK — processes each submission and extracts Tracks with a title, description, priority tier (Micro / Standard / High-Leverage / GOAT), optional time estimate, and Summit Call flag for urgent items. It thinks like an operator&rsquo;s chief of staff: not just extracting tasks but evaluating relative urgency and business impact.</p>
+      <p>A gamification layer — dual-currency economy, 7-level ascension system, real-time stat dashboard, and browser-native Goatifications — drives consistent follow-through. Built on Python 3 + Streamlit, hosted on Streamlit Community Cloud at zero monthly cost. Database on Supabase PostgreSQL. Invite-only access. This is a live production application with real auth and persistent data &mdash; not a demo.</p>
     </div>
   </div>
 </section>
@@ -285,11 +285,11 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
     <div class="section-rule"></div>
     <div class="tech-grid">
       <div class="tech-card"><div class="tech-card-label">Language &amp; Framework</div><div class="tech-card-value">Python 3 + Streamlit</div><div class="tech-card-desc">The entire application is Python 3. Streamlit handles server-side rendering, session state, routing, and UI. Custom HTML/CSS is injected via <code>st.markdown(unsafe_allow_html=True)</code>. JavaScript behavior is injected via streamlit-components at zero height.</div></div>
-      <div class="tech-card"><div class="tech-card-label">AI Engine</div><div class="tech-card-value">GPT-4o-mini</div><div class="tech-card-desc">OpenAI&rsquo;s GPT-4o-mini powers the Churn Engine exclusively. No AI is called at page load &mdash; only on explicit user submission. The prompt is tuned to evaluate urgency and business impact, not just extract text.</div></div>
-      <div class="tech-card"><div class="tech-card-label">Database</div><div class="tech-card-value">PostgreSQL + psycopg2</div><div class="tech-card-desc">Replit-managed PostgreSQL accessed via raw SQL (no ORM). Schema is auto-provisioned at startup. Per-user data isolation across all tables: users, player, operational_log, signals, directives, horns, invites.</div></div>
+      <div class="tech-card"><div class="tech-card-label">AI Engine</div><div class="tech-card-value">Google Gemini 1.5 Flash</div><div class="tech-card-desc">Google Gemini 1.5 Flash powers the Churn Engine exclusively via the <code>google-genai</code> SDK. No AI is called at page load — only on explicit user submission. The prompt is tuned to evaluate urgency and business impact, not just extract text. Free tier: 15 requests/min, 1M tokens/day.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Database</div><div class="tech-card-value">PostgreSQL + psycopg2</div><div class="tech-card-desc">Supabase-managed PostgreSQL 16 accessed via raw SQL (no ORM) through the session pooler connection for serverless compatibility. Schema is auto-provisioned at startup via <code>ensure_schema()</code>. Per-user data isolation across all tables: users, player, operational_log, signals, directives, horns, invites.</div></div>
       <div class="tech-card"><div class="tech-card-label">Auth &amp; Access</div><div class="tech-card-value">Invite-Only + Custom Auth</div><div class="tech-card-desc">Gated registration via single-use invite codes. The claim is atomic &mdash; a guarded <code>UPDATE ... RETURNING</code> prevents race conditions. Passwords hashed server-side. No third-party auth providers.</div></div>
       <div class="tech-card"><div class="tech-card-label">Onboarding</div><div class="tech-card-value">Shepherd.js</div><div class="tech-card-desc">First-time users are walked through the interface with an interactive guided tour built on Shepherd.js (bundled in static/). An animal-character intro slideshow runs on first login. Tour completion is tracked per-user in PostgreSQL.</div></div>
-      <div class="tech-card"><div class="tech-card-label">Deployment</div><div class="tech-card-value">Replit (.replit.app)</div><div class="tech-card-desc">Hosted on Replit. Workflow: <code>streamlit run app.py --server.port 5000</code>. Secrets managed via Replit&rsquo;s secrets panel: DATABASE_URL, OPENAI_API_KEY, SESSION_SECRET, ADMIN_USERNAME.</div></div>
+      <div class="tech-card"><div class="tech-card-label">Deployment</div><div class="tech-card-value">Streamlit Community Cloud</div><div class="tech-card-desc">Hosted on Streamlit Community Cloud at zero monthly cost. Deployed directly from GitHub. Start command: <code>streamlit run app.py</code>. Secrets managed via Streamlit's secrets panel: <code>DATABASE_URL</code>, <code>PROD_DATABASE_URL</code>, <code>GEMINI_API_KEY</code>, <code>SESSION_SECRET</code>, <code>ADMIN_USERNAME</code>.</div></div>
     </div>
   </div>
 </section>
