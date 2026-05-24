@@ -437,9 +437,38 @@ const CONFIG = {
   REFRESH_FERRY_MS: 2 * 60 * 1000,      // 2 min
 };
 
-function wsdotFetch(url) {
-  return fetch(CONFIG.CORS_PROXY + encodeURIComponent(url))
-    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
+// Try multiple proxies in sequence, then direct, and surface the real error
+const PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?',
+  'https://api.codetabs.com/v1/proxy?quest=',
+];
+
+async function wsdotFetch(url) {
+  let lastErr = null;
+  for (const proxy of PROXIES) {
+    try {
+      const res = await fetch(proxy + encodeURIComponent(url));
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      try {
+        return JSON.parse(text);
+      } catch {
+        throw new Error(`Non-JSON response (${text.slice(0, 80)}...)`);
+      }
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  // Last resort: try direct (works if WSDOT ever adds CORS headers)
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Direct HTTP ${res.status}`);
+    return await res.json();
+  } catch (e) {
+    lastErr = e;
+  }
+  throw new Error(`All proxies failed. Last error: ${lastErr?.message}`);
 }
 
 // ============================================================
@@ -727,9 +756,8 @@ async function fetchIncidents() {
   } catch (e) {
     setDot('traffic-dot', 'red');
     document.getElementById('incidents-list').innerHTML =
-      `<div class="error-msg">&#9888; Incidents fetch failed: ${e.message}</div>`;
+      `<div class="error-msg" style="text-align:left;padding:12px">&#9888; Incidents failed<br><code style="font-size:9px;color:var(--text-dim);word-break:break-all">${e.message}</code></div>`;
     document.getElementById('incidents-ts').textContent = 'ERROR';
-    console.error('Incidents fetch error:', e);
   }
 }
 
@@ -812,9 +840,8 @@ async function fetchFerry() {
   } catch (e) {
     setDot('ferry-dot', 'red');
     document.getElementById('ferry-content').innerHTML =
-      `<div class="error-msg">&#9888; Ferry fetch failed: ${e.message}</div>`;
+      `<div class="error-msg" style="text-align:left;padding:12px">&#9888; Ferry failed<br><code style="font-size:9px;color:var(--text-dim);word-break:break-all">${e.message}</code></div>`;
     document.getElementById('ferry-ts').textContent = 'ERROR';
-    console.error('Ferry fetch error:', e);
   }
 }
 
@@ -924,9 +951,8 @@ async function fetchCameras() {
     document.getElementById('cameras-ts').textContent = `Refreshed ${ts(camerasFetchedAt)} · ${allCameras.length} cameras`;
   } catch (e) {
     document.getElementById('camera-grid').innerHTML =
-      `<div class="error-msg" style="grid-column:1/-1">&#9888; Camera fetch failed: ${e.message}</div>`;
+      `<div class="error-msg" style="grid-column:1/-1;text-align:left">&#9888; Cameras failed<br><code style="font-size:9px;color:var(--text-dim);word-break:break-all">${e.message}</code></div>`;
     document.getElementById('cameras-ts').textContent = 'ERROR';
-    console.error('Camera fetch error:', e);
   }
 }
 
