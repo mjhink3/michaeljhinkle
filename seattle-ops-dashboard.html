@@ -427,6 +427,8 @@
 // ============================================================
 const CONFIG = {
   WSDOT_KEY: '9086eb9c-b743-432c-a9ca-86e160d0d780',
+  // CORS proxy required for WSDOT APIs when running from file:// or non-WSDOT origin
+  CORS_PROXY: 'https://corsproxy.io/?url=',
   LAT: 47.6062,
   LON: -122.3321,
   REFRESH_WEATHER_MS: 5 * 60 * 1000,    // 5 min
@@ -434,6 +436,11 @@ const CONFIG = {
   REFRESH_INCIDENTS_MS: 2 * 60 * 1000,  // 2 min
   REFRESH_FERRY_MS: 2 * 60 * 1000,      // 2 min
 };
+
+function wsdotFetch(url) {
+  return fetch(CONFIG.CORS_PROXY + encodeURIComponent(url))
+    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
+}
 
 // ============================================================
 //  UTILITIES
@@ -712,9 +719,7 @@ async function fetchIncidents() {
   const url = `https://www.wsdot.wa.gov/Traffic/api/HighwayAlerts/HighwayAlertsREST.svc/GetAlertsAsJson?AccessCode=${CONFIG.WSDOT_KEY}`;
 
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = await wsdotFetch(url);
     incidentsFetchedAt = new Date();
     renderIncidents(data);
     setDot('traffic-dot', 'green');
@@ -798,9 +803,7 @@ async function fetchFerry() {
   const url = `https://www.wsdot.wa.gov/ferries/api/terminals/rest/terminallocations?apiaccesscode=${CONFIG.WSDOT_KEY}`;
 
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = await wsdotFetch(url);
     ferryFetchedAt = new Date();
     renderFerry(data);
     setDot('ferry-dot', 'green');
@@ -919,8 +922,7 @@ async function fetchCameras() {
 
   try {
     const fetches = CAMERA_ROADS.map(road =>
-      fetch(`https://www.wsdot.wa.gov/Traffic/api/HighwayCameras/HighwayCamerasREST.svc/GetCamerasByRoadNameAsJson?RoadName=${encodeURIComponent(road)}&AccessCode=${CONFIG.WSDOT_KEY}`)
-        .then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status} for ${road}`)))
+      wsdotFetch(`https://www.wsdot.wa.gov/Traffic/api/HighwayCameras/HighwayCamerasREST.svc/GetCamerasByRoadNameAsJson?RoadName=${encodeURIComponent(road)}&AccessCode=${CONFIG.WSDOT_KEY}`)
         .then(cams => cams.map(c => ({ ...c, _road: road })))
         .catch(e => { console.warn(`Camera fetch failed for ${road}:`, e); return []; })
     );
