@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOATvision Seattle — Michael J. Hinkle III</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2b48;--navy-dark:#0f1a2e;--gold:#b8860b;--gold-light:#c8a84b;--cream:#F5F2ED;--cream-dark:#ede8e0;--steel:#4a5568;--text:#2c3347;--text-light:#718096;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',sans-serif;background:var(--navy-dark);color:var(--text);line-height:1.6;}
+.site-nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(15,26,46,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(184,134,11,0.25);}
+.nav-brand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;text-decoration:none;}
+.nav-brand span{color:var(--gold-light);}
+.nav-links{display:flex;gap:24px;align-items:center;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-light);}
+.nav-links .nav-cta{background:var(--gold);color:#fff !important;padding:8px 18px;border-radius:3px;font-size:12px !important;}
+.nav-links .nav-cta:hover{background:var(--gold-light) !important;color:var(--navy-dark) !important;}
+
+/* HERO */
+.hero{min-height:72vh;background:linear-gradient(135deg,var(--navy-dark) 0%,#1a2b48 60%,#0d1f3c 100%);display:flex;align-items:center;padding:120px 40px 72px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:480px;height:480px;border-radius:50%;border:80px solid rgba(184,134,11,0.04);pointer-events:none;}
+.hero-inner{max-width:960px;margin:0 auto;width:100%;position:relative;z-index:1;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;display:block;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05;color:#fff;margin-bottom:12px;}
+.hero-title span{color:var(--gold-light);}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(15px,1.8vw,19px);font-style:italic;font-weight:400;color:rgba(255,255,255,0.55);margin-bottom:28px;}
+.hero-rule{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:28px;}
+.hero-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.75;max-width:680px;margin-bottom:40px;}
+.hero-desc strong{color:#fff;font-weight:600;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.btn-primary{display:inline-block;background:var(--gold);color:#fff;padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-primary:hover{background:var(--gold-light);color:var(--navy-dark);transform:translateY(-1px);}
+.btn-outline{display:inline-block;border:1.5px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:14px 32px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:3px;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light);}
+
+/* STATS STRIP */
+.stats-strip{background:var(--cream);padding:40px;border-top:4px solid var(--gold);}
+.stats-strip-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.stat-item{text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:var(--navy);margin-bottom:6px;}
+.stat-num.gold{color:var(--gold);}
+.stat-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--steel);margin-bottom:3px;}
+.stat-note{font-size:12px;color:var(--text-light);}
+
+/* SECTIONS */
+.section{padding:72px 40px;}
+.section-inner{max-width:960px;margin:0 auto;}
+.section-eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.8vw,36px);font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.2;}
+.section-title.white{color:#fff;}
+.section-rule{width:48px;height:3px;background:var(--gold);margin-bottom:28px;}
+.section-body{font-size:16px;font-weight:300;line-height:1.8;color:var(--text);}
+.section-body p{margin-bottom:18px;}
+.section-body strong{font-weight:600;color:var(--navy);}
+
+/* WHAT SECTION — cream bg */
+.what-section{background:var(--cream);}
+
+/* DATA SOURCES SECTION — dark */
+.data-section{background:var(--navy);}
+.data-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+.data-card{background:rgba(255,255,255,0.05);border:1px solid rgba(184,134,11,0.18);border-radius:4px;padding:18px 20px;transition:border-color 0.2s;}
+.data-card:hover{border-color:rgba(184,134,11,0.45);}
+.data-card-icon{font-size:22px;margin-bottom:8px;}
+.data-card-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+.data-card-detail{font-size:12px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.5;}
+.data-card-refresh{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);opacity:0.8;}
+
+/* ARCHITECTURE SECTION — cream-dark */
+.arch-section{background:var(--cream-dark);}
+.feature-list{list-style:none;margin-top:24px;}
+.feature-list li{font-size:15px;font-weight:300;color:var(--text);padding:14px 0 14px 28px;border-bottom:1px solid rgba(0,0,0,0.07);position:relative;line-height:1.7;}
+.feature-list li:last-child{border-bottom:none;}
+.feature-list li::before{content:'—';position:absolute;left:0;color:var(--gold);font-weight:700;}
+.feature-list li strong{font-weight:600;color:var(--navy);}
+
+/* OPS BRIEF CALLOUT */
+.brief-callout{background:var(--navy);border-left:4px solid var(--gold);padding:24px 32px;margin-top:36px;border-radius:0 4px 4px 0;}
+.brief-callout-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;}
+.brief-callout-text{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:#fff;line-height:1.65;}
+
+/* REPLICATION SECTION — dark */
+.rep-section{background:var(--navy-dark);}
+.rep-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.rep-step{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:20px 24px;}
+.rep-step-num{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);line-height:1;margin-bottom:6px;}
+.rep-step-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;}
+.rep-step-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--navy-dark),var(--navy));padding:72px 40px;text-align:center;border-top:3px solid var(--gold);}
+.cta-body{font-size:16px;font-weight:300;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto 36px;line-height:1.75;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+.site-footer{background:var(--navy-dark);border-top:1px solid rgba(255,255,255,0.06);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:16px;color:rgba(255,255,255,0.5);}
+.footer-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.footer-nav a{font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;}
+.footer-nav a:hover{color:var(--gold-light);}
+
+/* HERO SCREENSHOT */
+.screenshot-hero{background:#06101a;padding:0 40px 56px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.screenshot-hero-inner{max-width:960px;margin:0 auto;}
+.screenshot-hero-label{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);opacity:0.65;padding-top:48px;margin-bottom:20px;display:block;}
+.screenshot-hero-frame{border-radius:6px;overflow:hidden;border:1px solid rgba(184,134,11,0.2);box-shadow:0 40px 100px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.03);}
+.screenshot-hero-frame img{width:100%;display:block;}
+
+/* SCREENSHOT GALLERY */
+.gallery-section{background:#06101a;padding:72px 40px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.gallery-item{border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);background:#0a1520;transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;}
+.gallery-item:hover{transform:translateY(-5px);border-color:rgba(184,134,11,0.4);box-shadow:0 16px 48px rgba(0,0,0,0.5);}
+.gallery-item img{width:100%;display:block;}
+.gallery-caption{padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.38);border-top:1px solid rgba(255,255,255,0.06);}
+
+@media(max-width:900px){
+  .gallery-grid{grid-template-columns:1fr;}
+  .screenshot-hero{padding:0 20px 40px;}
+  .stats-strip-inner{grid-template-columns:repeat(2,1fr);}
+  .data-grid{grid-template-columns:1fr 1fr;}
+  .rep-steps{grid-template-columns:1fr;}
+  .site-nav{padding:0 20px;}
+  .hero{padding:100px 20px 60px;}
+  .section{padding:56px 20px;}
+  .stats-strip{padding:40px 20px;}
+  .cta-section{padding:56px 20px;}
+  .site-footer{padding:28px 20px;}
+}
+@media(max-width:540px){
+  .data-grid{grid-template-columns:1fr;}
+  .stats-strip-inner{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Michael J. <span>Hinkle III</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html">Metrics</a></li>
+    <li><a href="flashrt.html">FlashRT</a></li>
+    <li><a href="nayaye.html">NayAye</a></li>
+    <li><a href="deb.html">The DEB</a></li>
+    <li><a href="goatflow.html">GOATflow</a></li>
+    <li><a href="goatvisionseattle.html" class="active">GOATvision</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">AI Systems Portfolio &nbsp;·&nbsp; Live Application</span>
+    <h1 class="hero-title">GOATvision <span>Seattle</span></h1>
+    <div class="hero-sub">Real-Time Situational Awareness Dashboard</div>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">A single portable HTML file that aggregates <strong>16 live data endpoints across 9 APIs</strong> — traffic, transit, ferries, weather, fire dispatch, seismic, and flight delays — into a unified situational awareness interface for the Seattle metro area. No login. No backend. No build step. Copy it anywhere with an internet connection and it runs.</p>
+    <div class="hero-actions">
+      <a href="https://goatvisionseattle.vercel.app" target="_blank" rel="noopener" class="btn-primary">View Live App &rarr;</a>
+      <a href="portfolio.html#innovation" class="btn-outline">Back to Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stat-item">
+      <div class="stat-num gold">16</div>
+      <div class="stat-label">Live Endpoints</div>
+      <div class="stat-note">9 distinct providers, 16 API calls</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-label">File. Entire App.</div>
+      <div class="stat-note">~3,800 lines, zero dependencies</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num gold">20</div>
+      <div class="stat-label">Live Panels</div>
+      <div class="stat-note">Each with real-time status dot</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2m</div>
+      <div class="stat-label">Fastest Refresh</div>
+      <div class="stat-note">Traffic, incidents, ferry positions</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN SCREENSHOT -->
+<div class="screenshot-hero">
+  <div class="screenshot-hero-inner">
+    <span class="screenshot-hero-label">Live Application — Production Build</span>
+    <div class="screenshot-hero-frame">
+      <img src="goatvision_main_screen_ops_brief_conditions_nws_alerts_active_incidents_highway_travel_times_1.png" alt="GOATvision Seattle — Main Screen: Ops Brief, Current Conditions, NWS Alerts, Active Incidents, Highway Travel Times">
+    </div>
+  </div>
+</div>
+
+<!-- WHAT IT IS -->
+<section class="section what-section" id="overview">
+  <div class="section-inner">
+    <div class="section-eyebrow">Overview</div>
+    <h2 class="section-title">One Dashboard. The Whole City.</h2>
+    <div class="section-rule"></div>
+    <div class="section-body">
+      <p>GOATvision Seattle was built to answer a simple question: <strong>what is actually happening in Seattle right now?</strong> Not fragmented across six browser tabs, not behind a paywall, not requiring an account. One page. All of it.</p>
+      <p>The dashboard pulls live highway travel times from WSDOT, real-time Link Light Rail arrivals from OneBusAway, Washington State Ferry vessel positions via GPS tracking, current weather and air quality from Open-Meteo, Seattle Fire Department dispatch records from the last two hours, M1.5+ earthquakes and Cascade volcano alert levels from USGS, SEA-TAC airport delay status from FAA, and active game and event schedules from ESPN and Ticketmaster — 16 individual endpoint calls across 9 distinct providers. Every panel updates on its own refresh cycle — ferry positions every 2 minutes, weather every 5, events every hour.</p>
+      <p>At the top of the page, the <strong>Seattle Ops Brief</strong> synthesizes everything into a plain-English situational summary — worst traffic corridor, current weather conditions, ferry gap status, transit availability, active NWS alerts, and today's events — no AI, purely conditional logic.</p>
+    </div>
+
+    <div class="brief-callout">
+      <div class="brief-callout-label">The Ops Brief</div>
+      <div class="brief-callout-text">"A rule-based synthesis engine reads all active panels and generates 1–8 prioritized plain-English bullets — the city at a glance, in about three seconds."</div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SOURCES -->
+<section class="section data-section" id="data">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--gold-light);">Data Sources</div>
+    <h2 class="section-title white">What It Pulls. How Often.</h2>
+    <div class="section-rule"></div>
+    <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,0.6);max-width:640px;line-height:1.75;margin-bottom:0;">Every source below is fetched client-side, on its own refresh cycle, with graceful error states when data is unavailable.</p>
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="data-card-icon">🚗</div>
+        <div class="data-card-name">WSDOT Highway Travel Times</div>
+        <div class="data-card-detail">I-5, I-90, SR-520, I-405, SR-522 — live minutes vs. baseline, historical badge from Supabase</div>
+        <span class="data-card-refresh">Every 2 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">⚠️</div>
+        <div class="data-card-name">WSDOT Active Incidents</div>
+        <div class="data-card-detail">Crashes, closures, and construction in the Seattle metro bounding box — severity-coded</div>
+        <span class="data-card-refresh">Every 2 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">⛴️</div>
+        <div class="data-card-name">WSF Ferry Vessel Positions</div>
+        <div class="data-card-detail">GPS-based progress bars for Bainbridge, Vashon, Mukilteo/Clinton, and Point Defiance routes</div>
+        <span class="data-card-refresh">Every 2 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">🌦️</div>
+        <div class="data-card-name">Weather + AQI</div>
+        <div class="data-card-detail">Open-Meteo current conditions, hourly forecast, air quality index — drives Drive Quality Window</div>
+        <span class="data-card-refresh">Every 5 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">🚨</div>
+        <div class="data-card-name">Seattle Fire Dispatch</div>
+        <div class="data-card-detail">Last 2 hours of SFD dispatch records from Seattle Open Data — medical, fire/hazmat, other</div>
+        <span class="data-card-refresh">Every 5 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">🚇</div>
+        <div class="data-card-name">Link Light Rail (OBA)</div>
+        <div class="data-card-detail">Real-time arrivals for 1 Line, 2 Line key stops via OneBusAway — live train position map</div>
+        <span class="data-card-refresh">Every 90s</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">🌋</div>
+        <div class="data-card-name">Seismic + Volcano</div>
+        <div class="data-card-detail">USGS M1.5+ earthquakes within 300km + Rainier, Baker, St. Helens alert levels</div>
+        <span class="data-card-refresh">Every 5 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">✈️</div>
+        <div class="data-card-name">SEA-TAC Airport Status</div>
+        <div class="data-card-detail">FAA NAS Status for ground stops and delay programs at Seattle-Tacoma International</div>
+        <span class="data-card-refresh">Every 5 min</span>
+      </div>
+      <div class="data-card">
+        <div class="data-card-icon">🏈</div>
+        <div class="data-card-name">Sports + Events</div>
+        <div class="data-card-detail">Mariners, Seahawks, Sounders, Kraken, Storm via ESPN + Ticketmaster for major venue concerts</div>
+        <span class="data-card-refresh">Every hour</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOT GALLERY -->
+<div class="gallery-section" id="screenshots">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--gold-light);">App Walkthrough</div>
+    <h2 class="section-title white">Every Panel. Real Data.</h2>
+    <div class="section-rule"></div>
+    <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,0.55);max-width:640px;line-height:1.75;margin-bottom:0;">These are live screenshots from the production build — not mockups, not staged. The data you see was live at the time of capture.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="goatvision_12_hour_drive_window_metro_traffic_flow_map_wsf_ferry_live_vessel_tracking_2.png" alt="12-Hour Drive Quality Window, Seattle Metro Traffic Flow Map, WSF Ferry Live Vessel Tracking">
+        <div class="gallery-caption">Drive Window &nbsp;·&nbsp; Traffic Map &nbsp;·&nbsp; Ferry Positions</div>
+      </div>
+      <div class="gallery-item">
+        <img src="goatvision_events_game_day_sea-tac_airport_alerts_fire_and_aid_dispatches_feed_seismic_and_volcanic_activity_monitoring_cascades_volcano_statuses_4.png" alt="Events and Game Day, SEA-TAC Airport Alerts, Fire and Aid Dispatches, Seismic and Volcanic Activity">
+        <div class="gallery-caption">Events &nbsp;·&nbsp; Airport &nbsp;·&nbsp; Fire Dispatch &nbsp;·&nbsp; Seismic</div>
+      </div>
+      <div class="gallery-item">
+        <img src="goatvision_puget_sound_ferry_terminal_live_traffic_feeds_6.png" alt="61 Live Camera Feeds — Puget Sound and Ferry Terminals">
+        <div class="gallery-caption">61 Live Camera Feeds &nbsp;·&nbsp; Ferry Terminals &amp; Highways</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<section class="section arch-section" id="architecture">
+  <div class="section-inner">
+    <div class="section-eyebrow">Architecture</div>
+    <h2 class="section-title">One File. Zero Infrastructure.</h2>
+    <div class="section-rule"></div>
+    <div class="section-body" style="max-width:680px;">
+      <p>The entire application lives inside a single HTML file — ~3,800 lines of HTML, CSS, and vanilla JavaScript with no npm packages, no build pipeline, and no backend server. Every data fetch happens client-side. Copy the file to any machine with an internet connection and the dashboard runs.</p>
+    </div>
+    <ul class="feature-list">
+      <li><strong>Ops Brief engine</strong> — Rule-based synthesis panel reads all active data and generates prioritized plain-English bullets. No AI. Pure conditional logic. Renders 2 seconds after page load, refreshes every 2 minutes.</li>
+      <li><strong>Live traffic flow map</strong> — Static SVG schematic of Seattle corridors with segment stroke colors updating live from WSDOT travel time ratios — green at or near baseline, amber at 1.5×, red above that.</li>
+      <li><strong>12-hour Drive Quality Window</strong> — Hourly bars scoring drive conditions 0–100 based on precipitation, wind severity, and WMO weather code. Feeds the Ops Brief with window transition alerts.</li>
+      <li><strong>Supabase telemetry layer</strong> — Every fetch silently writes aggregate records to Supabase (traffic, ferry, AQI, SFD). Historical baselines accumulate over time and power the <code>Hist:</code> badge in the travel times panel.</li>
+      <li><strong>CORS proxy chain</strong> — WSDOT blocks direct browser requests. Three public proxies are tried in sequence on every call; the first to respond wins. No single point of failure.</li>
+      <li><strong>Status dot system</strong> — Every panel has a green/amber/red/gray glow dot reflecting live data quality and severity — a single-glance system health layer across all 20 panels.</li>
+      <li><strong>City replication by config swap</strong> — The architecture is factored around <code>CITY_CONFIG</code>. A new city can be stood up by changing lat/lon, team IDs, transit stop IDs, and API keys — the panel logic stays intact.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- REPLICATION -->
+<section class="section rep-section" id="replication">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--gold-light);">Design Intent</div>
+    <h2 class="section-title white">Built to Scale to Any City</h2>
+    <div class="section-rule"></div>
+    <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,0.6);max-width:640px;line-height:1.75;margin-bottom:0;">The city-specific logic is isolated in a single config object. Swapping it out is the majority of the work needed to deploy a new city.</p>
+    <div class="rep-steps">
+      <div class="rep-step">
+        <div class="rep-step-num">01</div>
+        <div class="rep-step-title">Replace CITY_CONFIG</div>
+        <div class="rep-step-desc">Update lat/lon, timezone, NOAA tide station, OBA base URL, airport code, ESPN team IDs, and camera filter bounds for the new city.</div>
+      </div>
+      <div class="rep-step">
+        <div class="rep-step-num">02</div>
+        <div class="rep-step-title">Swap Transit Stop IDs</div>
+        <div class="rep-step-desc">Replace LINK_LINES with the new city's OBA stop IDs — or swap the OBA integration entirely for a different GTFS-RT source.</div>
+      </div>
+      <div class="rep-step">
+        <div class="rep-step-num">03</div>
+        <div class="rep-step-title">Rebuild Static Panels</div>
+        <div class="rep-step-desc">Hospitals, emergency vets, and regional links are static HTML cards. Swap the content for the new city's institutions.</div>
+      </div>
+      <div class="rep-step">
+        <div class="rep-step-num">04</div>
+        <div class="rep-step-title">Swap Regional APIs</div>
+        <div class="rep-step-desc">Outside Washington State, replace WSDOT with the equivalent DOT API (Caltrans, TxDOT, etc.). The proxy chain and rendering logic carry over unchanged.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <div class="section-eyebrow" style="color:var(--gold-light);">Live Now</div>
+    <h2 class="section-title white" style="margin:0 auto 14px;">See Seattle in Real Time</h2>
+    <div class="section-rule" style="margin:0 auto 24px;"></div>
+    <p class="cta-body">GOATvision Seattle is live at goatvisionseattle.vercel.app — no account, no login, no friction. Open it and the dashboard starts pulling data immediately.</p>
+    <div class="cta-actions">
+      <a href="https://goatvisionseattle.vercel.app" target="_blank" rel="noopener" class="btn-primary">Open Live App &rarr;</a>
+      <a href="portfolio.html" class="btn-outline">View Full Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-brand">Michael J. Hinkle III &nbsp;·&nbsp; Seattle, WA</div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="metrics.html">Metrics</a>
+    <a href="flashrt.html">FlashRT</a>
+    <a href="goatflow.html">GOATflow</a>
+    <a href="goatvisionseattle.html">GOATvision</a>
+    <a href="nayaye.html">NayAye</a>
+    <a href="deb.html">The DEB</a>
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank">LinkedIn</a>
+  </nav>
+</footer>
+
+</body>
+</html>
