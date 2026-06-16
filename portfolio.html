@@ -6,609 +6,196 @@
 <title>Michael J. Hinkle III — Operational Leadership Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  /* Portfolio page CSS variables - matching original design system */
   :root {
     --navy: #0D1F3C;
     --steel: #1A3A5C;
-    --mid: #2563A8;
     --gold: #C8A84B;
     --gold-light: #E8C96A;
     --white: #FFFFFF;
     --off-white: #F8F6F1;
     --cream: #F2EFE8;
-    --ink: #1A1A2E;
     --body: #2C3347;
     --gray: #6B7A99;
     --light-gray: #E8EBF2;
     --rule: #D4C9B0;
   }
-  body {
-    background: var(--off-white);
-    color: var(--body);
-    font-family: 'Source Sans 3', sans-serif;
-    line-height: 1.6;
-  }
-  /* Headshot in cover */
-  .cover-headshot {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: top;
-    border: 3px solid rgba(184,134,11,0.6);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    flex-shrink: 0;
-  }
-  /* Recognition images in chapters */
-  .cert-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin: 32px 0;
-  }
-  .cert-img-wrap {
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid #d4c9b0;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  }
-  .cert-img-wrap img {
-    width: 100%;
-    display: block;
-  }
-  .cert-img-caption {
-    padding: 10px 12px;
-    background: #f9f8f6;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 12px;
-    color: #718096;
-    text-align: center;
-    line-height: 1.4;
-  }
-  /* Hide the shared site nav if it conflicts, or style it appropriately */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--off-white); color: var(--body); font-family: 'Source Sans 3', sans-serif; line-height: 1.6; }
+
+  /* NAV */
   .site-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: rgba(26, 43, 72, 0.95);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: fixed; top: 0; left: 0; right: 0; height: 60px;
+    background: rgba(13,31,60,0.97); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px; z-index: 1000;
+    border-bottom: 1px solid rgba(200,168,75,0.25);
   }
-  .site-nav-back {
-    color: #fff;
-    text-decoration: none;
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .site-nav-links {
-    display: flex;
-    gap: 24px;
-  }
-  .site-nav-link {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 14px;
-    transition: color 0.2s ease;
-  }
-  .site-nav-link:hover {
-    color: #fff;
-  }
-  .document {
-    margin-top: 60px; /* offset for nav */
-  }
+  .nav-back { color: #fff; text-decoration: none; font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links .nav-cta { background: var(--gold); color: #fff !important; padding: 7px 16px; border-radius: 3px; font-size: 12px !important; }
 
-  .body-text {
-    font-size: 14.5px;
-    font-weight: 300;
-    line-height: 1.85;
-    color: var(--body);
-    margin-bottom: 20px;
-  }
-  .body-text strong {
-    font-weight: 600;
-    color: var(--navy);
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 6px;
-    margin-top: 44px;
-  }
-  .section-title:first-child { margin-top: 0; }
-  .section-rule {
-    width: 100%;
-    height: 1px;
-    background: var(--rule);
-    margin-bottom: 20px;
-  }
-  .pull-quote {
-    border-left: 4px solid var(--gold);
-    padding: 16px 24px;
-    margin: 28px 0;
-    background: var(--cream);
-  }
-  .pull-quote p {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-style: italic;
-    color: var(--navy);
-    line-height: 1.6;
-  }
-  .impact-list {
-    list-style: none;
-    margin: 12px 0 24px;
-    padding-left: 0;
-  }
-  .impact-list li {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--body);
-    padding: 10px 0 10px 24px;
-    border-bottom: 1px solid var(--light-gray);
-    position: relative;
-    line-height: 1.7;
-  }
-  .impact-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    font-weight: 600;
-  }
-  .impact-list li strong {
-    font-weight: 600;
-    color: var(--navy);
-  }
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--light-gray);
-    border: 1px solid var(--light-gray);
-    margin: 20px 0 36px;
-  }
-  .metrics-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .metrics-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-  .metric-cell {
-    background: var(--white);
-    padding: 20px 24px;
-  }
-  .metric-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--navy);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .metric-num.gold { color: var(--gold); }
-  .metric-num.steel { color: var(--steel); }
-  .metric-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--gray);
-    text-transform: uppercase;
-    line-height: 1.4;
-  }
-  .metric-note {
-    font-size: 11px;
-    color: var(--gray);
-    font-style: italic;
-    margin-top: 3px;
-  }
+  /* DOCUMENT OFFSET */
+  .document { margin-top: 60px; }
 
-  /* ── CHAPTER PAGES ──────────────────────────────── */
-  .chapter { page-break-before: always; }
-  .chapter-header {
-    background: var(--navy);
-    padding: 56px 100px 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .chapter-header::after {
-    content: '';
-    position: absolute;
-    right: -20px;
-    bottom: -60px;
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
-    border: 60px solid rgba(255,255,255,0.03);
-  }
-  .chapter-header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 24px;
-  }
-  .chapter-num-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    opacity: 0.8;
-  }
-  .chapter-date-range {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,0.35);
-    text-transform: uppercase;
-  }
-  .chapter-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
-  }
-  .chapter-theme {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-style: italic;
-    color: rgba(255,255,255,0.5);
-    position: relative;
-    z-index: 1;
-  }
-  .chapter-gold-bar {
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
-    margin-top: 32px;
-  }
-  .exec-summary {
-    background: var(--steel);
-    padding: 28px 100px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .exec-summary-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .exec-summary-text {
-    font-size: 14px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.7;
-    max-width: 720px;
-  }
-  .chapter-body { padding: 56px 100px; background: var(--white); }
-  .chapter-close {
-    background: var(--cream);
-    padding: 48px 100px;
-    border-top: 1px solid var(--rule);
-  }
-  .recognition-box {
-    background: var(--navy);
-    padding: 24px 32px;
-    margin: 32px 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .rec-award { flex: 1; min-width: 180px; }
-  .rec-award-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
-  }
-  .rec-award-desc {
-    font-size: 12px;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.4;
-  }
-  .context-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin: 20px 0 32px;
-  }
-  .context-panel {
-    background: var(--cream);
-    border: 1px solid var(--rule);
-    border-top: 3px solid var(--steel);
-    padding: 20px 24px;
-  }
-  .context-panel-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--steel);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .context-list { list-style: none; }
-  .context-list li {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--body);
-    padding: 5px 0;
-    border-bottom: 1px solid var(--light-gray);
-    line-height: 1.5;
-  }
-  .context-list li:last-child { border-bottom: none; }
-  /* Cover page */
-  .cover {
-    width: 100%;
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
-  .cover-texture {
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 59px,
-      rgba(255,255,255,0.015) 60px,
-      rgba(255,255,255,0.015) 61px
-    );
-  }
-  .cover-gold-bar {
-    height: 6px;
-    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 60%, var(--gold) 100%);
-    position: relative;
-    z-index: 2;
-  }
-  .cover-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 100px;
-    position: relative;
-    z-index: 2;
-  }
-  .cover-eyebrow {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 5px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .cover-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 6vw, 80px);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .cover-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 2.5vw, 26px);
-    font-weight: 400;
-    font-style: italic;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 40px;
-  }
-  .cover-stats {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-  }
-  .cover-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 40px;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .cover-stat-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-  }
-  .cover-footer {
-    padding: 24px 100px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-  }
-  .cover-footer-left, .cover-footer-right {
-    font-size: 12px;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 1px;
-  }
-  /* Intro page */
-  .intro-page {
-    background: var(--white);
-    padding: 80px 100px;
-    scroll-margin-top: 52px;
-  }
-  .intro-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .intro-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1.2;
-    margin-bottom: 32px;
-    max-width: 680px;
-  }
-  .intro-body {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.85;
-    color: var(--body);
-    max-width: 680px;
-    margin-bottom: 20px;
-  }
+  /* COVER */
+  .cover { width: 100%; min-height: 100vh; background: var(--navy); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .cover-texture { position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px); }
+  .cover-gold-bar { height: 6px; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 60%, var(--gold) 100%); position: relative; z-index: 2; }
+  .cover-content { flex: 1; padding: 80px 100px; position: relative; z-index: 2; display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; }
+  .cover-left { display: flex; gap: 32px; align-items: flex-start; flex: 1; padding-right: 40px; }
+  .cover-headshot { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid rgba(200,168,75,0.6); box-shadow: 0 8px 32px rgba(0,0,0,0.5); flex-shrink: 0; }
+  .cover-text { flex: 1; }
+  .cover-eyebrow { font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+  .cover-name { font-family: 'Playfair Display', serif; font-size: clamp(48px, 6vw, 80px); font-weight: 900; color: #fff; line-height: 1; margin-bottom: 8px; }
+  .cover-title { font-family: 'Playfair Display', serif; font-size: clamp(16px, 2vw, 22px); font-weight: 400; font-style: italic; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
+  .cover-location { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 36px; }
+  .cover-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+  .cover-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+  .cover-stat-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+  .cover-footer { padding: 24px 100px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+  .cover-footer-text { font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+
+  /* INTRO */
+  .intro-page { background: var(--white); padding: 80px 100px; scroll-margin-top: 60px; }
+  .intro-label { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+  .intro-headline { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 24px; max-width: 680px; }
+  .intro-rule { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+  .intro-body { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--body); max-width: 680px; margin-bottom: 20px; }
   .intro-body strong { font-weight: 600; color: var(--navy); }
-  /* Closing page */
-  .closing-page {
-    background: var(--navy);
-    padding: 80px 100px;
-    text-align: center;
-  }
-  .closing-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .closing-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 24px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .closing-body {
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.8;
-    max-width: 580px;
-    margin: 0 auto 40px;
-  }
-  .btn-gold-solid {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--navy);
-    padding: 14px 36px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: background 0.2s;
-    margin: 0 8px 12px;
-  }
+  .chapter-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+  .chapter-nav-item { background: var(--cream); border: 1px solid var(--rule); border-top: 3px solid var(--gold); padding: 24px; }
+  .chapter-nav-num { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+  .chapter-nav-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .chapter-nav-desc { font-size: 13px; font-weight: 300; color: var(--gray); }
+
+  /* CHAPTERS */
+  .chapter { scroll-margin-top: 60px; }
+  .chapter-header { background: var(--navy); padding: 56px 100px 48px; position: relative; overflow: hidden; }
+  .chapter-header::after { content: ''; position: absolute; right: -20px; bottom: -60px; width: 240px; height: 240px; border-radius: 50%; border: 60px solid rgba(255,255,255,0.03); }
+  .chapter-header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+  .chapter-num-label { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 4px; color: var(--gold); opacity: 0.8; }
+  .chapter-date-range { font-size: 12px; font-weight: 600; letter-spacing: 1px; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+  .chapter-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 12px; position: relative; z-index: 1; }
+  .chapter-theme { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: rgba(255,255,255,0.5); position: relative; z-index: 1; }
+  .chapter-gold-bar { height: 3px; background: linear-gradient(90deg, var(--gold) 0%, transparent 100%); margin-top: 32px; }
+  .exec-summary { background: var(--steel); padding: 28px 100px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .exec-summary-label { font-size: 9px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+  .exec-summary-text { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 720px; }
+  .chapter-body { padding: 56px 100px; background: var(--white); }
+  .chapter-close { background: var(--cream); padding: 48px 100px; border-top: 1px solid var(--rule); }
+  .chapter-close-label { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+  .chapter-close-text { font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--body); max-width: 680px; }
+
+  /* BODY CONTENT */
+  .body-text { font-size: 14.5px; font-weight: 300; line-height: 1.85; color: var(--body); margin-bottom: 20px; }
+  .body-text strong { font-weight: 600; color: var(--navy); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 6px; margin-top: 44px; }
+  .section-title:first-child { margin-top: 0; }
+  .section-rule { width: 100%; height: 1px; background: var(--rule); margin-bottom: 20px; }
+  .pull-quote { border-left: 4px solid var(--gold); padding: 16px 24px; margin: 28px 0; background: var(--cream); }
+  .pull-quote p { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--navy); line-height: 1.6; }
+  .impact-list { list-style: none; margin: 12px 0 24px; padding-left: 0; }
+  .impact-list li { font-size: 14px; font-weight: 300; color: var(--body); padding: 10px 0 10px 24px; border-bottom: 1px solid var(--light-gray); position: relative; line-height: 1.7; }
+  .impact-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+  .impact-list li strong { font-weight: 600; color: var(--navy); }
+
+  /* METRICS */
+  .metrics-grid { display: grid; gap: 20px; margin: 20px 0 36px; }
+  .metrics-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .metrics-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .metric-cell { background: var(--white); border: 1px solid #e5e0d8; border-radius: 4px; padding: 24px 16px; text-align: center; }
+  .metric-num { font-family: 'Bebas Neue', sans-serif; font-size: 42px; line-height: 1; color: var(--navy); margin-bottom: 8px; }
+  .metric-num.gold { color: var(--gold); }
+  .metric-num.steel { color: #4a5568; }
+  .metric-label { font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); }
+  .metric-note { font-family: 'Source Sans 3', sans-serif; font-size: 12px; color: #718096; margin-top: 4px; }
+
+  /* CONTEXT PANELS */
+  .context-block { display: flex; gap: 24px; margin-bottom: 32px; }
+  .context-panel { flex: 1; background: #f9f8f6; padding: 24px; border-radius: 4px; border: 1px solid #e5e0d8; }
+  .context-panel-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 16px; color: var(--navy); margin-bottom: 12px; }
+  .context-list { margin: 0; padding-left: 20px; font-size: 14px; color: #4a5568; line-height: 1.6; }
+
+  /* CERTS */
+  .cert-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 32px 0; }
+  .cert-img-wrap { border-radius: 4px; overflow: hidden; border: 1px solid #d4c9b0; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .cert-img-wrap img { width: 100%; display: block; }
+  .cert-img-caption { padding: 10px 12px; background: #f9f8f6; font-size: 12px; color: #718096; text-align: center; line-height: 1.4; }
+
+  /* RECOGNITION BOX */
+  .recognition-box { background: #f9f8f6; border-left: 4px solid var(--navy); padding: 24px; margin: 40px 0; }
+  .rec-award { margin-bottom: 16px; }
+  .rec-award:last-child { margin-bottom: 0; }
+  .rec-award-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; color: var(--navy); margin-bottom: 4px; }
+  .rec-award-desc { font-size: 14px; color: #4a5568; margin-top: 4px; }
+
+  /* AI PROJECTS */
+  .ai-project { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--light-gray); }
+  .ai-project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .ai-project-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .ai-project-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  .ai-badge { font-size: 11px; font-weight: 700; color: #fff; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ai-badge.live { background: #b8860b; }
+  .ai-badge.concept { background: #4a5568; }
+  .ai-badge.coming { background: #6b46c1; }
+  .ai-project-link { font-size: 11px; font-weight: 700; color: #b8860b; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ai-project-sub { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
+  .ai-project-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--body); margin-bottom: 14px; }
+  .ai-project-footer { display: flex; gap: 16px; flex-wrap: wrap; }
+  .ai-link-primary { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #b8860b; text-decoration: none; }
+  .ai-link-secondary { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4a5568; text-decoration: none; }
+  .ai-city-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; margin-bottom: 14px; }
+  .ai-city-badge { padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .ai-city-badge.active { background: rgba(72,187,120,0.12); border: 1px solid rgba(72,187,120,0.4); color: #276749; }
+  .ai-city-badge.partial { background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.4); color: #7d5a0a; }
+
+  /* CLOSING */
+  .closing-page { background: var(--navy); padding: 80px 100px; text-align: center; scroll-margin-top: 60px; }
+  .closing-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+  .closing-headline { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .closing-rule { width: 48px; height: 3px; background: var(--gold); margin: 0 auto 40px; }
+  .closing-body { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 580px; margin: 0 auto 40px; }
+  .closing-body p { margin-bottom: 16px; }
+  .closing-tagline { font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; color: rgba(255,255,255,0.5); margin-bottom: 48px; }
+  .closing-contact { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; }
+  .closing-contact-item { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .closing-contact-item strong { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .closing-contact-item a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .btn-gold-solid { display: inline-block; background: var(--gold); color: var(--navy); padding: 14px 36px; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; margin: 0 8px 12px; transition: background 0.2s; }
   .btn-gold-solid:hover { background: var(--gold-light); }
-  .btn-outline-white {
-    display: inline-block;
-    border: 1.5px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.7);
-    padding: 14px 36px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: all 0.2s;
-    margin: 0 8px 12px;
-  }
+  .btn-outline-white { display: inline-block; border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); padding: 14px 36px; text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; margin: 0 8px 12px; transition: all 0.2s; }
   .btn-outline-white:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
-  /* Innovation chapter */
-  .innovation-header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
-    padding: 56px 100px 48px;
-  }
-  .innovation-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 32px;
-  }
-  .innovation-card {
-    background: var(--white);
-    border: 1px solid var(--light-gray);
-    border-top: 3px solid var(--gold);
-    padding: 24px 28px;
-  }
-  .innovation-card-tag {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: var(--gray);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .innovation-card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  .innovation-card-desc {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--body);
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
-  .innovation-card-link {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--gold);
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-  .innovation-card-link:hover { color: var(--navy); }
+
   @media (max-width: 768px) {
-    .chapter-header, .chapter-body, .chapter-close, .exec-summary,
-    .cover-content, .cover-footer, .intro-page, .closing-page,
-    .innovation-header { padding-left: 24px; padding-right: 24px; }
+    .cover-content, .chapter-header, .exec-summary, .chapter-body, .chapter-close, .intro-page, .closing-page { padding-left: 24px; padding-right: 24px; }
+    .cover-content { flex-direction: column; }
+    .cover-headshot { width: 120px; height: 120px; }
     .chapter-title { font-size: 28px; }
     .cover-name { font-size: 36px; }
-    .context-block, .innovation-grid { grid-template-columns: 1fr; }
+    .context-block { flex-direction: column; }
+    .metrics-grid.cols-3, .metrics-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+    .chapter-nav { grid-template-columns: 1fr; }
+    .cert-gallery { grid-template-columns: 1fr; }
+    .cover-footer { padding: 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── STICKY NAV ── -->
-<nav class="site-nav" style="position:fixed;top:0;left:0;right:0;height:60px;background:rgba(26,43,72,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:1000;border-bottom:1px solid rgba(184,134,11,0.25);">
-  <a href="index.html" style="color:#fff;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;">&#8592; Home</a>
-  <div style="display:flex;gap:24px;">
-    <a href="#intro" style="color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:color 0.2s;">Intro</a>
-    <a href="#ch1" style="color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Chapter 1</a>
-    <a href="#ch2" style="color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Chapter 2</a>
-    <a href="#ch3" style="color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Chapter 3</a>
-    <a href="#innovation" style="color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">AI Systems</a>
-    <a href="#closing" style="color:rgba(255,255,255,0.65);text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Closing</a>
-    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" style="background:#b8860b;color:#fff;text-decoration:none;font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 16px;border-radius:3px;">LinkedIn</a>
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-back">&#8592; Home</a>
+  <div class="nav-links">
+    <a href="#intro">Intro</a>
+    <a href="#ch1">Chapter 1</a>
+    <a href="#ch2">Chapter 2</a>
+    <a href="#ch3">Chapter 3</a>
+    <a href="#innovation">AI Systems</a>
+    <a href="#closing">Closing</a>
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="nav-cta">LinkedIn</a>
   </div>
 </nav>
 
@@ -616,61 +203,52 @@
 <div class="cover">
   <div class="cover-texture"></div>
   <div class="cover-gold-bar"></div>
-  <div class="cover-content" style="display:flex;flex-direction:row;justify-content:space-between;align-items:flex-start;">
-    <div style="flex:1;padding-right:40px;display:flex;gap:32px;align-items:flex-start;">
+  <div class="cover-content">
+    <div class="cover-left">
       <img src="headshot.webp" alt="Michael J. Hinkle III" class="cover-headshot">
-      <div style="flex:1;">
-    <div class="cover-eyebrow">Operational Leadership Portfolio</div>
-    <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;">
-      <div>
+      <div class="cover-text">
+        <div class="cover-eyebrow">Operational Leadership Portfolio</div>
         <div class="cover-name">Michael J.<br>Hinkle III</div>
+        <div class="cover-title">AI Builder &amp; Operations Leader</div>
+        <div class="cover-location">Seattle, WA &nbsp;|&nbsp; Remote Ready</div>
+        <div class="cover-stats">
+          <div>
+            <div class="cover-stat-num">13+</div>
+            <div class="cover-stat-label">Years Ops Leadership</div>
+          </div>
+          <div>
+            <div class="cover-stat-num">99.8<span style="font-size:24px">%</span></div>
+            <div class="cover-stat-label">Service Compliance Avg.</div>
+          </div>
+          <div>
+            <div class="cover-stat-num">650+</div>
+            <div class="cover-stat-label">Labor Hours Optimized</div>
+          </div>
+          <div>
+            <div class="cover-stat-num">27</div>
+            <div class="cover-stat-label">Enterprise Ops Audits</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="cover-rule"></div>
-    <div class="cover-title">Operations &amp; Program Management Leader</div>
-    <div class="cover-subtitle">Seattle, WA &nbsp;|&nbsp; Remote Ready</div>
-    <div class="cover-tagline">"Bridging the gap between field execution and technical innovation."</div>
-    
-    <div class="cover-stats">
-      <div class="cover-stat">
-        <div class="cover-stat-num">12+</div>
-        <div class="cover-stat-label">Years Ops Leadership</div>
-      </div>
-      <div class="cover-stat">
-        <div class="cover-stat-num">99.8<span style="font-size:24px">%</span></div>
-        <div class="cover-stat-label">Service Compliance</div>
-      </div>
-      <div class="cover-stat">
-        <div class="cover-stat-num">650+</div>
-        <div class="cover-stat-label">Hours Annualized Labor Optimized</div>
-      </div>
-      <div class="cover-stat">
-        <div class="cover-stat-num">27</div>
-        <div class="cover-stat-label">Enterprise Ops Audits</div>
-      </div>
-    </div>
     </div>
   </div>
-      </div>
-    </div>
-    <div class="cover-footer">
-    <div class="cover-footer-left">CONFIDENTIAL PORTFOLIO &nbsp;|&nbsp; PRIVATE SECTOR REVIEW</div>
-    <div class="cover-footer-right">PREPARED FOR PRIVATE SECTOR REVIEW</div>
+  <div class="cover-footer">
+    <div class="cover-footer-text">OPERATIONAL LEADERSHIP PORTFOLIO &nbsp;|&nbsp; MICHAEL J. HINKLE III</div>
+    <div class="cover-footer-text">SEATTLE, WA &nbsp;|&nbsp; MICHAELJHINKLE.COM</div>
   </div>
 </div>
 
 <div class="document">
 
-<!-- INTRO PAGE -->
+<!-- INTRO -->
 <div class="intro-page" id="intro">
   <div class="intro-label">Introduction</div>
   <div class="intro-headline">A Field Operations Leadership Journey in Three Chapters</div>
   <div class="intro-rule"></div>
   <div class="intro-body">
-    <p>I don't just manage the "now"—I engineer the "next." For over 12 years, I have led complex, multi-site logistics operations, stabilized distressed markets, and managed compliance across 10,000+ service addresses.</p>
-    <p>Today, I combine deep operational rigor with hands-on AI and automation expertise to build systems that recapture labor hours, eliminate cognitive friction, and scale efficiency.</p>
+    <p>13 years running multi-site federal logistics taught me what breaks, what scales, and what operators actually need. Every tool in the AI portfolio was built to solve a problem I lived firsthand. <strong>The ops background is what makes the AI useful.</strong></p>
+    <p>This portfolio documents the operational record in three chapters — followed by the AI systems built alongside it, independently, on personal time.</p>
   </div>
-  
   <div class="chapter-nav">
     <div class="chapter-nav-item">
       <div class="chapter-nav-num">01</div>
@@ -709,17 +287,16 @@
 
   <div class="exec-summary">
     <div class="exec-summary-label">Executive Summary</div>
-    <div class="exec-summary-text">Serving as Regional Operations Director (Postmaster, EAS-18) at Preston, WA since November 2024 — restoring a 4-year compliance backlog, recalibrating labor efficiency by 24%, and implementing AI-enabled workforce education tools. Concurrently selected for an 8-week Interim Director turnaround detail at Vashon Island — stabilizing a high-risk distributed logistics hub to 99.8%+ service compliance, conducting 27 operational efficiency audits across three facilities, improving equipment reliability by up to 33%, and earning Area A Top Contributor recognition.</div>
+    <div class="exec-summary-text">Serving as Regional Operations Director (Postmaster, EAS-18) at Preston, WA since November 2024 — restoring a 4-year compliance backlog, recalibrating labor efficiency by 24%, and implementing AI-enabled workforce education tools. Concurrently selected for an interim turnaround detail at Vashon Island — stabilizing a high-risk distributed logistics hub to 99.8%+ service compliance avg., conducting 27 operational efficiency audits across three facilities, improving equipment reliability by up to 33%, and earning Area A Top Contributor recognition.</div>
   </div>
 
   <div class="chapter-body">
-
     <div class="section-title">Operating Context</div>
     <div class="section-rule"></div>
-    <div class="context-block" style="display:flex;gap:24px;margin-bottom:32px;">
-      <div class="context-panel" style="flex:1;background:#f9f8f6;padding:24px;border-radius:4px;border:1px solid #e5e0d8;">
-        <div class="context-panel-title" style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#1a2b48;margin-bottom:12px;">Preston, WA — Regional Ops Director (Postmaster, EAS-18)</div>
-        <ul class="context-list" style="margin:0;padding-left:20px;font-size:14px;color:#4a5568;line-height:1.6;">
+    <div class="context-block">
+      <div class="context-panel">
+        <div class="context-panel-title">Preston, WA — Regional Ops Director (Postmaster, EAS-18)</div>
+        <ul class="context-list">
           <li>300+ active PO Box accounts</li>
           <li>Retail &amp; box-service focused hub</li>
           <li>Legacy manual timecard environment</li>
@@ -727,9 +304,9 @@
           <li>Compliance-sensitive operating environment</li>
         </ul>
       </div>
-      <div class="context-panel" style="flex:1;background:#f9f8f6;padding:24px;border-radius:4px;border:1px solid #e5e0d8;">
-        <div class="context-panel-title" style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:#1a2b48;margin-bottom:12px;">Vashon Island, WA — Distributed Logistics Hub</div>
-        <ul class="context-list" style="margin:0;padding-left:20px;font-size:14px;color:#4a5568;line-height:1.6;">
+      <div class="context-panel">
+        <div class="context-panel-title">Vashon Island, WA — Distributed Logistics Hub</div>
+        <ul class="context-list">
           <li>Ferry-access-only island geography</li>
           <li>9 rural routes across 2 ZIP codes</li>
           <li>12-person workforce (carriers + clerks)</li>
@@ -741,27 +318,26 @@
 
     <div class="section-title">Quantified Impact</div>
     <div class="section-rule"></div>
-
-    <div class="metrics-grid cols-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px;">
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num gold" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#b8860b;line-height:1;">6,400+</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Service Addresses Managed</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">Preston + Vashon combined</div>
+    <div class="metrics-grid cols-4">
+      <div class="metric-cell">
+        <div class="metric-num gold">6,400+</div>
+        <div class="metric-label">Service Addresses Managed</div>
+        <div class="metric-note">Preston + Vashon — concurrent detail period</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num gold" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#b8860b;line-height:1;">650+</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Annualized Labor Hours Optimized</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">~24% weekly reduction at Preston</div>
+      <div class="metric-cell">
+        <div class="metric-num gold">650+</div>
+        <div class="metric-label">Annualized Labor Hours Optimized</div>
+        <div class="metric-note">~24% weekly reduction at Preston</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#1a2b48;line-height:1;">99.8%+</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Service Compliance Sustained</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">Vashon Island detail tenure</div>
+      <div class="metric-cell">
+        <div class="metric-num">99.8%+</div>
+        <div class="metric-label">Service Compliance Avg.</div>
+        <div class="metric-note">Sustained through Vashon detail tenure</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num steel" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#4a5568;line-height:1;">33%</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Scanner Fleet Reliability Improved</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">20% field fleet improvement</div>
+      <div class="metric-cell">
+        <div class="metric-num steel">33%</div>
+        <div class="metric-label">Scanner Fleet Reliability Improved</div>
+        <div class="metric-note">20% field fleet improvement</div>
       </div>
     </div>
 
@@ -775,29 +351,28 @@
     <div class="body-text">Conducted <strong>27 formal operational efficiency audits</strong> across three facilities — logging <strong>200+ field hours</strong> and evaluating <strong>1,500–2,500+ delivery sequences</strong>. Each audit included standardized KPI assessment, performance metrics review, and full safety audit package — the equivalent of a multi-site operational benchmarking engagement in a corporate logistics environment.</div>
     <div class="body-text">Beyond the operational data itself, the assignment produced an unexpected cultural dividend: field team members who had historically viewed audits as adversarial experienced a neutral, transparent process. Labor-management friction in all three facilities measurably decreased. The audits functioned as both operational data collection and trust-building events.</div>
 
-    <div class="section-title">Vashon Island — Eight-Week Turnaround Detail</div>
+    <div class="section-title">Vashon Island — Turnaround Detail</div>
     <div class="section-rule"></div>
-    <div class="body-text">Selected to serve as Interim Director / Turnaround Specialist at Vashon Island — a ferry-dependent distributed logistics hub managing 9 service routes across a geographically isolated geography — while concurrently maintaining full oversight of Preston. The eight-week detail directly preceded the Q4 high-volume scaling season.</div>
-
-    <ul class="impact-list" style="margin-bottom:32px;padding-left:20px;color:#2c3347;line-height:1.7;">
-      <li style="margin-bottom:12px;"><strong>Service delivery maintained through Q4 Volume-Surge</strong> — 99.8%+ service compliance with 100% route delivery completion throughout the detail period.</li>
-      <li style="margin-bottom:12px;"><strong>Equipment reliability</strong> improved through replacement of failing scanners, eliminating 1–15 mile recovery drives and preserving delivery capacity ahead of peak.</li>
-      <li style="margin-bottom:12px;"><strong>Workforce stabilization</strong> achieved through resolution of a contractual ambiguity in the field carrier bid process that had placed a key route holder at imminent resignation risk.</li>
-      <li style="margin-bottom:12px;"><strong>Cultural reset</strong> executed — transitioning the office from a knowledge-hoarding supervisory model to a transparent education framework, union-collaborative posture, and weekly performance reporting structure.</li>
+    <div class="body-text">Selected to serve as Interim Director / Turnaround Specialist at Vashon Island — a ferry-dependent distributed logistics hub managing 9 service routes across a geographically isolated geography — while concurrently maintaining full oversight of Preston. The detail directly preceded the Q4 high-volume scaling season.</div>
+    <ul class="impact-list">
+      <li><strong>Service delivery maintained through Q4 volume-surge</strong> — 99.8%+ service compliance avg. with 100% route delivery completion throughout the detail period.</li>
+      <li><strong>Equipment reliability</strong> improved through replacement of failing scanners, eliminating 1–15 mile recovery drives and preserving delivery capacity ahead of peak.</li>
+      <li><strong>Workforce stabilization</strong> achieved through resolution of a contractual ambiguity in the field carrier bid process that had placed a key route holder at imminent resignation risk.</li>
+      <li><strong>Cultural reset</strong> executed — transitioning the office from a centralized knowledge supervisory model to a transparent education framework, union-collaborative posture, and weekly performance reporting structure.</li>
     </ul>
 
-    <div class="pull-quote" style="border-left:3px solid #b8860b;padding-left:24px;margin:40px 0;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:#1a2b48;line-height:1.5;">
+    <div class="pull-quote">
       <p>Vashon finished 3rd in the WA District for operational throughput-to-standard among comparable distributed logistics hubs in FY2025 — the highest ranking in recent memory for a facility previously known as one of the hardest to stabilize in the region.</p>
     </div>
-
   </div>
+
   <div class="chapter-close">
-    <div class="section-title" style="margin-top:40px;">Recognition &amp; Documentation</div>
+    <div class="section-title" style="margin-top:0;">Recognition &amp; Documentation</div>
     <div class="section-rule"></div>
     <div class="cert-gallery">
       <div class="cert-img-wrap">
         <img src="Top_Contributor_Area_A_WA_USPS_Michael_Hinkle_III.png" alt="Top Contributor Area A">
-        <div class="cert-img-caption">Top Contributor — Area A, WA<br>Vashon Island Detail, 2025</div>
+        <div class="cert-img-caption">Top Contributor — Area A, WA<br>Recognized for sustained FY25 support of Vashon Island, including OIC detail</div>
       </div>
       <div class="cert-img-wrap">
         <img src="Certificate_of_Appreciation_Area_B_WA_USPS_Michael_Hinkle_III.png" alt="Certificate of Appreciation Area B">
@@ -808,7 +383,6 @@
         <div class="cert-img-caption">3rd in WA District — Rural % to Standard<br>FY2025 Performance Ranking</div>
       </div>
     </div>
-
     <div class="chapter-close-label">Preston &amp; Vashon Detail — Leadership Pattern</div>
     <div class="chapter-close-text">Operated as a multi-site transformation leader within a highly regulated environment — stabilizing high-risk distributed operations, restoring dormant compliance systems, conducting enterprise-level operational audits, implementing AI-enhanced workforce education, and earning district-level performance recognition across two simultaneous assignments.</div>
   </div>
@@ -832,27 +406,26 @@
   </div>
 
   <div class="chapter-body">
-
     <div class="section-title">Initial Conditions on Arrival</div>
     <div class="section-rule"></div>
     <div class="body-text">Maple Falls was not a turnaround assignment in name only. The office presented compound structural challenges from day one: two overburdened service routes carrying <strong>30 cumulative months of combined vacancy exposure</strong>, chronic hiring instability in a constrained rural labor market, and an effective workforce capacity reduction of over 50% within the first 60 days of arrival.</div>
     <div class="body-text">Within the first month, a December blizzard hit with 75% of the carrier workforce unavailable simultaneously. Routes were personally covered while managing full office operations. The two-week holiday backlog was cleared by the first week of January with zero safety incidents and 100% service continuity maintained.</div>
 
-    <div class="metrics-grid cols-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;margin-top:32px;">
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num gold" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#b8860b;line-height:1;">30</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Months Cumulative Route Vacancy Stabilized</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">23 months personally offset</div>
+    <div class="metrics-grid cols-3" style="margin-top:32px;">
+      <div class="metric-cell">
+        <div class="metric-num gold">30</div>
+        <div class="metric-label">Months Cumulative Route Vacancy Stabilized</div>
+        <div class="metric-note">23 months personally offset</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#1a2b48;line-height:1;">4x</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Field Ops Assistant Workforce Expanded</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">1 field ops assistant → 4</div>
+      <div class="metric-cell">
+        <div class="metric-num">4x</div>
+        <div class="metric-label">Field Ops Assistant Workforce Expanded</div>
+        <div class="metric-note">1 field ops assistant → 4</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num steel" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#4a5568;line-height:1;">5th</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">WA District — Avg Parcels/Route</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">298 pkgs/route, FY2023</div>
+      <div class="metric-cell">
+        <div class="metric-num steel">5th</div>
+        <div class="metric-label">WA District — Avg Parcels/Route</div>
+        <div class="metric-note">298 pkgs/route, FY2023</div>
       </div>
     </div>
 
@@ -863,10 +436,10 @@
 
     <div class="section-title">Governance, Integrity &amp; Security</div>
     <div class="section-rule"></div>
-    <ul class="impact-list" style="margin-bottom:32px;padding-left:20px;color:#2c3347;line-height:1.7;">
-      <li style="margin-bottom:12px;"><strong>Integrity &amp; Compliance Governance</strong> — identified operational irregularities, initiated proper escalation protocols, and partnered with federal oversight to ensure a secure, compliant resolution, resulting in formal commendation for upholding organizational integrity.</li>
-      <li style="margin-bottom:12px;"><strong>Workforce compliance resolution</strong> — identified a sustained performance and compliance gap, documented the deficiency through proper process, coordinated transparently with union leadership, and reached a resolution the union president explicitly endorsed.</li>
-      <li style="margin-bottom:12px;"><strong>Physical security</strong> — coordinated with federal inspectors following repeated lobby break-ins, secured installation of surveillance cameras, and maintained the camera presence through the full tenure.</li>
+    <ul class="impact-list">
+      <li><strong>Integrity &amp; Compliance Governance</strong> — identified operational irregularities, initiated proper escalation protocols, and partnered with federal oversight to ensure a secure, compliant resolution, resulting in formal commendation for upholding organizational integrity.</li>
+      <li><strong>Workforce compliance resolution</strong> — identified a sustained performance and compliance gap, documented the deficiency through proper process, coordinated transparently with union leadership, and reached a resolution the union president explicitly endorsed.</li>
+      <li><strong>Physical security</strong> — coordinated with federal inspectors following repeated lobby break-ins, secured installation of surveillance cameras, and maintained the camera presence through the full tenure.</li>
     </ul>
 
     <div class="section-title">Technology Advocacy &amp; Route Reform</div>
@@ -877,8 +450,8 @@
     <div class="section-title">National PR Feature</div>
     <div class="section-rule"></div>
     <div class="body-text">Recognizing the storytelling potential of a unique community event, a pitch was submitted to national communications leadership. The result was a dual-channel feature: a national-facing piece published on USPS.com, and a separate regional cover story centered on the Maple Falls operational turnaround — how a small remote hub rebuilt from near-collapse and what it means to the community it serves.</div>
-
   </div>
+
   <div class="chapter-close">
     <div class="chapter-close-label">Maple Falls — Leadership Pattern</div>
     <div class="chapter-close-text">Maple Falls was not a routine assignment. It was a compound adversity environment requiring operational endurance, policy navigation, and sustained workforce rebuilding. The objective was not survival — it was durable stabilization. The office transitioned from instability and vacancy exposure to structural alignment, improved morale, and sustainable staffing capacity.</div>
@@ -903,27 +476,26 @@
   </div>
 
   <div class="chapter-body">
-
     <div class="section-title">Operational Scale &amp; Efficiency</div>
     <div class="section-rule"></div>
     <div class="body-text">As a Field Operations Specialist, provided coverage across <strong>20+ routes spanning 8 offices</strong> — frequently carrying multiple routes in a single day and serving as one of the most deployable relief specialists in the district. On a 6.5-hour evaluated route, averaged approximately 3 hours actual delivery time, generating an estimated <strong>750–800 annualized operational capacity hours</strong> that increased vehicle availability and scheduling flexibility across the office complement.</div>
     <div class="body-text">This efficiency wasn't incidental — it was the product of deliberate route study, scanning discipline, and customer familiarity built across years of consistent coverage. That same operational philosophy carried forward into every subsequent chapter.</div>
 
-    <div class="metrics-grid cols-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;margin-top:32px;">
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num gold" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#b8860b;line-height:1;">20+</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Routes Supported Across 8 Offices</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">Field ops specialist tenure</div>
+    <div class="metrics-grid cols-3" style="margin-top:32px;">
+      <div class="metric-cell">
+        <div class="metric-num gold">20+</div>
+        <div class="metric-label">Routes Supported Across 8 Offices</div>
+        <div class="metric-note">Field ops specialist tenure</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#1a2b48;line-height:1;">~800</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Annualized Capacity Hours Generated</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">Through route efficiency</div>
+      <div class="metric-cell">
+        <div class="metric-num">~800</div>
+        <div class="metric-label">Annualized Capacity Hours Generated</div>
+        <div class="metric-note">Through route efficiency</div>
       </div>
-      <div class="metric-cell" style="text-align:center;padding:24px 16px;background:#fff;border:1px solid #e5e0d8;border-radius:4px;">
-        <div class="metric-num steel" style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#4a5568;line-height:1;">4x</div>
-        <div class="metric-label" style="font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#1a2b48;margin-top:8px;">Selected for Interim Director Detail</div>
-        <div class="metric-note" style="font-family:'Source Sans 3',sans-serif;font-size:12px;color:#718096;margin-top:4px;">Separate 1-week assignments, 2021–2022</div>
+      <div class="metric-cell">
+        <div class="metric-num steel">4x</div>
+        <div class="metric-label">Selected for Interim Director Detail</div>
+        <div class="metric-note">Separate 1-week assignments, 2021–2022</div>
       </div>
     </div>
 
@@ -937,184 +509,187 @@
     <div class="body-text">Selected by senior leadership for <strong>four separate one-week Interim Director assignments</strong> between 2021 and 2022 — assuming full-site operational authority for a 2,000+ address distributed logistics hub during leadership leave periods. Each assignment included staffing oversight, scheduling, retail operations, financial controls, and compliance management for an 8-person facility. Maintained 100% service continuity and zero safety incidents across all four details.</div>
     <div class="body-text">Mentored and trained <strong>5+ new field specialists</strong> during the tenure, accelerating onboarding and reinforcing compliance and safety standards. The repeated selection for executive details and peer mentorship role directly supported the case for promotion — and led to the cross-country relocation to Washington State as Regional Operations Director (Postmaster, EAS-18) at Maple Falls in September 2022.</div>
 
-    <div class="recognition-box" style="background:#f9f8f6;border-left:4px solid #1a2b48;padding:24px;margin:40px 0;">
-      <div class="rec-award" style="margin-bottom:16px;">
-        <div class="rec-award-title" style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:#1a2b48;">Promoted to Regional Operations Director (Postmaster, EAS-18)</div>
-        <div class="rec-award-desc" style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#4a5568;margin-top:4px;">Maple Falls, WA. Cross-country relocation. September 2022.</div>
+    <div class="recognition-box">
+      <div class="rec-award">
+        <div class="rec-award-title">Promoted to Regional Operations Director (Postmaster, EAS-18)</div>
+        <div class="rec-award-desc">Maple Falls, WA. Cross-country relocation. September 2022.</div>
       </div>
       <div class="rec-award">
-        <div class="rec-award-title" style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:#1a2b48;">4x Selected for Interim Director Detail</div>
-        <div class="rec-award-desc" style="font-family:'Source Sans 3',sans-serif;font-size:14px;color:#4a5568;margin-top:4px;">Repeated selection from frontline role. Washington Crossing, PA, 2021–2022.</div>
+        <div class="rec-award-title">4x Selected for Interim Director Detail</div>
+        <div class="rec-award-desc">Repeated selection from frontline role. Washington Crossing, PA, 2021–2022.</div>
       </div>
     </div>
-
   </div>
+
   <div class="chapter-close">
     <div class="chapter-close-label">Pennsylvania — Leadership Pattern</div>
     <div class="chapter-close-text">These years didn't just build efficiency habits. They built the operational philosophy that every subsequent chapter was executed from — a belief that accuracy, consistency, and genuine investment in the people around you are not soft values, they are operational advantages.</div>
   </div>
 </div>
 
-<!-- INNOVATION SECTION -->
-<div class="chapter" id="innovation" style="page-break-before: always;">
+<!-- AI SYSTEMS -->
+<div class="chapter" id="innovation">
   <div class="chapter-header">
     <div class="chapter-header-top">
       <div class="chapter-num-label">AI Systems Portfolio</div>
       <div class="chapter-date-range">2024 – Present</div>
     </div>
     <div class="chapter-title">Applied AI &amp; Systems Innovation</div>
-    <div class="chapter-theme">Personal Technical Research &amp; Education &nbsp;·&nbsp; Tool Architecture &nbsp;·&nbsp; Operational Intelligence Systems</div>
+    <div class="chapter-theme">Personal Technical Research &nbsp;·&nbsp; Tool Architecture &nbsp;·&nbsp; Operational Intelligence Systems</div>
     <div class="chapter-gold-bar"></div>
   </div>
 
   <div class="exec-summary">
     <div class="exec-summary-label">Executive Summary</div>
-    <div class="exec-summary-text">Refined over a multi-year period as part of a personal commitment to technical upskilling, this portfolio of AI-powered tools and systems was designed to explore solutions for real-world operational bottlenecks. Each project reflects a deliberate design methodology: identify an operational or intelligence gap, architect a conceptual solution, and develop it to a functional state. This demonstrates a long-term evolution of systems thinking and hands-on AI enablement, developed in parallel with full-time operational leadership.</div>
+    <div class="exec-summary-text">Each project in this portfolio was independently conceived, architected, and shipped on personal time — in parallel with full-time operational leadership. The methodology is consistent across all of them: identify a real operational or intelligence gap, build a solution, deploy it. This is not a collection of experiments. It is a demonstration of applied AI enablement at the practitioner level.</div>
   </div>
 
   <div class="chapter-body">
-
-    <div class="section-title">Personal Technical Research &amp; Education Portfolio</div>
+    <div class="section-title">Independent AI Build Portfolio</div>
     <div class="section-rule"></div>
 
-    <!-- AI Evolution Guide -->
-    <div style="margin-bottom:36px;">
-      <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:16px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2b48;">AI Evolution Guide</div>
-            <div style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#b8860b;padding:2px 8px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;">Live Web Application</div>
-            <a href="https://aiguide.michaeljproductions.com" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#b8860b;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">Live App &#8599;</a>
-          </div>
-          <div style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#718096;margin-bottom:12px;">Workforce AI Education Platform</div>
-          <div style="font-size:14px;font-weight:300;line-height:1.75;color:#2C3347;">An interactive web application developed to educate the workforce on the evolution of AI. Designed to bridge the knowledge gap between technical AI developments and practical field understanding.</div>
-          <div style="margin-top:14px;">
-            <a href="https://aiguide.michaeljproductions.com" target="_blank" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b8860b;text-decoration:none;">View Live App &rarr;</a>
-          </div>
-        </div>
+    <!-- GOATvision -->
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">GOATvision</div>
+        <span class="ai-badge live">Live — Multi-City</span>
+        <a href="https://goatvisionseattle.vercel.app" target="_blank" class="ai-project-link">Seattle &#8599;</a>
+        <a href="https://goatvisiondmv.vercel.app" target="_blank" class="ai-project-link">DMV &#8599;</a>
+        <a href="https://goatvisionphilly.vercel.app" target="_blank" class="ai-project-link">Philadelphia &#8599;</a>
       </div>
-    </div>
-
-    <!-- FlashRT -->
-    <div style="margin-bottom:36px;">
-      <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:16px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2b48;">FlashRT</div>
-            <div style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#4a5568;padding:2px 8px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;">Concept Architecture</div>
-          </div>
-          <div style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#718096;margin-bottom:12px;">AI-Guided Onboarding Technology</div>
-          <div style="font-size:14px;font-weight:300;line-height:1.75;color:#2C3347;">Conceived and documented FlashRT — an AI-guided onboarding technology concept designed to compress the carrier onboarding cycle from weeks to days using intelligent route sequencing, real-time field coaching, and adaptive performance benchmarking. Published as a formal Concept Overview &amp; Commercial Value Assessment in 2025.</div>
-          <div style="margin-top:14px;">
-            <a href="flashrt.html" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4a5568;text-decoration:none;">View Overview &rarr;</a>
-          </div>
-        </div>
+      <div class="ai-project-sub">Real-Time Situational Awareness Platform</div>
+      <div class="ai-city-row">
+        <span class="ai-city-badge active">Seattle — Full Build</span>
+        <span class="ai-city-badge partial">DMV — Live</span>
+        <span class="ai-city-badge partial">Philadelphia — Live</span>
       </div>
-    </div>
-
-    <!-- GOATvision Seattle -->
-    <div style="margin-bottom:36px;">
-      <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:16px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2b48;">GOATvision Seattle</div>
-            <div style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#b8860b;padding:2px 8px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;">Live Application</div>
-            <a href="https://goatvisionseattle.vercel.app" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#b8860b;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">Live App &#8599;</a>
-          </div>
-          <div style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#718096;margin-bottom:12px;">Real-Time Situational Awareness Dashboard — Seattle Metro</div>
-          <div style="font-size:14px;font-weight:300;line-height:1.75;color:#2C3347;">Single-file client-side dashboard aggregating 16 live data endpoints across 9 distinct APIs — traffic, transit, ferries, weather, fire dispatch, seismic activity, and flight delays — into a unified real-time situational awareness interface for the Seattle metro area. A rule-based Ops Brief synthesizes every active panel into a plain-English summary. Includes a Supabase telemetry layer that silently accumulates traffic and transit data to improve historical baseline predictions over time. Zero npm, zero build step — the entire app is one portable HTML file.</div>
-          <div style="margin-top:14px;display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="https://goatvisionseattle.vercel.app" target="_blank" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b8860b;text-decoration:none;">View Live App &rarr;</a>
-            <a href="goatvisionseattle.html" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4a5568;text-decoration:none;">View Overview &rarr;</a>
-          </div>
-        </div>
+      <div class="ai-project-desc">Single-file client-side dashboard aggregating 16 live data endpoints across 9 distinct APIs — traffic, transit, ferries, weather, fire dispatch, seismic activity, and flight delays — into a unified real-time situational awareness interface. A rule-based Ops Brief synthesizes every active panel into a plain-English summary. Includes a Supabase telemetry layer with 90-day rolling retention and location-key separation across cities. Zero npm, zero build step — the entire app is one portable HTML file deployable anywhere.</div>
+      <div class="ai-project-desc" style="font-size:13px;color:var(--gray);">Expanded to DMV and Philadelphia as live secondary deployments with feature parity. Some data sources — Pennsylvania 511, live traffic cams, PulsePoint emergency dispatch for DMV — require commercial API access or LLC-gated credentials. Those requests are in flight. The architecture is already built to accept them.</div>
+      <div class="ai-project-footer">
+        <a href="goatvisionseattle.html" class="ai-link-secondary">View Overview &rarr;</a>
+        <a href="https://goatvisionseattle.vercel.app" target="_blank" class="ai-link-primary">Seattle Live &rarr;</a>
       </div>
     </div>
 
     <!-- GOATflow -->
-    <div style="margin-bottom:36px;">
-      <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:16px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2b48;">GOATflow</div>
-            <div style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#b8860b;padding:2px 8px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;">Live Prototype</div>
-            <a href="https://goatflow.app" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#b8860b;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">Live App &#8599;</a>
-          </div>
-          <div style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#718096;margin-bottom:12px;">AI Workflow Automation &amp; Operational Intelligence</div>
-          <div style="font-size:14px;font-weight:300;line-height:1.75;color:#2C3347;">Live production application built on Python 3 + Streamlit, powered by Google Gemini 1.5 Flash, hosted on Streamlit Community Cloud with a Supabase PostgreSQL backend. Ingests raw operational intel — emails, documents, voice memos, images — and extracts prioritized, structured action items called Tracks via the Churn Engine. Invite-only access with custom auth, single-use invite codes, and per-user data isolation. Includes a full gamification layer: dual-currency economy (Hay + Fresh Cheese), 7-level ascension system, 10 real-time stat cards, and browser-native push notifications (Goatifications). Not a demo — real auth, persistent data, live in production.</div>
-          <div style="margin-top:14px;display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="https://goatflow.app" target="_blank" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b8860b;text-decoration:none;">View Live App &rarr;</a>
-            <a href="goatflow.html" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4a5568;text-decoration:none;">View Overview &rarr;</a>
-          </div>
-        </div>
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">GOATflow</div>
+        <span class="ai-badge live">Live Prototype</span>
+        <a href="https://goatflow.app" target="_blank" class="ai-project-link">Live App &#8599;</a>
+      </div>
+      <div class="ai-project-sub">AI Workflow Automation &amp; Operational Intelligence</div>
+      <div class="ai-project-desc">Live production application built on Python 3 + Streamlit, powered by Google Gemini 1.5 Flash, with a Supabase PostgreSQL backend. Ingests raw operational intel — emails, documents, voice memos, images — and extracts prioritized, structured action items called Tracks via the Churn Engine. Invite-only access with custom auth, single-use invite codes, and per-user data isolation. Includes a full gamification layer: dual-currency economy (Hay + Fresh Cheese), 7-level ascension system, 10 real-time stat cards, and browser-native push notifications. Not a demo — real auth, persistent data, live in production.</div>
+      <div class="ai-project-footer">
+        <a href="goatflow.html" class="ai-link-secondary">View Overview &rarr;</a>
+        <a href="https://goatflow.app" target="_blank" class="ai-link-primary">Live App &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Melvin -->
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">Melvin</div>
+        <span class="ai-badge coming">In Development</span>
+      </div>
+      <div class="ai-project-sub">Voice-First AI Companion</div>
+      <div class="ai-project-desc">A voice-first AI companion built on Firebase auth, ElevenLabs voice integration, and per-user memory isolation. Features a gated invite system and persistent context across sessions. The architecture is the most complex in the portfolio — combining real-time voice synthesis, per-user data separation, and a Railway deployment pipeline. Currently in active development; invite-only access launching soon.</div>
+      <div class="ai-project-footer">
+        <span style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);">Launching Soon</span>
       </div>
     </div>
 
     <!-- NayAye -->
-    <div style="margin-bottom:36px;">
-      <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:16px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2b48;">NayAye</div>
-            <div style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#b8860b;padding:2px 8px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;">Live Prototype</div>
-            <a href="https://nayaye.vercel.app" target="_blank" style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#b8860b;text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;">Live App &#8599;</a>
-          </div>
-          <div style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#718096;margin-bottom:12px;">AI Tool Routing Intelligence</div>
-          <div style="font-size:14px;font-weight:300;line-height:1.75;color:#2C3347;">A routing intelligence interface developed to direct users to the most effective AI tool for their specific task, reducing cognitive friction in tool selection.</div>
-          <div style="margin-top:14px;display:flex;gap:16px;flex-wrap:wrap;">
-            <a href="https://nayaye.vercel.app" target="_blank" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b8860b;text-decoration:none;">View Live App &rarr;</a>
-            <a href="nayaye.html" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4a5568;text-decoration:none;">View Overview &rarr;</a>
-          </div>
-        </div>
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">NayAye</div>
+        <span class="ai-badge live">Live Prototype</span>
+        <a href="https://nayaye.vercel.app" target="_blank" class="ai-project-link">Live App &#8599;</a>
+      </div>
+      <div class="ai-project-sub">AI Tool Routing Intelligence</div>
+      <div class="ai-project-desc">A routing intelligence interface built in React, TypeScript, and Tailwind with Gemini Flash — directing users to the most effective AI tool for their specific task and reducing cognitive friction in tool selection.</div>
+      <div class="ai-project-footer">
+        <a href="nayaye.html" class="ai-link-secondary">View Overview &rarr;</a>
+        <a href="https://nayaye.vercel.app" target="_blank" class="ai-link-primary">Live App &rarr;</a>
       </div>
     </div>
 
     <!-- The DEB -->
-    <div style="margin-bottom:36px;">
-      <div style="display:flex;gap:28px;align-items:flex-start;margin-bottom:16px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2b48;">The DEB</div>
-            <div style="font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#4a5568;padding:2px 8px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;">Workflow Architecture</div>
-          </div>
-          <div style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:#718096;margin-bottom:12px;">Daily Executive Bubble</div>
-          <div style="font-size:14px;font-weight:300;line-height:1.75;color:#2C3347;">An AI-powered executive briefing workflow developed to synthesize daily operational data into a structured, actionable morning brief.</div>
-          <div style="margin-top:14px;">
-            <a href="deb.html" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4a5568;text-decoration:none;">View Overview &rarr;</a>
-          </div>
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">The DEB</div>
+        <span class="ai-badge concept">Workflow Architecture</span>
+      </div>
+      <div class="ai-project-sub">Daily Executive Bubble — AI Briefing System</div>
+      <div class="ai-project-desc">An AI-powered executive briefing workflow that synthesizes daily operational data into a structured, actionable morning brief. Built on Gumloop with a multi-node automation architecture. Named in honor of my mother, Debra.</div>
+      <div class="ai-project-footer">
+        <a href="deb.html" class="ai-link-secondary">View Overview &rarr;</a>
+      </div>
+    </div>
+
+    <!-- FlashRT -->
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">FlashRT</div>
+        <span class="ai-badge concept">Concept Architecture</span>
+      </div>
+      <div class="ai-project-sub">AI-Guided Carrier Onboarding Technology &nbsp;·&nbsp; $120M–$180M+ Market</div>
+      <div class="ai-project-desc">Conceived and documented FlashRT — an AI-guided onboarding technology designed to compress the carrier onboarding cycle from weeks to days using intelligent route sequencing, real-time field coaching, and adaptive performance benchmarking. Published as a formal Concept Overview &amp; Commercial Value Assessment in 2025. The operational problem is real — managed it firsthand across multiple sites.</div>
+      <div class="ai-project-desc" style="font-size:12px;color:var(--gray);">Independent research concept. Does not use proprietary agency data or internal systems.</div>
+      <div class="ai-project-footer">
+        <a href="flashrt.html" class="ai-link-secondary">View Overview &rarr;</a>
+      </div>
+    </div>
+
+    <!-- AI Evolution Guide -->
+    <div class="ai-project">
+      <div class="ai-project-header">
+        <div class="ai-project-name">AI Evolution Guide</div>
+        <span class="ai-badge live">Live Web Application</span>
+        <a href="https://aiguide.michaeljproductions.com" target="_blank" class="ai-project-link">Live App &#8599;</a>
+      </div>
+      <div class="ai-project-sub">Workforce AI Education Platform</div>
+      <div class="ai-project-desc">An interactive web application developed to educate the workforce on the evolution of AI — bridging the knowledge gap between technical AI developments and practical field understanding.</div>
+      <div class="ai-project-footer">
+        <a href="https://aiguide.michaeljproductions.com" target="_blank" class="ai-link-primary">View Live App &rarr;</a>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- CLOSING PAGE -->
+<!-- CLOSING -->
 <div class="closing-page" id="closing">
   <div class="closing-eyebrow">Conclusion</div>
-  <div class="closing-headline">What Twelve Years Built — And Where It Goes From Here</div>
+  <div class="closing-headline">What Thirteen Years Built — And Where It Goes From Here</div>
   <div class="closing-rule"></div>
   <div class="closing-body">
-    <p>Three distinct operational environments. Twelve years of building, stabilizing, and improving service systems that real people depended on every single day.</p>
+    <p>Three distinct operational environments. Thirteen years of building, stabilizing, and improving service systems that real people depended on every single day.</p>
     <p>What this document has attempted to show is not simply a list of accomplishments — any resume can carry those. What it has attempted to show is a pattern. A consistent approach to operational leadership that produces measurable results regardless of the conditions presented.</p>
     <p>Distressed markets. Vacancy crises. Q4 high-volume scaling pressure. Compliance investigations. Multi-site transitions. In each context the approach was the same: understand the system, identify what's broken, build what's missing, measure what matters, and hold the line until the work speaks for itself.</p>
-    <p>That pattern doesn't belong to any one organization. It belongs to the leader who developed it. For organizations seeking operational program management leadership with a demonstrated record of field execution, workforce development, process optimization, and cross-functional program delivery — this portfolio is an open invitation to start a conversation.</p>
+    <p>That pattern doesn't belong to any one organization. It belongs to the leader who developed it.</p>
   </div>
-  <div class="closing-tagline">
-    "I don't just manage the &ldquo;now&rdquo; — I engineer the &ldquo;next.&rdquo;"
+  <div class="closing-tagline">"The ops background is what makes the AI useful."</div>
+  <div style="margin-bottom:48px;">
+    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="btn-gold-solid">Connect on LinkedIn</a>
+    <a href="index.html" class="btn-outline-white">Back to Home</a>
   </div>
   <div class="closing-contact">
     <div class="closing-contact-item">
       <strong>LinkedIn</strong>
-      <a href="https://linkedin.com/in/michaeljhinkle" style="color:inherit;text-decoration:none;">LinkedIn.com/in/MichaelJHinkle</a>
+      <a href="https://linkedin.com/in/michaeljhinkle">linkedin.com/in/MichaelJHinkle</a>
+    </div>
+    <div class="closing-contact-item">
+      <strong>Portfolio</strong>
+      <a href="https://michaeljhinkle.com">michaeljhinkle.com</a>
     </div>
     <div class="closing-contact-item">
       <strong>Location</strong>
-      Seattle, WA — Remote Ready
+      Seattle, WA
     </div>
   </div>
 </div>
 
 </div><!-- /document -->
-<script src="nav.js"></script>
 </body>
 </html>
