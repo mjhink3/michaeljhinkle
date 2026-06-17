@@ -95,24 +95,90 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var
 .footer-links a{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--flash-blue-light);}
 @media(max-width:768px){.hero-content,.section,.stat-bar,.cta-section,.site-footer{padding-left:24px;padding-right:24px;}.stat-bar{grid-template-columns:repeat(2,1fr);}.workflow-grid,.principles-grid,.status-grid{grid-template-columns:1fr;}.nav-links a:not(.nav-cta){display:none;}}
+
+  /* ── UNIVERSAL NAV (mobile-responsive) ── */
+  .site-nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(15,26,46,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(184,134,11,0.25);}
+  .nav-brand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;text-decoration:none;}
+  .nav-brand span{color:#c8a84b;}
+  .nav-links{display:flex;gap:18px;align-items:center;list-style:none;}
+  .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:#c8a84b;}
+  .nav-links .nav-cta{background:#b8860b;color:#fff !important;padding:7px 16px;font-size:11px !important;}
+  .nav-links .nav-cta:hover{background:#c8a84b !important;color:#0f1a2e !important;}
+  /* Hamburger */
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:1010;}
+  .nav-hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.25s;}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(max-width:860px){
+    .site-nav{padding:0 20px;}
+    .nav-hamburger{display:flex;}
+    .nav-links{
+      display:none;flex-direction:column;gap:0;
+      position:fixed;top:64px;left:0;right:0;bottom:0;
+      background:rgba(10,18,35,0.99);backdrop-filter:blur(16px);
+      padding:24px 0 40px;overflow-y:auto;z-index:999;
+      border-top:1px solid rgba(184,134,11,0.2);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links li{width:100%;}
+    .nav-links a{
+      display:block;width:100%;padding:16px 32px;
+      font-size:14px;letter-spacing:1.5px;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      color:rgba(255,255,255,0.75);
+    }
+    .nav-links a:hover,.nav-links a.active{color:#c8a84b;background:rgba(184,134,11,0.06);}
+    .nav-links .nav-cta{
+      margin:20px 32px 0;width:auto;
+      padding:14px 20px;text-align:center;
+      background:rgba(184,134,11,0.15);
+      border:1px solid rgba(184,134,11,0.4);
+      color:#c8a84b !important;
+    }
+    .nav-links .nav-cta:hover{background:rgba(184,134,11,0.28) !important;color:#fff !important;}
+  }
+
 </style>
 </head>
 <body>
 <nav class="site-nav">
-  <a href="index.html" class="nav-brand">Michael J. <span>Hinkle III</span></a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="metrics.html">Metrics</a>
-    <a href="flashrt.html" class="active">FlashRT</a>
-    <a href="nayaye.html">NayAye</a>
-    <a href="deb.html">The DEB</a>
-    <a href="goatflow.html">GOATflow</a>
-    <a href="https://linkedin.com/in/michaeljhinkle" target="_blank" class="nav-cta">LinkedIn</a>
-  </div>
+  <a href="index.html" class="nav-brand">MJH<span>III</span></a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html">Metrics</a></li>
+    <li><a href="flashrt.html" class="active">FlashRT</a></li>
+    <li><a href="nayaye.html">NayAye</a></li>
+    <li><a href="deb.html">The DEB</a></li>
+    <li><a href="goatflow.html">GOATflow</a></li>
+    <li><a href="goatvisionseattle.html">GOATvision</a></li>
+    <li><a href="https://aiguide.michaeljhinkle.com" target="_blank" rel="noopener">AI Guide</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
+  </ul>
 </nav>
-
-<section class="hero">
+<script>
+function toggleNav(){
+  var h=document.getElementById('nav-hamburger');
+  var n=document.getElementById('nav-links');
+  h.classList.toggle('open');
+  n.classList.toggle('open');
+  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+}
+// Close menu when a link is clicked
+document.addEventListener('DOMContentLoaded',function(){
+  var links=document.querySelectorAll('.nav-links a');
+  links.forEach(function(l){l.addEventListener('click',function(){
+    document.getElementById('nav-hamburger').classList.remove('open');
+    document.getElementById('nav-links').classList.remove('open');
+    document.body.style.overflow='';
+  });});
+});
+</script><section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -286,7 +352,7 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var
   <div class="section-eyebrow">About the Inventor</div>
   <div class="section-rule"></div>
   <h2 class="section-title">Built by Someone Who <em>Lived the Problem.</em></h2>
-  <p class="section-body">Michael J. Hinkle III is an operational program management leader with 13 years of experience in distributed field service, workforce development, and compliance governance in high-pressure, regulated environments. He brings a rare combination of deep operational domain expertise and applied AI tool proficiency to the development of technology solutions grounded in real-world operational experience.</p>
+  <p class="section-body">Michael J. Hinkle III is an operational program management leader with 12+ years of experience in distributed field service, workforce development, and compliance governance in high-pressure, regulated environments. He brings a rare combination of deep operational domain expertise and applied AI tool proficiency to the development of technology solutions grounded in real-world operational experience.</p>
   <div class="pull-quote"><p>"FlashRT was conceived from direct, sustained operational experience with the carrier onboarding problem &mdash; not as an outside observer but as a leader who has personally managed the cost, frustration, and systemic inefficiency of manual case learning across multiple delivery markets."</p></div>
   <div class="ip-notice">This page presents FlashRT at the concept and commercial value level. Technical implementation details are protected and available only under mutual non-disclosure agreement. Unauthorized replication of the FlashRT concept may constitute intellectual property infringement.</div>
 </section>

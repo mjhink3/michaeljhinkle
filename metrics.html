@@ -268,26 +268,92 @@ body {
 @media (max-width: 480px) {
   .metrics-grid-dark.cols-3, .metrics-grid-dark.cols-4, .metrics-grid-dark.cols-5 { grid-template-columns: 1fr 1fr; }
 }
+
+  /* ── UNIVERSAL NAV (mobile-responsive) ── */
+  .site-nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(15,26,46,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(184,134,11,0.25);}
+  .nav-brand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;text-decoration:none;}
+  .nav-brand span{color:#c8a84b;}
+  .nav-links{display:flex;gap:18px;align-items:center;list-style:none;}
+  .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:#c8a84b;}
+  .nav-links .nav-cta{background:#b8860b;color:#fff !important;padding:7px 16px;font-size:11px !important;}
+  .nav-links .nav-cta:hover{background:#c8a84b !important;color:#0f1a2e !important;}
+  /* Hamburger */
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:1010;}
+  .nav-hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.25s;}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  @media(max-width:860px){
+    .site-nav{padding:0 20px;}
+    .nav-hamburger{display:flex;}
+    .nav-links{
+      display:none;flex-direction:column;gap:0;
+      position:fixed;top:64px;left:0;right:0;bottom:0;
+      background:rgba(10,18,35,0.99);backdrop-filter:blur(16px);
+      padding:24px 0 40px;overflow-y:auto;z-index:999;
+      border-top:1px solid rgba(184,134,11,0.2);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links li{width:100%;}
+    .nav-links a{
+      display:block;width:100%;padding:16px 32px;
+      font-size:14px;letter-spacing:1.5px;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      color:rgba(255,255,255,0.75);
+    }
+    .nav-links a:hover,.nav-links a.active{color:#c8a84b;background:rgba(184,134,11,0.06);}
+    .nav-links .nav-cta{
+      margin:20px 32px 0;width:auto;
+      padding:14px 20px;text-align:center;
+      background:rgba(184,134,11,0.15);
+      border:1px solid rgba(184,134,11,0.4);
+      color:#c8a84b !important;
+    }
+    .nav-links .nav-cta:hover{background:rgba(184,134,11,0.28) !important;color:#fff !important;}
+  }
+
 </style>
 </head>
 <body class="metrics-page-bg">
 
 <!-- ── NAV ── -->
-<nav style="position:fixed;top:0;left:0;right:0;height:64px;background:rgba(15,26,46,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(184,134,11,0.25);">
-  <a href="index.html" style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;text-decoration:none;">Michael J. <span style="color:#c8a84b;">Hinkle III</span></a>
-  <ul style="display:flex;gap:24px;align-items:center;list-style:none;">
-    <li><a href="index.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">Home</a></li>
-    <li><a href="portfolio.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">Portfolio</a></li>
-    <li><a href="metrics.html" style="color:#c8a84b;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">Metrics</a></li>
-    <li><a href="flashrt.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">FlashRT</a></li>
-    <li><a href="nayaye.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">NayAye</a></li>
-    <li><a href="deb.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">The DEB</a></li>
-    <li><a href="goatflow.html" style="color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;">GOATflow</a></li>
-    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" style="background:#b8860b;color:#fff;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border-radius:3px;">LinkedIn</a></li>
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">MJH<span>III</span></a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="metrics.html" class="active">Metrics</a></li>
+    <li><a href="flashrt.html">FlashRT</a></li>
+    <li><a href="nayaye.html">NayAye</a></li>
+    <li><a href="deb.html">The DEB</a></li>
+    <li><a href="goatflow.html">GOATflow</a></li>
+    <li><a href="goatvisionseattle.html">GOATvision</a></li>
+    <li><a href="https://aiguide.michaeljhinkle.com" target="_blank" rel="noopener">AI Guide</a></li>
+    <li><a href="https://linkedin.com/in/michaeljhinkle" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
   </ul>
 </nav>
-
-<!-- ── HEADER ── -->
+<script>
+function toggleNav(){
+  var h=document.getElementById('nav-hamburger');
+  var n=document.getElementById('nav-links');
+  h.classList.toggle('open');
+  n.classList.toggle('open');
+  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+}
+// Close menu when a link is clicked
+document.addEventListener('DOMContentLoaded',function(){
+  var links=document.querySelectorAll('.nav-links a');
+  links.forEach(function(l){l.addEventListener('click',function(){
+    document.getElementById('nav-hamburger').classList.remove('open');
+    document.getElementById('nav-links').classList.remove('open');
+    document.body.style.overflow='';
+  });});
+});
+</script><!-- ── HEADER ── -->
 <div class="metrics-header" style="padding-top:80px;">
   <div class="metrics-header-inner" style="display:flex;align-items:flex-start;gap:40px;">
     <img src="headshot.webp" alt="Michael J. Hinkle III" style="width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid rgba(184,134,11,0.5);box-shadow:0 8px 32px rgba(0,0,0,0.5);flex-shrink:0;">
@@ -327,7 +393,6 @@ body {
       <div class="stat-label">Service Routes Under<br>Direct Oversight at Peak</div>
       <div class="stat-note">Vashon Island, WA · ferry-dependent distributed hub</div>
     </div>
-
   </div>
 
   <!-- OPERATIONAL SCALE -->
