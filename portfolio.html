@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Michael J. Hinkle III — Operational Leadership Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0D1F3C;
@@ -151,6 +151,96 @@
   .ai-city-badge { padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
   .ai-city-badge.active { background: rgba(72,187,120,0.12); border: 1px solid rgba(72,187,120,0.4); color: #276749; }
   .ai-city-badge.partial { background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.4); color: #7d5a0a; }
+
+  /* ── GOATvision card override ── */
+  .ai-project.goatvision-card {
+    background: #07060f;
+    border: 1px solid #2a2252;
+    border-bottom: 1px solid #2a2252;
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.goatvision-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #7744f2 40%, #3dd62a 60%, transparent);
+  }
+  .ai-project.goatvision-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0,0,0,0.10) 3px, rgba(0,0,0,0.10) 4px);
+    z-index: 0;
+  }
+  .ai-project.goatvision-card > * { position: relative; z-index: 1; }
+  .goatvision-card .ai-project-header { margin-bottom: 4px; }
+  .goatvision-card .gv-brand {
+    display: flex; align-items: baseline; gap: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; font-weight: 700; letter-spacing: 0.04em;
+  }
+  .goatvision-card .gv-brand-goat   { color: #f0ecff; }
+  .goatvision-card .gv-brand-vision { color: #7744f2; font-weight: 300; font-style: italic; }
+  .goatvision-card .gv-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 2px 7px;
+    border: 1px solid #3dd62a; color: #3dd62a;
+    background: rgba(61,214,42,0.08);
+  }
+  .goatvision-card .gv-city-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #7744f2;
+    text-decoration: none; padding: 2px 8px;
+    border: 1px solid #2a2252;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .goatvision-card .gv-city-link:hover { border-color: #7744f2; color: #f0ecff; }
+  .goatvision-card .gv-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; color: #3dd62a; margin-bottom: 14px;
+  }
+  .goatvision-card .gv-city-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .goatvision-card .gv-city-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 8px;
+    border: 1px solid;
+  }
+  .goatvision-card .gv-city-badge.active  { border-color: #3dd62a; color: #3dd62a; background: rgba(61,214,42,0.06); }
+  .goatvision-card .gv-city-badge.partial { border-color: #7744f2; color: #7744f2; background: rgba(119,68,242,0.06); }
+  .goatvision-card .gv-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 400; line-height: 1.75;
+    color: #cdc6e8; margin-bottom: 12px;
+  }
+  .goatvision-card .gv-desc-dim {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; line-height: 1.7; color: #635882; margin-bottom: 18px;
+  }
+  .goatvision-card .gv-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+  .goatvision-card .gv-link-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #3dd62a; text-decoration: none;
+    padding: 4px 12px; border: 1px solid #3dd62a;
+    background: rgba(61,214,42,0.06); transition: background 0.15s;
+  }
+  .goatvision-card .gv-link-primary:hover { background: rgba(61,214,42,0.15); }
+  .goatvision-card .gv-link-secondary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #7744f2; text-decoration: none;
+    padding: 4px 12px; border: 1px solid #2a2252; transition: border-color 0.15s;
+  }
+  .goatvision-card .gv-link-secondary:hover { border-color: #7744f2; }
 
   /* CLOSING */
   .closing-page { background: var(--navy); padding: 80px 100px; text-align: center; scroll-margin-top: 60px; }
@@ -542,7 +632,7 @@
 
   <div class="exec-summary">
     <div class="exec-summary-label">Executive Summary</div>
-    <div class="exec-summary-text">Each project in this portfolio was independently conceived, architected, and shipped on personal time — built from over a decade of operational leadership, not from a classroom. The methodology is consistent across all of them: identify a real operational or intelligence gap, build a solution, deploy it. This is not a collection of experiments. It is a demonstration of applied AI enablement at the practitioner level.</div>
+    <div class="exec-summary-text">Each project in this portfolio was independently conceived, architected, and shipped on personal time — in parallel with full-time operational leadership. The methodology is consistent across all of them: identify a real operational or intelligence gap, build a solution, deploy it. This is not a collection of experiments. It is a demonstration of applied AI enablement at the practitioner level.</div>
   </div>
 
   <div class="chapter-body">
@@ -550,25 +640,25 @@
     <div class="section-rule"></div>
 
     <!-- GOATvision -->
-    <div class="ai-project">
+    <div class="ai-project goatvision-card">
       <div class="ai-project-header">
-        <div class="ai-project-name">GOATvision</div>
-        <span class="ai-badge live">Live — Multi-City</span>
-        <a href="https://goatvisionseattle.vercel.app" target="_blank" class="ai-project-link">Seattle &#8599;</a>
-        <a href="https://goatvisiondmv.vercel.app" target="_blank" class="ai-project-link">DMV &#8599;</a>
-        <a href="https://goatvisionphilly.vercel.app" target="_blank" class="ai-project-link">Philadelphia &#8599;</a>
+        <div class="gv-brand"><span class="gv-brand-goat">GOAT</span><span class="gv-brand-vision">vision</span><sup style="font-size:8px;color:#635882;vertical-align:super;margin-left:2px;">&#8482;</sup></div>
+        <span class="gv-badge">Live &nbsp;·&nbsp; Multi-City</span>
+        <a href="https://goatvisionseattle.vercel.app" target="_blank" class="gv-city-link">Seattle &#8599;</a>
+        <a href="https://goatvisiondmv.vercel.app" target="_blank" class="gv-city-link">DMV &#8599;</a>
+        <a href="https://goatvisionphilly.vercel.app" target="_blank" class="gv-city-link">Philadelphia &#8599;</a>
       </div>
-      <div class="ai-project-sub">Real-Time Situational Awareness Platform</div>
-      <div class="ai-city-row">
-        <span class="ai-city-badge active">Seattle — Full Build</span>
-        <span class="ai-city-badge partial">DMV — Live</span>
-        <span class="ai-city-badge partial">Philadelphia — Live</span>
+      <div class="gv-sub">Real-Time Situational Awareness Platform &nbsp;&middot;&nbsp; See &middot; Plan &middot; Move</div>
+      <div class="gv-city-row">
+        <span class="gv-city-badge active">Seattle &mdash; Full Build</span>
+        <span class="gv-city-badge partial">DMV &mdash; Live</span>
+        <span class="gv-city-badge partial">Philadelphia &mdash; Live</span>
       </div>
-      <div class="ai-project-desc">Single-file client-side dashboard aggregating 16 live data endpoints across 9 distinct APIs — traffic, transit, ferries, weather, fire dispatch, seismic activity, and flight delays — into a unified real-time situational awareness interface. A rule-based Ops Brief synthesizes every active panel into a plain-English summary. Includes a Supabase telemetry layer with 90-day rolling retention and location-key separation across cities. Zero npm, zero build step — the entire app is one portable HTML file deployable anywhere.</div>
-      <div class="ai-project-desc" style="font-size:13px;color:var(--gray);">Expanded to DMV and Philadelphia as live secondary deployments with feature parity. Some data sources — Pennsylvania 511, live traffic cams, PulsePoint emergency dispatch for DMV — require commercial API access or LLC-gated credentials. Those requests are in flight. The architecture is already built to accept them.</div>
-      <div class="ai-project-footer">
-        <a href="goatvisionseattle.html" class="ai-link-secondary">View Overview &rarr;</a>
-        <a href="https://goatvisionseattle.vercel.app" target="_blank" class="ai-link-primary">Seattle Live &rarr;</a>
+      <div class="gv-desc">Single-file client-side dashboard aggregating 16 live data endpoints across 9 distinct APIs &mdash; traffic, transit, ferries, weather, fire dispatch, seismic activity, and flight delays &mdash; into a unified real-time situational awareness interface. A rule-based Ops Brief synthesizes every active panel into a plain-English situational summary. Includes a Supabase telemetry layer with 90-day rolling retention and location-key separation across cities. Zero npm, zero build step &mdash; the entire app is one portable HTML file deployable anywhere.</div>
+      <div class="gv-desc-dim">Expanded to DMV and Philadelphia as live secondary deployments with feature parity. Some data sources &mdash; Pennsylvania 511, live traffic cams, PulsePoint emergency dispatch for DMV &mdash; require commercial API access or LLC-gated credentials. Those requests are in flight. The architecture is already built to accept them.</div>
+      <div class="gv-footer">
+        <a href="goatvisionseattle.html" class="gv-link-secondary">View Overview &rarr;</a>
+        <a href="https://goatvisionseattle.vercel.app" target="_blank" class="gv-link-primary">Seattle Live &rarr;</a>
       </div>
     </div>
 
