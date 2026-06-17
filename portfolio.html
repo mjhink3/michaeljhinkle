@@ -730,6 +730,41 @@
   }
   .aiguide-card .aig-link-primary:hover { background: rgba(30,64,175,0.22); }
 
+  /* ── WorkGOAT card override ── */
+  .ai-project.workgoat-card {
+    background: #f8fdf8;
+    border: 1px solid rgba(45,90,39,0.18);
+    border-bottom: 1px solid rgba(45,90,39,0.18);
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.workgoat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #2d5a27 35%, #4a7c59 60%, transparent);
+  }
+  .ai-project.workgoat-card > * { position: relative; z-index: 1; }
+  .workgoat-card .wg-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .workgoat-card .wg-brand { font-family: 'Bebas Neue', serif; font-size: 28px; letter-spacing: 2px; color: #1a2e17; }
+  .workgoat-card .wg-brand span { color: #2d5a27; }
+  .workgoat-card .wg-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 2px 7px; border: 1px solid rgba(45,90,39,0.35); color: #2d5a27; background: rgba(45,90,39,0.06); }
+  .workgoat-card .wg-tagline { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: #4a7c59; margin-bottom: 6px; }
+  .workgoat-card .wg-sub { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(45,90,39,0.4); margin-bottom: 18px; }
+  .workgoat-card .wg-visual-row { display: grid; grid-template-columns: 180px 1fr 1fr; gap: 14px; align-items: start; margin-bottom: 18px; }
+  .workgoat-card .wg-logo-cell { display: flex; align-items: center; justify-content: center; padding: 12px; background: #fff; border: 1px solid rgba(45,90,39,0.1); min-height: 140px; }
+  .workgoat-card .wg-screen-cell { display: flex; flex-direction: column; gap: 6px; }
+  .workgoat-card .wg-screen-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(45,90,39,0.45); }
+  .workgoat-card .wg-desc { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(26,46,23,0.75); margin-bottom: 18px; }
+  .workgoat-card .wg-footer { display: flex; gap: 12px; }
+  .workgoat-card .wg-link-primary { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #f8fdf8; text-decoration: none; padding: 6px 14px; background: #2d5a27; transition: background 0.15s; }
+  .workgoat-card .wg-link-primary:hover { background: #4a7c59; }
+  @media(max-width:700px) { .workgoat-card .wg-visual-row { grid-template-columns: 1fr; } }
+
   /* CLOSING */
   .closing-page { background: var(--navy); padding: 80px 100px; text-align: center; scroll-margin-top: 60px; }
   .closing-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
@@ -1421,6 +1456,33 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="aig-desc">Interactive web application built to close the knowledge gap between technical AI developments and practical field understanding. Designed for the workforce — not engineers. Covers AI history, working tools, infrastructure fundamentals, and forward-looking trends in language that operators, managers, and frontline teams can actually use. Built and deployed independently as a workforce enablement resource.</div>
       <div class="aig-footer">
         <a href="https://aiguide.michaeljhinkle.com" target="_blank" class="aig-link-primary">View Live App &rarr;</a>
+      </div>
+    </div>
+
+    <!-- WorkGOAT -->
+    <div class="ai-project workgoat-card">
+      <div class="wg-header">
+        <div class="wg-brand">Work<span>GOAT</span></div>
+        <span class="wg-badge">Live &nbsp;·&nbsp; workgoat.vip</span>
+      </div>
+      <div class="wg-tagline">Work on your greatness.</div>
+      <div class="wg-sub">Workforce Performance Ecosystem &nbsp;·&nbsp; B2B SaaS</div>
+      <div class="wg-visual-row">
+        <div class="wg-logo-cell">
+          <img src="WorkGOAT_goat_leaders_together_logo.png" alt="WorkGOAT" style="max-width:180px;display:block;margin:0 auto;">
+        </div>
+        <div class="wg-screen-cell">
+          <img src="WorkGOAT_Herdboss_dashboard_view_example.png" alt="WorkGOAT Herd Boss Dashboard" style="width:100%;display:block;border:1px solid rgba(74,124,89,0.2);">
+          <div class="wg-screen-label">Herd Boss Dashboard &mdash; team performance view</div>
+        </div>
+        <div class="wg-screen-cell">
+          <img src="WorkGOAT_Top_herd_performers_leaderboard_example.png" alt="WorkGOAT Top Herd Performers Leaderboard" style="width:100%;display:block;border:1px solid rgba(74,124,89,0.2);">
+          <div class="wg-screen-label">Top Herd Performers &mdash; leaderboard view</div>
+        </div>
+      </div>
+      <div class="wg-desc">The parent ecosystem that GOATflow, GOATvision, Melvin, and NayAye all feed into. WorkGOAT is a B2B workforce performance platform designed to credential individual work ethic over time &mdash; turning small, documented wins into a verifiable behavioral record that travels with the worker. Fresh Cheese earned inside GOATflow ports to WorkGOAT at 1:1 on launch. The Herd Boss dashboard gives managers a real-time view of team performance, health, and leaderboard standings. Not just a productivity tool &mdash; a credentialing system for people who actually do the work.</div>
+      <div class="wg-footer">
+        <a href="https://workgoat.vip" target="_blank" class="wg-link-primary">Visit WorkGOAT &rarr;</a>
       </div>
     </div>
 
