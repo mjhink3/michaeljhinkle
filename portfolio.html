@@ -242,6 +242,494 @@
   }
   .goatvision-card .gv-link-secondary:hover { border-color: #7744f2; }
 
+  /* ── GOATflow card override ── */
+  .ai-project.goatflow-card {
+    background: #0d0b14;
+    border: 1px solid #2d1f52;
+    border-bottom: 1px solid #2d1f52;
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.goatflow-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #6c3fc8 35%, #f0a500 65%, transparent);
+  }
+  .ai-project.goatflow-card > * { position: relative; z-index: 1; }
+  .goatflow-card .gf-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .goatflow-card .gf-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; font-weight: 700; letter-spacing: 0.02em;
+  }
+  .goatflow-card .gf-brand-goat   { color: #f0ecff; }
+  .goatflow-card .gf-brand-flow   { color: #6c3fc8; font-style: italic; font-weight: 300; }
+  .goatflow-card .gf-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 2px 7px;
+    border: 1px solid #6c3fc8; color: #a87fff;
+    background: rgba(108,63,200,0.12);
+  }
+  .goatflow-card .gf-live-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #f0a500;
+    text-decoration: none; padding: 2px 8px;
+    border: 1px solid rgba(240,165,0,0.3);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .goatflow-card .gf-live-link:hover { border-color: #f0a500; color: #fff; }
+  .goatflow-card .gf-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 400; letter-spacing: 0.14em;
+    font-style: italic; color: #6c3fc8; margin-bottom: 6px;
+  }
+  .goatflow-card .gf-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(168,127,255,0.6); margin-bottom: 16px;
+  }
+  .goatflow-card .gf-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 400; line-height: 1.8;
+    color: #b8b0d0; margin-bottom: 18px;
+  }
+  .goatflow-card .gf-pill-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .goatflow-card .gf-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 8px;
+    border: 1px solid #2d1f52; color: #6c3fc8;
+    background: rgba(108,63,200,0.08);
+  }
+  .goatflow-card .gf-pill.gold { border-color: rgba(240,165,0,0.3); color: #f0a500; background: rgba(240,165,0,0.06); }
+  .goatflow-card .gf-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+  .goatflow-card .gf-link-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #f0a500; text-decoration: none;
+    padding: 4px 12px; border: 1px solid rgba(240,165,0,0.4);
+    background: rgba(240,165,0,0.06); transition: background 0.15s;
+  }
+  .goatflow-card .gf-link-primary:hover { background: rgba(240,165,0,0.14); }
+  .goatflow-card .gf-link-secondary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #6c3fc8; text-decoration: none;
+    padding: 4px 12px; border: 1px solid #2d1f52; transition: border-color 0.15s;
+  }
+  .goatflow-card .gf-link-secondary:hover { border-color: #6c3fc8; }
+
+  /* ── Melvin card override ── */
+  .ai-project.melvin-card {
+    background: #1a1a1f;
+    border: 1px solid #2e2e38;
+    border-bottom: 1px solid #2e2e38;
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.melvin-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #7c3aed 40%, #4a7c59 60%, transparent);
+  }
+  .ai-project.melvin-card > * { position: relative; z-index: 1; }
+  .melvin-card .mv-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .melvin-card .mv-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px; font-weight: 700; letter-spacing: 0.08em;
+    color: #f5f0e8;
+  }
+  .melvin-card .mv-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 2px 7px;
+    border: 1px solid #7c3aed; color: #a78bfa;
+    background: rgba(124,58,237,0.1);
+  }
+  .melvin-card .mv-badge.live {
+    border-color: #4a7c59; color: #6dba84;
+    background: rgba(74,124,89,0.1);
+  }
+  .melvin-card .mv-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 400; letter-spacing: 0.1em;
+    color: #7c3aed; margin-bottom: 6px; font-style: italic;
+  }
+  .melvin-card .mv-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; color: #5a5a6e; margin-bottom: 16px;
+  }
+  /* Memory panel preview strip */
+  .melvin-card .mv-memory-strip {
+    background: #f5f0e8;
+    border: 1px solid #ddd8cc;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .melvin-card .mv-memory-cell { display: flex; flex-direction: column; gap: 3px; }
+  .melvin-card .mv-memory-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #7c3aed;
+  }
+  .melvin-card .mv-memory-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: #2a2a35; line-height: 1.5;
+  }
+  .melvin-card .mv-memory-tag {
+    display: inline-block; font-size: 9px; font-weight: 600;
+    color: #4a7c59; background: rgba(74,124,89,0.12);
+    padding: 1px 6px; border: 1px solid rgba(74,124,89,0.3);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .melvin-card .mv-memory-footer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #9a9aaa; text-align: right; margin-top: 8px;
+    border-top: 1px solid #ddd8cc; padding-top: 6px;
+  }
+  .melvin-card .mv-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 400; line-height: 1.8;
+    color: #8a8a9e; margin-bottom: 18px;
+  }
+  .melvin-card .mv-pill-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .melvin-card .mv-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 8px;
+    border: 1px solid #2e2e38; color: #5a5a6e;
+  }
+  .melvin-card .mv-footer { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .melvin-card .mv-link-primary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #7c3aed; text-decoration: none;
+    padding: 4px 12px; border: 1px solid #7c3aed;
+    background: rgba(124,58,237,0.06); transition: background 0.15s;
+  }
+  .melvin-card .mv-link-primary:hover { background: rgba(124,58,237,0.14); }
+  .melvin-card .mv-soon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #4a7c59;
+  }
+
+  /* ── NayAye card override ── */
+  .ai-project.nayaye-card {
+    background: #F5F2ED;
+    border: 1px solid rgba(26,43,72,0.18);
+    border-bottom: 1px solid rgba(26,43,72,0.18);
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.nayaye-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1a2b48 40%, #b8860b 60%, transparent);
+  }
+  .ai-project.nayaye-card > * { position: relative; z-index: 1; }
+  .nayaye-card .ny-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .nayaye-card .ny-brand { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #1a2b48; letter-spacing: 0.02em; }
+  .nayaye-card .ny-brand span { color: #b8860b; }
+  .nayaye-card .ny-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 2px 7px; border: 1px solid #1a2b48; color: #1a2b48; background: rgba(26,43,72,0.06); }
+  .nayaye-card .ny-ext-link { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #b8860b; text-decoration: none; padding: 2px 8px; border: 1px solid rgba(184,134,11,0.35); transition: border-color 0.15s; }
+  .nayaye-card .ny-ext-link:hover { border-color: #b8860b; color: #8a6308; }
+  .nayaye-card .ny-tagline { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: #b8860b; margin-bottom: 6px; }
+  .nayaye-card .ny-sub { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,43,72,0.45); margin-bottom: 16px; }
+  .nayaye-card .ny-blueprint { background: #0d1f3c; border: 1px solid rgba(100,160,255,0.2); padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .nayaye-card .ny-bp-item { display: flex; flex-direction: column; gap: 3px; }
+  .nayaye-card .ny-bp-label { font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(100,160,255,0.55); }
+  .nayaye-card .ny-bp-value { font-size: 11px; font-weight: 600; color: #c8deff; }
+  .nayaye-card .ny-bp-divider { width: 1px; height: 32px; background: rgba(100,160,255,0.2); flex-shrink: 0; }
+  .nayaye-card .ny-desc { font-size: 14px; font-weight: 300; line-height: 1.8; color: rgba(26,43,72,0.8); margin-bottom: 18px; }
+  .nayaye-card .ny-desc strong { font-weight: 600; color: #1a2b48; }
+  .nayaye-card .ny-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+  .nayaye-card .ny-link-primary { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #F5F2ED; text-decoration: none; padding: 6px 14px; background: #1a2b48; transition: background 0.15s; }
+  .nayaye-card .ny-link-primary:hover { background: #b8860b; }
+  .nayaye-card .ny-link-secondary { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #1a2b48; text-decoration: none; padding: 6px 14px; border: 1px solid rgba(26,43,72,0.25); transition: border-color 0.15s; }
+  .nayaye-card .ny-link-secondary:hover { border-color: #1a2b48; }
+
+  /* ── The DEB card override ── */
+  .ai-project.deb-card {
+    background: #0d0a1a;
+    border: 1px solid rgba(192,132,252,0.18);
+    border-bottom: 1px solid rgba(192,132,252,0.18);
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.deb-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #9333ea 40%, #e879f9 60%, transparent);
+  }
+  .ai-project.deb-card::after {
+    content: '';
+    position: absolute;
+    inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 80% 20%, rgba(147,51,234,0.08) 0%, transparent 60%);
+  }
+  .ai-project.deb-card > * { position: relative; z-index: 1; }
+  .deb-card .deb-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .deb-card .deb-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700; color: #f0e8f5; letter-spacing: 0.02em;
+  }
+  .deb-card .deb-brand span { color: #c084fc; }
+  .deb-card .deb-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 2px 7px;
+    border: 1px solid rgba(192,132,252,0.3); color: #c084fc;
+    background: rgba(147,51,234,0.1);
+  }
+  .deb-card .deb-badge.named {
+    border-color: rgba(232,121,249,0.2); color: rgba(232,121,249,0.6);
+    background: rgba(232,121,249,0.05); font-style: italic; font-weight: 400; letter-spacing: 0.08em; text-transform: none;
+  }
+  .deb-card .deb-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-style: italic; color: #c084fc; margin-bottom: 6px;
+  }
+  .deb-card .deb-sub {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(192,132,252,0.4); margin-bottom: 18px;
+  }
+  .deb-card .deb-output-strip {
+    background: #160f28;
+    border: 1px solid rgba(192,132,252,0.12);
+    border-top: 2px solid #9333ea;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    display: flex; gap: 0; align-items: stretch;
+  }
+  .deb-card .deb-output-cell { flex: 1; padding: 0 16px; }
+  .deb-card .deb-output-cell:first-child { padding-left: 0; }
+  .deb-card .deb-output-cell:last-child { padding-right: 0; }
+  .deb-card .deb-output-divider { width: 1px; background: rgba(192,132,252,0.12); flex-shrink: 0; }
+  .deb-card .deb-output-num {
+    font-family: 'Bebas Neue', 'Playfair Display', serif;
+    font-size: 28px; line-height: 1; color: #e879f9; margin-bottom: 4px;
+  }
+  .deb-card .deb-output-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #c084fc; margin-bottom: 6px;
+  }
+  .deb-card .deb-output-desc {
+    font-size: 11px; font-weight: 300; color: rgba(240,232,245,0.5); line-height: 1.6;
+  }
+  .deb-card .deb-desc {
+    font-size: 14px; font-weight: 300; line-height: 1.8;
+    color: rgba(240,232,245,0.65); margin-bottom: 18px;
+  }
+  .deb-card .deb-desc strong { font-weight: 600; color: #f0e8f5; }
+  .deb-card .deb-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+  .deb-card .deb-link-primary {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #c084fc; text-decoration: none;
+    padding: 6px 14px; border: 1px solid rgba(192,132,252,0.35);
+    background: rgba(147,51,234,0.08); transition: background 0.15s;
+  }
+  .deb-card .deb-link-primary:hover { background: rgba(147,51,234,0.18); }
+
+  /* ── FlashRT card override ── */
+  .ai-project.flashrt-card {
+    background: #050d1a;
+    border: 1px solid rgba(96,165,250,0.15);
+    border-bottom: 1px solid rgba(96,165,250,0.15);
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.flashrt-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1d6aff 40%, #38bdf8 60%, transparent);
+  }
+  .ai-project.flashrt-card::after {
+    content: '';
+    position: absolute;
+    inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 90% 10%, rgba(29,106,255,0.07) 0%, transparent 55%);
+  }
+  .ai-project.flashrt-card > * { position: relative; z-index: 1; }
+  .flashrt-card .frt-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .flashrt-card .frt-brand {
+    font-family: 'Bebas Neue', 'Playfair Display', serif;
+    font-size: 32px; font-weight: 400; letter-spacing: 2px; color: #f1f5f9; line-height: 1;
+  }
+  .flashrt-card .frt-brand span { color: #60a5fa; }
+  .flashrt-card .frt-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 2px 7px;
+    border: 1px solid rgba(96,165,250,0.3); color: #60a5fa;
+    background: rgba(29,106,255,0.08);
+  }
+  .flashrt-card .frt-badge.market {
+    border-color: rgba(56,189,248,0.3); color: #38bdf8;
+    background: rgba(56,189,248,0.06);
+  }
+  .flashrt-card .frt-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-style: italic; color: rgba(96,165,250,0.8); margin-bottom: 6px;
+  }
+  .flashrt-card .frt-sub {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(96,165,250,0.35); margin-bottom: 18px;
+  }
+  .flashrt-card .frt-stat-strip {
+    background: #0a1628;
+    border: 1px solid rgba(96,165,250,0.1);
+    border-top: 2px solid #1d6aff;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    display: flex; gap: 0; align-items: center;
+  }
+  .flashrt-card .frt-stat { flex: 1; padding: 0 14px; }
+  .flashrt-card .frt-stat:first-child { padding-left: 0; }
+  .flashrt-card .frt-stat:last-child { padding-right: 0; }
+  .flashrt-card .frt-stat-div { width: 1px; height: 36px; background: rgba(96,165,250,0.1); flex-shrink: 0; }
+  .flashrt-card .frt-stat-num {
+    font-family: 'Bebas Neue', serif;
+    font-size: 26px; line-height: 1; color: #60a5fa; margin-bottom: 3px; letter-spacing: 1px;
+  }
+  .flashrt-card .frt-stat-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(241,245,249,0.35); line-height: 1.3;
+  }
+  .flashrt-card .frt-desc {
+    font-size: 14px; font-weight: 300; line-height: 1.8;
+    color: rgba(241,245,249,0.65); margin-bottom: 10px;
+  }
+  .flashrt-card .frt-desc strong { font-weight: 600; color: #f1f5f9; }
+  .flashrt-card .frt-disclaimer {
+    font-size: 11px; color: rgba(96,165,250,0.35); margin-bottom: 18px; font-style: italic;
+  }
+  .flashrt-card .frt-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+  .flashrt-card .frt-link-primary {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #60a5fa; text-decoration: none;
+    padding: 6px 14px; border: 1px solid rgba(96,165,250,0.3);
+    background: rgba(29,106,255,0.08); transition: background 0.15s;
+  }
+  .flashrt-card .frt-link-primary:hover { background: rgba(29,106,255,0.18); }
+
+  /* ── AI Evolution Guide card override ── */
+  .ai-project.aiguide-card {
+    background: #0c1222;
+    border: 1px solid rgba(99,130,255,0.18);
+    border-bottom: 1px solid rgba(99,130,255,0.18);
+    padding: 28px 28px 28px;
+    margin-bottom: 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-project.aiguide-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1e40af 30%, #6366f1 60%, #a78bfa 80%, transparent);
+  }
+  .ai-project.aiguide-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 220px; height: 220px; border-radius: 50%;
+    border: 40px solid rgba(99,102,241,0.04);
+    pointer-events: none;
+  }
+  .ai-project.aiguide-card > * { position: relative; z-index: 1; }
+  .aiguide-card .aig-header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .aiguide-card .aig-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700; color: #e8eaf6; letter-spacing: 0.01em;
+  }
+  .aiguide-card .aig-brand span { color: #818cf8; }
+  .aiguide-card .aig-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 2px 7px;
+    border: 1px solid rgba(99,102,241,0.4); color: #818cf8;
+    background: rgba(30,64,175,0.12);
+  }
+  .aiguide-card .aig-ext-link {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #a78bfa;
+    text-decoration: none; padding: 2px 8px;
+    border: 1px solid rgba(167,139,250,0.25);
+    transition: border-color 0.15s;
+  }
+  .aiguide-card .aig-ext-link:hover { border-color: #a78bfa; }
+  .aiguide-card .aig-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-style: italic; color: #818cf8; margin-bottom: 6px;
+  }
+  .aiguide-card .aig-sub {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(99,102,241,0.35); margin-bottom: 18px;
+  }
+  .aiguide-card .aig-module-row {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.12);
+    margin-bottom: 18px;
+  }
+  .aiguide-card .aig-module {
+    background: #0c1222;
+    padding: 12px 14px;
+    transition: background 0.15s;
+  }
+  .aiguide-card .aig-module:hover { background: rgba(30,64,175,0.15); }
+  .aiguide-card .aig-module-icon {
+    font-size: 7px; color: #6366f1; margin-bottom: 5px; letter-spacing: 2px;
+  }
+  .aiguide-card .aig-module-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #818cf8; margin-bottom: 5px;
+  }
+  .aiguide-card .aig-module-desc {
+    font-size: 10px; font-weight: 300; color: rgba(232,234,246,0.45); line-height: 1.5;
+  }
+  .aiguide-card .aig-desc {
+    font-size: 14px; font-weight: 300; line-height: 1.8;
+    color: rgba(232,234,246,0.6); margin-bottom: 18px;
+  }
+  .aiguide-card .aig-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+  .aiguide-card .aig-link-primary {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #818cf8; text-decoration: none;
+    padding: 6px 14px; border: 1px solid rgba(99,102,241,0.35);
+    background: rgba(30,64,175,0.1); transition: background 0.15s;
+  }
+  .aiguide-card .aig-link-primary:hover { background: rgba(30,64,175,0.22); }
+
   /* CLOSING */
   .closing-page { background: var(--navy); padding: 80px 100px; text-align: center; scroll-margin-top: 60px; }
   .closing-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
@@ -663,86 +1151,210 @@
     </div>
 
     <!-- GOATflow -->
-    <div class="ai-project">
-      <div class="ai-project-header">
-        <div class="ai-project-name">GOATflow</div>
-        <span class="ai-badge live">Live Prototype</span>
-        <a href="https://goatflow.app" target="_blank" class="ai-project-link">Live App &#8599;</a>
+    <div class="ai-project goatflow-card">
+      <div class="gf-header">
+        <div class="gf-brand"><span class="gf-brand-goat">GOAT</span><span class="gf-brand-flow">flow</span></div>
+        <span class="gf-badge">Live &nbsp;·&nbsp; Private Beta</span>
+        <a href="https://goatflow.app" target="_blank" class="gf-live-link">Live App &#8599;</a>
       </div>
-      <div class="ai-project-sub">AI Workflow Automation &amp; Operational Intelligence</div>
-      <div class="ai-project-desc">Live production application built on Python 3 + Streamlit, powered by Google Gemini 1.5 Flash, with a Supabase PostgreSQL backend. Ingests raw operational intel — emails, documents, voice memos, images — and extracts prioritized, structured action items called Tracks via the Churn Engine. Invite-only access with custom auth, single-use invite codes, and per-user data isolation. Includes a full gamification layer: dual-currency economy (Hay + Fresh Cheese), 7-level ascension system, 10 real-time stat cards, and browser-native push notifications. Not a demo — real auth, persistent data, live in production.</div>
-      <div class="ai-project-footer">
-        <a href="goatflow.html" class="ai-link-secondary">View Overview &rarr;</a>
-        <a href="https://goatflow.app" target="_blank" class="ai-link-primary">Live App &rarr;</a>
+      <div class="gf-tagline">Grab life by the horns. Leave the bull behind.</div>
+      <div class="gf-sub">AI Workflow Triage &nbsp;&middot;&nbsp; Operational Intelligence</div>
+      <div class="gf-pill-row">
+        <span class="gf-pill">Python 3 + Streamlit</span>
+        <span class="gf-pill">Google Gemini</span>
+        <span class="gf-pill">Supabase</span>
+        <span class="gf-pill">Multi-Tenant Auth</span>
+        <span class="gf-pill gold">Stateless Processing</span>
+        <span class="gf-pill gold">Hay + Fresh Cheese Economy</span>
+      </div>
+      <div class="gf-desc">Live production application that ingests raw operational chaos &mdash; emails, documents, voice memos, images &mdash; and extracts prioritized, structured action items called Tracks via the Churn Engine. User-defined Horns encode personal values directly into the AI ranking logic. Invite-only with custom auth, single-use invite codes, and per-user data isolation. Full gamification layer: dual-currency economy, 7-level ascension system, 10 real-time stat cards, and browser-native push notifications. Stateless processing purges source documents after signal extraction &mdash; built for high-sensitivity operational environments. Not a demo. Real auth, persistent data, live in production.</div>
+      <div class="gf-footer">
+        <a href="goatflow.html" class="gf-link-secondary">View Overview &rarr;</a>
+        <a href="https://goatflow.app" target="_blank" class="gf-link-primary">Live App &rarr;</a>
       </div>
     </div>
 
     <!-- Melvin -->
-    <div class="ai-project">
-      <div class="ai-project-header">
-        <div class="ai-project-name">Melvin</div>
-        <span class="ai-badge coming">In Development</span>
+    <div class="ai-project melvin-card">
+      <div class="mv-header">
+        <div class="mv-brand">Melvin</div>
+        <span class="mv-badge live">Live &nbsp;·&nbsp; Invite Only</span>
+        <span class="mv-badge">Voice Line</span>
       </div>
-      <div class="ai-project-sub">Voice-First AI Companion</div>
-      <div class="ai-project-desc">A voice-first AI companion built on Firebase auth, ElevenLabs voice integration, and per-user memory isolation. Features a gated invite system and persistent context across sessions. The architecture is the most complex in the portfolio — combining real-time voice synthesis, per-user data separation, and a Railway deployment pipeline. Currently in active development; invite-only access launching soon.</div>
-      <div class="ai-project-footer">
-        <span style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);">Launching Soon</span>
+      <div class="mv-tagline">The first person you call.</div>
+      <div class="mv-sub">Voice-First AI Companion &nbsp;·&nbsp; Per-User Memory Isolation</div>
+      <!-- Memory panel preview -->
+      <div class="mv-memory-strip">
+        <div class="mv-memory-cell">
+          <div class="mv-memory-label">&#9755; Identity</div>
+          <div class="mv-memory-value">Michael<br><span style="color:#5a5a6e;font-size:9px;">values: helping people</span></div>
+        </div>
+        <div class="mv-memory-cell">
+          <div class="mv-memory-label">&#9755; People</div>
+          <div class="mv-memory-value">Arthur &nbsp;·&nbsp; Jazz<br>Lincoln &nbsp;·&nbsp; B<br>Luna Bell</div>
+        </div>
+        <div class="mv-memory-cell">
+          <div class="mv-memory-label">&#9755; Projects</div>
+          <div class="mv-memory-value">GOATvision<br>GOATflow &nbsp;·&nbsp; Melvin</div>
+        </div>
+        <div class="mv-memory-cell">
+          <div class="mv-memory-label">&#9755; Feelings</div>
+          <div class="mv-memory-value"><span class="mv-memory-tag">energizer</span><br><span style="color:#5a5a6e;font-size:9px;">building for people who feel powerless</span></div>
+        </div>
+        <div class="mv-memory-footer" style="grid-column:1/-1;">Live Memory &nbsp;·&nbsp; Private by design &nbsp;·&nbsp; You own this data</div>
+      </div>
+      <div class="mv-pill-row">
+        <span class="mv-pill">React / TypeScript / Vite</span>
+        <span class="mv-pill">ElevenLabs Voice</span>
+        <span class="mv-pill">Firebase Auth</span>
+        <span class="mv-pill">OpenRouter LLM</span>
+        <span class="mv-pill">Railway</span>
+        <span class="mv-pill">Firestore Memory</span>
+      </div>
+      <div class="mv-desc">Voice-first AI companion with a five-bucket persistent memory system — Identity, People, Projects, Feelings, Threads — isolated per user in Firestore. Learns over time the way a person does: no onboarding flow, no calibration quiz, just conversation. Push-to-talk interface, ElevenLabs voice synthesis, dual-brain AI architecture (local Ollama for dev, OpenRouter for production). Invite-only with a waiting room. The most personal thing in this portfolio.</div>
+      <div class="mv-footer">
+        <a href="https://melvin-production-bbbe.up.railway.app" target="_blank" class="mv-link-primary">Request Invite &rarr;</a>
+        <span class="mv-soon">&#9679; Live on Railway</span>
       </div>
     </div>
 
     <!-- NayAye -->
-    <div class="ai-project">
-      <div class="ai-project-header">
-        <div class="ai-project-name">NayAye</div>
-        <span class="ai-badge live">Live Prototype</span>
-        <a href="https://nayaye.vercel.app" target="_blank" class="ai-project-link">Live App &#8599;</a>
+    <div class="ai-project nayaye-card">
+      <div class="ny-header">
+        <div class="ny-brand">Nay<span>Aye</span></div>
+        <span class="ny-badge">Live Prototype</span>
+        <a href="https://nayaye.vercel.app" target="_blank" class="ny-ext-link">Live App &#8599;</a>
       </div>
-      <div class="ai-project-sub">AI Tool Routing Intelligence</div>
-      <div class="ai-project-desc">A routing intelligence interface built in React, TypeScript, and Tailwind with Gemini Flash — directing users to the most effective AI tool for their specific task and reducing cognitive friction in tool selection.</div>
-      <div class="ai-project-footer">
-        <a href="nayaye.html" class="ai-link-secondary">View Overview &rarr;</a>
-        <a href="https://nayaye.vercel.app" target="_blank" class="ai-link-primary">Live App &rarr;</a>
+      <div class="ny-tagline">Should I use AI for this? Yes or no.</div>
+      <div class="ny-sub">AI Tool Routing Intelligence &nbsp;·&nbsp; Vercel</div>
+      <div class="ny-blueprint">
+        <div class="ny-bp-item">
+          <div class="ny-bp-label">Stack</div>
+          <div class="ny-bp-value">React &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Tailwind</div>
+        </div>
+        <div class="ny-bp-divider"></div>
+        <div class="ny-bp-item">
+          <div class="ny-bp-label">AI</div>
+          <div class="ny-bp-value">Gemini Flash</div>
+        </div>
+        <div class="ny-bp-divider"></div>
+        <div class="ny-bp-item">
+          <div class="ny-bp-label">Deploy</div>
+          <div class="ny-bp-value">Vercel &nbsp;·&nbsp; Live</div>
+        </div>
+      </div>
+      <div class="ny-desc">Routes users to the most effective AI tool for their specific task — reducing cognitive friction in tool selection. Built as a practical answer to the question every operator asks when AI tools multiply faster than clarity does: <strong>which one do I actually use for this?</strong> Simple interface, sharp routing logic, zero fluff.</div>
+      <div class="ny-footer">
+        <a href="nayaye.html" class="ny-link-secondary">View Overview &rarr;</a>
+        <a href="https://nayaye.vercel.app" target="_blank" class="ny-link-primary">Live App &rarr;</a>
       </div>
     </div>
 
     <!-- The DEB -->
-    <div class="ai-project">
-      <div class="ai-project-header">
-        <div class="ai-project-name">The DEB</div>
-        <span class="ai-badge concept">Workflow Architecture</span>
+    <div class="ai-project deb-card">
+      <div class="deb-header">
+        <div class="deb-brand">The <span>DEB</span></div>
+        <span class="deb-badge">Workflow Architecture</span>
+        <span class="deb-badge named">Named for Deb &nbsp;·&nbsp; 1957–2015</span>
       </div>
-      <div class="ai-project-sub">Daily Executive Bubble — AI Briefing System</div>
-      <div class="ai-project-desc">An AI-powered executive briefing workflow that synthesizes daily operational data into a structured, actionable morning brief. Built on Gumloop with a multi-node automation architecture. Named in honor of my mother, Debra.</div>
-      <div class="ai-project-footer">
-        <a href="deb.html" class="ai-link-secondary">View Overview &rarr;</a>
+      <div class="deb-tagline">Turn noise into signal. Automatically.</div>
+      <div class="deb-sub">Daily Executive Bubble &nbsp;·&nbsp; AI Briefing System &nbsp;·&nbsp; Gumloop</div>
+      <div class="deb-output-strip">
+        <div class="deb-output-cell">
+          <div class="deb-output-num">01</div>
+          <div class="deb-output-label">Top 3 Signals</div>
+          <div class="deb-output-desc">Highest-signal items from configured feeds — ranked, deduplicated, noise removed</div>
+        </div>
+        <div class="deb-output-divider"></div>
+        <div class="deb-output-cell">
+          <div class="deb-output-num">02</div>
+          <div class="deb-output-label">Why It Matters</div>
+          <div class="deb-output-desc">1–2 lines of business or technology impact per signal — insight, not summary</div>
+        </div>
+        <div class="deb-output-divider"></div>
+        <div class="deb-output-cell">
+          <div class="deb-output-num">03</div>
+          <div class="deb-output-label">Forward Cues</div>
+          <div class="deb-output-desc">Early indicators of what's next — synthesized trend read per signal</div>
+        </div>
+      </div>
+      <div class="deb-desc">AI-automated executive briefing system built on Gumloop with a multi-node workflow architecture. Pulls from configurable RSS feeds, runs a GPT-4 synthesis layer, and delivers a formatted brief to your inbox before the workday begins. Four-stage pipeline with failover protection — no empty briefs, no manual steps, no dashboards. Just signal, delivered. Named in honor of my mother, Debra.</div>
+      <div class="deb-footer">
+        <a href="deb.html" class="deb-link-primary">View Overview &rarr;</a>
       </div>
     </div>
 
     <!-- FlashRT -->
-    <div class="ai-project">
-      <div class="ai-project-header">
-        <div class="ai-project-name">FlashRT</div>
-        <span class="ai-badge concept">Concept Architecture</span>
+    <div class="ai-project flashrt-card">
+      <div class="frt-header">
+        <div class="frt-brand">Flash<span>RT</span></div>
+        <span class="frt-badge">Concept Architecture</span>
+        <span class="frt-badge market">$120M–$180M+ Market</span>
       </div>
-      <div class="ai-project-sub">AI-Guided Carrier Onboarding Technology &nbsp;·&nbsp; $120M–$180M+ Market</div>
-      <div class="ai-project-desc">Conceived and documented FlashRT — an AI-guided onboarding technology designed to compress the carrier onboarding cycle from weeks to days using intelligent route sequencing, real-time field coaching, and adaptive performance benchmarking. Published as a formal Concept Overview &amp; Commercial Value Assessment in 2025. The operational problem is real — managed it firsthand across multiple sites.</div>
-      <div class="ai-project-desc" style="font-size:12px;color:var(--gray);">Independent research concept. Does not use proprietary agency data or internal systems.</div>
-      <div class="ai-project-footer">
-        <a href="flashrt.html" class="ai-link-secondary">View Overview &rarr;</a>
+      <div class="frt-tagline">Scan. Illuminate. Place.</div>
+      <div class="frt-sub">AI-Guided Carrier Onboarding &nbsp;·&nbsp; Last-Mile Intelligence</div>
+      <div class="frt-stat-strip">
+        <div class="frt-stat">
+          <div class="frt-stat-num">$180M+</div>
+          <div class="frt-stat-label">Est. Annual Labor Efficiency Value</div>
+        </div>
+        <div class="frt-stat-div"></div>
+        <div class="frt-stat">
+          <div class="frt-stat-num">300K</div>
+          <div class="frt-stat-label">USPS Carriers — Addressable Market</div>
+        </div>
+        <div class="frt-stat-div"></div>
+        <div class="frt-stat">
+          <div class="frt-stat-num">2.4x</div>
+          <div class="frt-stat-label">Onboarding Cycles Per Route Per Year</div>
+        </div>
+        <div class="frt-stat-div"></div>
+        <div class="frt-stat">
+          <div class="frt-stat-num">0</div>
+          <div class="frt-stat-label">Existing Technology Solving This</div>
+        </div>
+      </div>
+      <div class="frt-desc">Conceived and documented — an AI-guided onboarding system that eliminates the cognitive friction of learning a new delivery case. A carrier scans an incoming mail piece; FlashRT reads the address and <strong>instantly illuminates the correct slot on the sorting case</strong> — removing manual search, printed route books, and memory dependency during the learning phase. Formal Concept Overview and Commercial Value Assessment published 2025. The operational problem is real — managed it firsthand across multiple sites.</div>
+      <div class="frt-disclaimer">Independent research concept. Does not use proprietary agency data or internal systems.</div>
+      <div class="frt-footer">
+        <a href="flashrt.html" class="frt-link-primary">View Overview &rarr;</a>
       </div>
     </div>
 
     <!-- AI Evolution Guide -->
-    <div class="ai-project">
-      <div class="ai-project-header">
-        <div class="ai-project-name">AI Evolution Guide</div>
-        <span class="ai-badge live">Live Web Application</span>
-        <a href="https://aiguide.michaeljhinkle.com" target="_blank" class="ai-project-link">Live App &#8599;</a>
+    <div class="ai-project aiguide-card">
+      <div class="aig-header">
+        <div class="aig-brand">AI <span>Evolution</span> Guide</div>
+        <span class="aig-badge">Live</span>
+        <a href="https://aiguide.michaeljhinkle.com" target="_blank" class="aig-ext-link">Live App &#8599;</a>
       </div>
-      <div class="ai-project-sub">Workforce AI Education Platform</div>
-      <div class="ai-project-desc">An interactive web application developed to educate the workforce on the evolution of AI — bridging the knowledge gap between technical AI developments and practical field understanding.</div>
-      <div class="ai-project-footer">
-        <a href="https://aiguide.michaeljhinkle.com" target="_blank" class="ai-link-primary">View Live App &rarr;</a>
+      <div class="aig-tagline">Where did AI come from. What it can do. What's next.</div>
+      <div class="aig-sub">Workforce AI Education Platform &nbsp;·&nbsp; Replit</div>
+      <div class="aig-module-row">
+        <div class="aig-module">
+          <div class="aig-module-icon">&#9679;</div>
+          <div class="aig-module-label">History</div>
+          <div class="aig-module-desc">From Turing to GPT-4 — the arc in plain language</div>
+        </div>
+        <div class="aig-module">
+          <div class="aig-module-icon">&#9679;</div>
+          <div class="aig-module-label">Tools</div>
+          <div class="aig-module-desc">Working AI tools mapped to real use cases</div>
+        </div>
+        <div class="aig-module">
+          <div class="aig-module-icon">&#9679;</div>
+          <div class="aig-module-label">Infrastructure</div>
+          <div class="aig-module-desc">How the systems actually work underneath</div>
+        </div>
+        <div class="aig-module">
+          <div class="aig-module-icon">&#9679;</div>
+          <div class="aig-module-label">Future</div>
+          <div class="aig-module-desc">What's coming and what it means for operators</div>
+        </div>
+      </div>
+      <div class="aig-desc">Interactive web application built to close the knowledge gap between technical AI developments and practical field understanding. Designed for the workforce — not engineers. Covers AI history, working tools, infrastructure fundamentals, and forward-looking trends in language that operators, managers, and frontline teams can actually use. Built and deployed independently as a workforce enablement resource.</div>
+      <div class="aig-footer">
+        <a href="https://aiguide.michaeljhinkle.com" target="_blank" class="aig-link-primary">View Live App &rarr;</a>
       </div>
     </div>
 
