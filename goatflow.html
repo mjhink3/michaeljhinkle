@@ -57,7 +57,8 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--goat-bg);color:#e8f
 .section-body strong{font-weight:600;color:#fff;}
 .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px;}
 .feature-card{background:var(--goat-surface);border:1px solid rgba(82,183,136,0.15);border-left:3px solid var(--goat-green-light);border-radius:4px;padding:28px;}
-.feature-card-icon{font-size:28px;margin-bottom:12px;display:block;}
+.feature-card-icon{margin-bottom:16px;display:block;}
+.feature-card-icon img{width:80px;height:80px;object-fit:contain;display:block;}
 .feature-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;}
 .feature-card-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.7;}
 .screenshot-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
@@ -240,22 +241,22 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="section-rule"></div>
     <div class="feature-grid">
       <div class="feature-card">
-        <span class="feature-card-icon">&#129382;</span>
+        <span class="feature-card-icon"><img src="goatflow_track_sieve.webp" alt="Track Sieve"></span>
         <div class="feature-card-title">The Track Sieve</div>
         <div class="feature-card-desc">The primary input mechanism. Users drop unstructured intel — PDFs, images, pasted emails, voice memos — into the Sieve. Accepts file uploads up to 200MB, freeform text, and browser microphone transcription. All source files are purged immediately after analysis. <strong>Stateless processing</strong> — no sensitive documents are retained.</div>
       </div>
       <div class="feature-card">
-        <span class="feature-card-icon">&#9881;</span>
+        <span class="feature-card-icon"><img src="goatflow_churn_engine.webp" alt="Churn Engine"></span>
         <div class="feature-card-title">The Churn Engine</div>
         <div class="feature-card-desc">Powered by GPT-4o-mini. When intel is submitted, the Churn Engine extracts structured Tracks — each with a title, description, priority tier (<strong>Micro / Standard / High-Leverage / GOAT</strong>), optional time estimate, and Summit Call flag. Tuned to think like a chief of staff, not a task parser.</div>
       </div>
       <div class="feature-card">
-        <span class="feature-card-icon">&#127897;</span>
+        <span class="feature-card-icon"><img src="goatflow_horns.webp" alt="GOAT Horns"></span>
         <div class="feature-card-title">GOAT Horns</div>
         <div class="feature-card-desc">Recurring intelligence templates. Users set up Horns — standing prompt configurations that automatically regenerate Tracks on a schedule. Think of them as standing operating procedures: recurring priorities that feed the Sieve without manual input.</div>
       </div>
       <div class="feature-card">
-        <span class="feature-card-icon">&#127881;</span>
+        <span class="feature-card-icon"><img src="goatflow_goatification.webp" alt="Goatifications"></span>
         <div class="feature-card-title">Goatifications &amp; Gamification Economy</div>
         <div class="feature-card-desc">A full dual-currency reward system: <strong>Hay</strong> earned per Track completed, converting at 500 Hay to <strong>Fresh Cheese</strong> (CCR — Cheese Churn Rate). Real-time browser push notifications fire on milestone events. A 7-level ascension system tracks cumulative XP from The Kid up to The G.O.A.T.</div>
       </div>
@@ -310,14 +311,14 @@ document.addEventListener('DOMContentLoaded',function(){
 
     <div class="feature-grid" style="margin-top:32px;">
       <div class="feature-card">
-        <span class="feature-card-icon">&#127891;</span>
+        <span class="feature-card-icon"><img src="goatflow_level_ascension.webp" alt="Level Ascension"></span>
         <div class="feature-card-title">7-Level Ascension System</div>
         <div class="feature-card-desc">Users ascend through seven operational tiers based on total XP (Cheese Churn Points), with a 20% growth curve between levels. Each tier carries a unique badge and name:<br><br>
           <strong>The Kid &rarr; The Starter &rarr; The Builder &rarr; The Climber &rarr; The Leader &rarr; The Visionary &rarr; The G.O.A.T.</strong>
         </div>
       </div>
       <div class="feature-card">
-        <span class="feature-card-icon">&#128276;</span>
+        <span class="feature-card-icon"><img src="goatflow_goatification.webp" alt="Goatifications"></span>
         <div class="feature-card-title">Goatifications</div>
         <div class="feature-card-desc">Real-time browser push notifications fire on milestone events: Fresh Cheese conversions, level-ups, streak milestones, and Summit Call completions. Users opt in to push notifications. The system is built on the browser Notifications API &mdash; no third-party service required.</div>
       </div>
