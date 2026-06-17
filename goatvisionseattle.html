@@ -451,6 +451,38 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 
 <!-- ARCHITECTURE -->
+<section class="section" style="background:var(--bg);padding:72px 40px;" id="ferry">
+  <div class="section-inner">
+    <span class="section-eyebrow">Feature Spotlight</span>
+    <h2 class="section-title">Real-Time Ferry Tracking with Haversine Positioning</h2>
+    <div class="section-rule"></div>
+    <p class="section-body" style="margin-bottom:28px;">Of all 16 live data panels in GOATvision Seattle, the WSF Ferry tracker is the one that consistently stops people. It pulls live GPS coordinates from the Washington State Ferries vessel API every two minutes and calculates each vessel's real-time progress across its route using the <strong>Haversine formula</strong> — measuring the great-circle distance between the vessel's current position and both terminal endpoints. The result is an animated progress bar that shows exactly where each ferry is on the water, right now.</p>
+
+    <div style="border:1px solid var(--border);overflow:hidden;margin-bottom:28px;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(119,68,242,0.08);">
+      <img src="goatvision_ferry_tracker_haversine.png" alt="GOATvision WSF Ferry Status — Live Vessel Positions with Haversine GPS tracking" style="width:100%;display:block;">
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:28px;">
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--purple);padding:16px 18px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">How It Works</div>
+        <div style="font-size:12px;font-weight:300;color:var(--text);line-height:1.7;">GPS coordinates from the WSF API are fed into the Haversine formula, which calculates arc distance on a sphere — giving accurate progress percentages even across curved water routes. Falls back to scheduled time data when GPS is unavailable.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--green);padding:16px 18px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);margin-bottom:8px;">What You See</div>
+        <div style="font-size:12px;font-weight:300;color:var(--text);line-height:1.7;">Four active routes — Mukilteo/Clinton, Seattle/Bainbridge, Fauntleroy/Vashon/Southworth, Point Defiance/Tahlequah — with animated vessel icons, vessel name, speed in knots, status, and next departure time.</div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--amber);padding:16px 18px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;">Why It Matters</div>
+        <div style="font-size:12px;font-weight:300;color:var(--text);line-height:1.7;">For anyone commuting via ferry — including Vashon Island residents with no bridge alternative — knowing where the vessel actually is right now is operationally critical. This panel delivers that in a single glance.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green);padding:16px 20px;font-family:var(--mono);font-size:12px;color:var(--text-dim);line-height:1.7;">
+      <span style="color:var(--green);font-weight:700;">Telemetry layer:</span> Every ferry fetch silently writes vessel delay data — scheduled vs. actual departure, route, wind speed, weather conditions, time of day — to Supabase. Historical patterns accumulate over time. A feature built to get smarter the longer it runs.
+    </div>
+  </div>
+</section>
+
 <section class="section arch-section" id="architecture">
   <div class="section-inner">
     <div class="section-eyebrow">Architecture</div>
