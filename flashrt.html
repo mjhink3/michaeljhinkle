@@ -95,6 +95,23 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var
 .footer-links a{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--flash-blue-light);}
 @media(max-width:768px){.hero-content,.section,.stat-bar,.cta-section,.site-footer{padding-left:24px;padding-right:24px;}.stat-bar{grid-template-columns:repeat(2,1fr);}.workflow-grid,.principles-grid,.status-grid{grid-template-columns:1fr;}.nav-links a:not(.nav-cta){display:none;}}
+  /* ── Photo treatments ── */
+  .frt-img-full { width:100%; max-height:480px; object-fit:cover; display:block; margin:40px 0; }
+  .frt-img-split { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin:40px 0; }
+  .frt-img-split img { width:100%; height:360px; object-fit:cover; display:block; }
+  .frt-img-trio { display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin:40px 0; }
+  .frt-img-trio img { width:100%; height:280px; object-fit:cover; display:block; }
+  .frt-quote-card { margin:40px 0; max-width:520px; }
+  .frt-quote-card img { width:100%; display:block; border:1px solid rgba(96,165,250,0.15); }
+  .frt-img-right { display:grid; grid-template-columns:1fr 380px; gap:48px; align-items:start; }
+  .frt-img-right img { width:100%; display:block; border:1px solid rgba(96,165,250,0.12); }
+  .frt-diagram { display:block; margin:36px auto; max-width:480px; background:#fff; padding:24px; }
+  .frt-diagram img { width:100%; display:block; }
+  @media(max-width:860px){
+    .frt-img-split,.frt-img-trio { grid-template-columns:1fr; }
+    .frt-img-right { grid-template-columns:1fr; }
+    .frt-img-split img,.frt-img-trio img { height:220px; }
+  }
 
   /* ── UNIVERSAL NAV (mobile-responsive) ── */
   .site-nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(15,26,46,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;z-index:1000;border-bottom:1px solid rgba(184,134,11,0.25);}
@@ -105,7 +122,6 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var
   .nav-links a:hover,.nav-links a.active{color:#c8a84b;}
   .nav-links .nav-cta{background:#b8860b;color:#fff !important;padding:7px 16px;font-size:11px !important;}
   .nav-links .nav-cta:hover{background:#c8a84b !important;color:#0f1a2e !important;}
-  /* Hamburger */
   .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;z-index:1010;}
   .nav-hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.25s;}
   .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -114,29 +130,12 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var
   @media(max-width:860px){
     .site-nav{padding:0 20px;}
     .nav-hamburger{display:flex;}
-    .nav-links{
-      display:none;flex-direction:column;gap:0;
-      position:fixed;top:64px;left:0;right:0;bottom:0;
-      background:rgba(10,18,35,0.99);backdrop-filter:blur(16px);
-      padding:24px 0 40px;overflow-y:auto;z-index:999;
-      border-top:1px solid rgba(184,134,11,0.2);
-    }
+    .nav-links{display:none;flex-direction:column;gap:0;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(10,18,35,0.99);backdrop-filter:blur(16px);padding:24px 0 40px;overflow-y:auto;z-index:999;border-top:1px solid rgba(184,134,11,0.2);}
     .nav-links.open{display:flex;}
     .nav-links li{width:100%;}
-    .nav-links a{
-      display:block;width:100%;padding:16px 32px;
-      font-size:14px;letter-spacing:1.5px;
-      border-bottom:1px solid rgba(255,255,255,0.05);
-      color:rgba(255,255,255,0.75);
-    }
+    .nav-links a{display:block;width:100%;padding:16px 32px;font-size:14px;letter-spacing:1.5px;border-bottom:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.75);}
     .nav-links a:hover,.nav-links a.active{color:#c8a84b;background:rgba(184,134,11,0.06);}
-    .nav-links .nav-cta{
-      margin:20px 32px 0;width:auto;
-      padding:14px 20px;text-align:center;
-      background:rgba(184,134,11,0.15);
-      border:1px solid rgba(184,134,11,0.4);
-      color:#c8a84b !important;
-    }
+    .nav-links .nav-cta{margin:20px 32px 0;width:auto;padding:14px 20px;text-align:center;background:rgba(184,134,11,0.15);border:1px solid rgba(184,134,11,0.4);color:#c8a84b !important;}
     .nav-links .nav-cta:hover{background:rgba(184,134,11,0.28) !important;color:#fff !important;}
   }
 
@@ -162,22 +161,8 @@ body{font-family:'Source Sans 3',sans-serif;background:var(--flash-bg);color:var
   </ul>
 </nav>
 <script>
-function toggleNav(){
-  var h=document.getElementById('nav-hamburger');
-  var n=document.getElementById('nav-links');
-  h.classList.toggle('open');
-  n.classList.toggle('open');
-  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
-}
-// Close menu when a link is clicked
-document.addEventListener('DOMContentLoaded',function(){
-  var links=document.querySelectorAll('.nav-links a');
-  links.forEach(function(l){l.addEventListener('click',function(){
-    document.getElementById('nav-hamburger').classList.remove('open');
-    document.getElementById('nav-links').classList.remove('open');
-    document.body.style.overflow='';
-  });});
-});
+function toggleNav(){var h=document.getElementById('nav-hamburger');var n=document.getElementById('nav-links');h.classList.toggle('open');n.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+document.addEventListener('DOMContentLoaded',function(){var links=document.querySelectorAll('.nav-links a');links.forEach(function(l){l.addEventListener('click',function(){document.getElementById('nav-hamburger').classList.remove('open');document.getElementById('nav-links').classList.remove('open');document.body.style.overflow='';});});});
 </script><section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -206,10 +191,16 @@ document.addEventListener('DOMContentLoaded',function(){
   <div class="section-eyebrow">The Problem</div>
   <div class="section-rule"></div>
   <h2 class="section-title">Every Last-Mile Network Has the Same <em>Invisible Bottleneck.</em></h2>
-  <div class="problem-block">
-    <p>Every last-mile delivery organization faces the same invisible bottleneck: <strong>new carrier onboarding.</strong> Learning a delivery route is not simply a matter of knowing the streets. It requires internalizing the precise physical layout of a sorting case &mdash; hundreds of individual address slots that must become muscle memory before a carrier can work efficiently and accurately.</p>
-    <p>This learning curve costs organizations weeks of reduced productivity per new hire, generates sorting errors that damage customer trust, and places disproportionate supervisory burden on experienced staff during a new carrier's earliest and most critical weeks.</p>
-    <p><strong>Manual instruction, printed route books, and repetitive practice have been the standard for decades. No technology has meaningfully addressed the physical, in-the-moment challenge of guiding a new carrier through the casing process in real time.</strong></p>
+  <div class="frt-img-right">
+    <div class="problem-block">
+      <p>Every last-mile delivery organization faces the same invisible bottleneck: <strong>new carrier onboarding.</strong> Learning a delivery route is not simply a matter of knowing the streets. It requires internalizing the precise physical layout of a sorting case &mdash; hundreds of individual address slots that must become muscle memory before a carrier can work efficiently and accurately.</p>
+      <p>This learning curve costs organizations weeks of reduced productivity per new hire, generates sorting errors that damage customer trust, and places disproportionate supervisory burden on experienced staff during a new carrier's earliest and most critical weeks.</p>
+      <p><strong>Manual instruction, printed route books, and repetitive practice have been the standard for decades. No technology has meaningfully addressed the physical, in-the-moment challenge of guiding a new carrier through the casing process in real time.</strong></p>
+    </div>
+    <div>
+      <img src="flashrt_carrier_frustrated.jpg" alt="Carrier struggling to learn the case" style="width:100%;display:block;border:1px solid rgba(96,165,250,0.12);margin-bottom:16px;">
+      <img src="flashrt_quote_friction.jpg" alt="The industry has accepted this friction as the cost of onboarding. FlashRT eliminates it." style="width:100%;display:block;">
+    </div>
   </div>
 </section>
 
@@ -219,7 +210,15 @@ document.addEventListener('DOMContentLoaded',function(){
   <h2 class="section-title">FlashRT Transforms the Sorting Case Into <em>a Responsive, Intelligent Workspace.</em></h2>
   <p class="section-body">FlashRT is an AI-assisted carrier guidance system designed to eliminate the cognitive friction of learning a new delivery case. Using a mobile device, a carrier scans an incoming mail piece. FlashRT reads the address, references the route's organizational structure, and <strong>instantly indicates the correct physical slot on the sorting case</strong> &mdash; removing the need to manually search, cross-reference printed materials, or rely on memory during the learning phase.</p>
   <p class="section-body">The result is a fundamentally different onboarding experience. Instead of learning the case <em>and then</em> sorting mail, new carriers sort mail and learn the case simultaneously &mdash; guided in real time by an intelligent system that responds to each piece as it is handled.</p>
+  <div class="frt-img-trio">
+    <img src="flashrt_phone_scan.jpg" alt="Carrier scanning mail piece with mobile device">
+    <img src="flashrt_slot_illuminated.jpg" alt="Correct slot illuminating blue instantly">
+    <img src="flashrt_slot_dark_glow.jpg" alt="Single illuminated slot in dark sorting case">
+  </div>
   <div class="pull-quote"><p>"The FlashRT scan moment: mobile device reads address, case slot illuminates instantly."</p></div>
+  <div class="frt-diagram">
+    <img src="flashrt_system_diagram.jpg" alt="AI Recognition → Route Intelligence → Physical Guidance">
+  </div>
 </section>
 
 <section class="section" id="workflow">
@@ -244,6 +243,10 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="workflow-step"><div class="step-num">4</div><div class="step-text"><strong>Correct slot illuminates immediately</strong></div></div>
       <div class="workflow-step"><div class="step-num">5</div><div class="step-text">Places in slot &mdash; <strong>guided, accurate, confident</strong></div></div>
     </div>
+  </div>
+  <div class="frt-img-split">
+    <img src="flashrt_before_after_split.jpg" alt="Before and after FlashRT — carrier without and with AI guidance">
+    <img src="flashrt_hand_filing.jpg" alt="Hand placing envelope into correct case slot">
   </div>
 </section>
 
@@ -277,6 +280,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <div class="section-rule"></div>
   <h2 class="section-title">Every Sorting Station Is a <em>FlashRT Opportunity.</em></h2>
   <p class="section-body">The last-mile delivery industry is among the largest employers in the United States and faces persistent structural challenges in carrier recruitment, onboarding speed, and retention. Every major delivery network &mdash; postal, private, and emerging &mdash; shares the onboarding problem FlashRT is designed to solve.</p>
+  <img src="flashrt_sorting_floor.jpg" alt="Aerial view of large-scale sorting and distribution facility" class="frt-img-full">
   <ul class="market-list">
     <li>USPS employs approximately <strong>300,000 carriers nationally</strong> across ~31,000 post offices</li>
     <li>FedEx, UPS, Amazon Logistics, and hundreds of regional carriers face <strong>identical onboarding challenges</strong></li>
@@ -352,8 +356,13 @@ document.addEventListener('DOMContentLoaded',function(){
   <div class="section-eyebrow">About the Inventor</div>
   <div class="section-rule"></div>
   <h2 class="section-title">Built by Someone Who <em>Lived the Problem.</em></h2>
-  <p class="section-body">Michael J. Hinkle III is an operational program management leader with 12+ years of experience in distributed field service, workforce development, and compliance governance in high-pressure, regulated environments. He brings a rare combination of deep operational domain expertise and applied AI tool proficiency to the development of technology solutions grounded in real-world operational experience.</p>
-  <div class="pull-quote"><p>"FlashRT was conceived from direct, sustained operational experience with the carrier onboarding problem &mdash; not as an outside observer but as a leader who has personally managed the cost, frustration, and systemic inefficiency of manual case learning across multiple delivery markets."</p></div>
+  <div class="frt-img-right">
+    <div>
+      <p class="section-body">Michael J. Hinkle III is an operational program management leader with 13 years of experience in distributed field service, workforce development, and compliance governance in high-pressure, regulated environments. He brings a rare combination of deep operational domain expertise and applied AI tool proficiency to the development of technology solutions grounded in real-world operational experience.</p>
+      <div class="pull-quote"><p>"FlashRT was conceived from direct, sustained operational experience with the carrier onboarding problem &mdash; not as an outside observer but as a leader who has personally managed the cost, frustration, and systemic inefficiency of manual case learning across multiple delivery markets."</p></div>
+    </div>
+    <img src="flashrt_quote_founder.jpg" alt="I didn't invent FlashRT in a lab or a startup — Michael J. Hinkle III">
+  </div>
   <div class="ip-notice">This page presents FlashRT at the concept and commercial value level. Technical implementation details are protected and available only under mutual non-disclosure agreement. Unauthorized replication of the FlashRT concept may constitute intellectual property infringement.</div>
 </section>
 
