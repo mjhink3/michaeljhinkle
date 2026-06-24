@@ -427,6 +427,8 @@
 // ============================================================
 const CONFIG = {
   WSDOT_KEY: '9086eb9c-b743-432c-a9ca-86e160d0d780',
+  // CORS proxy required for WSDOT APIs when running from file:// or non-WSDOT origin
+  CORS_PROXY: 'https://api.allorigins.win/raw?url=',
   LAT: 47.6062,
   LON: -122.3321,
   REFRESH_WEATHER_MS: 5 * 60 * 1000,    // 5 min
@@ -434,6 +436,40 @@ const CONFIG = {
   REFRESH_INCIDENTS_MS: 2 * 60 * 1000,  // 2 min
   REFRESH_FERRY_MS: 2 * 60 * 1000,      // 2 min
 };
+
+// Try multiple proxies in sequence, then direct, and surface the real error
+const PROXIES = [
+  'https://api.allorigins.win/raw?url=',
+  'https://corsproxy.io/?',
+  'https://api.codetabs.com/v1/proxy?quest=',
+];
+
+async function wsdotFetch(url) {
+  let lastErr = null;
+  for (const proxy of PROXIES) {
+    try {
+      const res = await fetch(proxy + encodeURIComponent(url));
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      try {
+        return JSON.parse(text);
+      } catch {
+        throw new Error(`Non-JSON response (${text.slice(0, 80)}...)`);
+      }
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  // Last resort: try direct (works if WSDOT ever adds CORS headers)
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Direct HTTP ${res.status}`);
+    return await res.json();
+  } catch (e) {
+    lastErr = e;
+  }
+  throw new Error(`All proxies failed. Last error: ${lastErr?.message}`);
+}
 
 // ============================================================
 //  UTILITIES
@@ -712,9 +748,7 @@ async function fetchIncidents() {
   const url = `https://www.wsdot.wa.gov/Traffic/api/HighwayAlerts/HighwayAlertsREST.svc/GetAlertsAsJson?AccessCode=${CONFIG.WSDOT_KEY}`;
 
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = await wsdotFetch(url);
     incidentsFetchedAt = new Date();
     renderIncidents(data);
     setDot('traffic-dot', 'green');
@@ -722,9 +756,8 @@ async function fetchIncidents() {
   } catch (e) {
     setDot('traffic-dot', 'red');
     document.getElementById('incidents-list').innerHTML =
-      `<div class="error-msg">&#9888; Incidents fetch failed: ${e.message}</div>`;
+      `<div class="error-msg" style="text-align:left;padding:12px">&#9888; Incidents failed<br><code style="font-size:9px;color:var(--text-dim);word-break:break-all">${e.message}</code></div>`;
     document.getElementById('incidents-ts').textContent = 'ERROR';
-    console.error('Incidents fetch error:', e);
   }
 }
 
@@ -795,109 +828,96 @@ async function fetchFerry() {
     return;
   }
 
-  const url = `https://www.wsdot.wa.gov/ferries/api/terminals/rest/terminallocations?apiaccesscode=${CONFIG.WSDOT_KEY}`;
+  // vessellocations gives real-time positions + ETAs; terminallocations only has lat/lon
+  const url = `https://www.wsdot.wa.gov/ferries/api/vessels/rest/vessellocations?apiaccesscode=${CONFIG.WSDOT_KEY}`;
 
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = await wsdotFetch(url);
     ferryFetchedAt = new Date();
     renderFerry(data);
     setDot('ferry-dot', 'green');
     document.getElementById('ferry-ts').textContent = `Refreshed ${ts(ferryFetchedAt)}`;
   } catch (e) {
-    setDot('ferry-dot', 'amber');
+    setDot('ferry-dot', 'red');
     document.getElementById('ferry-content').innerHTML =
-      `<div class="error-msg">&#9888; Ferry fetch failed: ${e.message}<br><small style="color:var(--text-dim)">WSDOT Ferries API may require CORS proxy in production</small></div>`;
+      `<div class="error-msg" style="text-align:left;padding:12px">&#9888; Ferry failed<br><code style="font-size:9px;color:var(--text-dim);word-break:break-all">${e.message}</code></div>`;
     document.getElementById('ferry-ts').textContent = 'ERROR';
-    console.error('Ferry fetch error:', e);
-    renderFerryFallback();
   }
 }
 
-// Named terminal IDs for Mukilteo/Clinton and Seattle/Bainbridge
-const FERRY_ROUTES = [
-  { name: 'Mukilteo → Clinton', termA: 'Mukilteo', termB: 'Clinton' },
-  { name: 'Seattle → Bainbridge', termA: 'Seattle', termB: 'Bainbridge Island' },
+const FERRY_ROUTE_KEYWORDS = [
+  { name: 'Mukilteo / Clinton', keywords: ['mukilteo', 'clinton'] },
+  { name: 'Seattle / Bainbridge', keywords: ['seattle', 'bainbridge'] },
 ];
 
-function renderFerry(terminals) {
-  if (!terminals || terminals.length === 0) {
-    renderFerryFallback();
+function parseWsdotDate(val) {
+  if (!val) return null;
+  const m = String(val).match(/\d+/);
+  return m ? new Date(parseInt(m[0])) : null;
+}
+
+function renderFerry(vessels) {
+  if (!vessels || vessels.length === 0) {
+    document.getElementById('ferry-content').innerHTML =
+      `<div class="loading-msg">No vessel data available</div>`;
     return;
   }
 
-  // Match terminals by name
-  const findTerm = name => terminals.find(t =>
-    (t.TerminalName || '').toLowerCase().includes(name.toLowerCase())
-  );
-
   let html = '';
-  for (const route of FERRY_ROUTES) {
-    const termA = findTerm(route.termA);
+  for (const route of FERRY_ROUTE_KEYWORDS) {
+    const routeVessels = vessels.filter(v => {
+      const dep = (v.DepartingTerminalName || '').toLowerCase();
+      const arr = (v.ArrivingTerminalName || '').toLowerCase();
+      return route.keywords.some(k => dep.includes(k) || arr.includes(k));
+    });
+
+    let rows = '';
+    if (routeVessels.length === 0) {
+      rows = `<div class="ferry-dep">
+        <div><div class="ferry-time">—</div><div class="ferry-vessel">No vessel on route</div></div>
+        <span class="ferry-status delayed">Offline</span>
+      </div>`;
+    } else {
+      rows = routeVessels.map(v => {
+        const atDock = v.AtDock;
+        const vesselName = v.VesselName || '—';
+        const dep = v.DepartingTerminalName || '';
+        const arr = v.ArrivingTerminalName || '';
+        const eta = parseWsdotDate(v.Eta);
+        const scheduled = parseWsdotDate(v.ScheduledDeparture);
+        const speed = v.Speed != null ? Math.round(v.Speed) : null;
+
+        let timeStr = '—';
+        let label = '';
+        if (atDock && scheduled) {
+          timeStr = scheduled.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+          label = 'Departs';
+        } else if (!atDock && eta) {
+          timeStr = eta.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+          label = 'ETA';
+        }
+
+        const statusText = atDock ? 'At Dock' : speed != null ? `Underway ${speed}kn` : 'Underway';
+        const statusClass = atDock ? 'on-time' : 'delayed';
+
+        return `
+          <div class="ferry-dep">
+            <div>
+              <div class="ferry-time">${label ? `<span style="font-size:8px;color:var(--text-dim)">${label} </span>` : ''}${timeStr}</div>
+              <div class="ferry-vessel">${vesselName} · ${dep} → ${arr}</div>
+            </div>
+            <span class="ferry-status ${statusClass}">${statusText}</span>
+          </div>`;
+      }).join('');
+    }
+
     html += `
       <div class="ferry-route">
         <div class="ferry-route-name">${route.name}</div>
-        <div class="ferry-departures">
-          ${renderFerryTerminal(termA, route)}
-        </div>
-      </div>
-    `;
+        <div class="ferry-departures">${rows}</div>
+      </div>`;
   }
 
-  document.getElementById('ferry-content').innerHTML = html || `<div class="loading-msg">No ferry data found</div>`;
-}
-
-function renderFerryTerminal(term, route) {
-  if (!term) {
-    return `<div class="ferry-dep"><span class="ferry-time">—</span><span class="ferry-status on-time">No data</span></div>`;
-  }
-
-  const depts = term.Departures || term.ScheduledDepartures || [];
-  if (depts.length === 0) {
-    return `<div class="ferry-dep">
-      <div>
-        <div class="ferry-time">Schedule</div>
-        <div class="ferry-vessel">${term.TerminalName}</div>
-      </div>
-      <span class="ferry-status on-time">Check WSF</span>
-    </div>`;
-  }
-
-  return depts.slice(0, 3).map(d => {
-    const time = d.DepartingTime ? new Date(parseInt(d.DepartingTime.match(/\d+/)[0])).toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', hour12:true}) : '—';
-    const delayed = d.IsDelayed || false;
-    const cancelled = d.IsCancelled || false;
-    const vessel = d.VesselName || '';
-    const statusClass = cancelled ? 'cancelled' : delayed ? 'delayed' : 'on-time';
-    const statusText = cancelled ? 'Cancelled' : delayed ? `Delayed ${d.DelayMinutes || ''}m` : 'On Time';
-    return `
-      <div class="ferry-dep ${delayed ? 'delayed' : ''} ${cancelled ? 'cancelled' : ''}">
-        <div>
-          <div class="ferry-time">${time}</div>
-          ${vessel ? `<div class="ferry-vessel">${vessel}</div>` : ''}
-        </div>
-        <span class="ferry-status ${statusClass}">${statusText}</span>
-      </div>
-    `;
-  }).join('');
-}
-
-function renderFerryFallback() {
-  const html = FERRY_ROUTES.map(r => `
-    <div class="ferry-route">
-      <div class="ferry-route-name">${r.name}</div>
-      <div class="ferry-departures">
-        <div class="ferry-dep">
-          <div>
-            <div class="ferry-time">—</div>
-            <div class="ferry-vessel">API unavailable</div>
-          </div>
-          <span class="ferry-status delayed">No Data</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
   document.getElementById('ferry-content').innerHTML = html;
 }
 
@@ -919,8 +939,7 @@ async function fetchCameras() {
 
   try {
     const fetches = CAMERA_ROADS.map(road =>
-      fetch(`https://www.wsdot.wa.gov/Traffic/api/HighwayCameras/HighwayCamerasREST.svc/GetCamerasByRoadNameAsJson?RoadName=${encodeURIComponent(road)}&AccessCode=${CONFIG.WSDOT_KEY}`)
-        .then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status} for ${road}`)))
+      wsdotFetch(`https://www.wsdot.wa.gov/Traffic/api/HighwayCameras/HighwayCamerasREST.svc/GetCamerasByRoadNameAsJson?RoadName=${encodeURIComponent(road)}&AccessCode=${CONFIG.WSDOT_KEY}`)
         .then(cams => cams.map(c => ({ ...c, _road: road })))
         .catch(e => { console.warn(`Camera fetch failed for ${road}:`, e); return []; })
     );
@@ -932,9 +951,8 @@ async function fetchCameras() {
     document.getElementById('cameras-ts').textContent = `Refreshed ${ts(camerasFetchedAt)} · ${allCameras.length} cameras`;
   } catch (e) {
     document.getElementById('camera-grid').innerHTML =
-      `<div class="error-msg" style="grid-column:1/-1">&#9888; Camera fetch failed: ${e.message}</div>`;
+      `<div class="error-msg" style="grid-column:1/-1;text-align:left">&#9888; Cameras failed<br><code style="font-size:9px;color:var(--text-dim);word-break:break-all">${e.message}</code></div>`;
     document.getElementById('cameras-ts').textContent = 'ERROR';
-    console.error('Camera fetch error:', e);
   }
 }
 
